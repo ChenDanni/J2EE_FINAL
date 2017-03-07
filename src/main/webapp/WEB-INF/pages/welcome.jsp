@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <c:import url="_head.jsp" var="head">
-    <c:param name="title" value="登陆"/>
+    <c:param name="title" value="首页"/>
 </c:import>
 ${head}
 <body>
@@ -19,7 +19,7 @@ ${head}
                     <a href="#" class="btn btn-lg btn-default">机构入口</a>
                 </p>
                 <p class="lead">
-                    <a href="/memberLogin" class="btn btn-lg btn-default">学员入口</a>
+                    <a href="/memberHome" class="btn btn-lg btn-default">学员入口</a>
                 </p>
             </div>
         </div>

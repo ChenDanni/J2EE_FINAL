@@ -11,6 +11,9 @@
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
 
+    <mvc:resources location="/WEB-INF/assets/" mapping="/assets/**" />
+
+
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/pages/"/>

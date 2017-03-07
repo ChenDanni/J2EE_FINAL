@@ -8,7 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<c:import url="_head.jsp" var="head"></c:import>
+<c:import url="_head.jsp" var="head">
+    <c:param name="title" value="注册"/>
+</c:import>
 ${head}
 <body>
 <div class="container">

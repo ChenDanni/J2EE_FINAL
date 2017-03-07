@@ -20,7 +20,7 @@ public class MainController {
 
     @RequestMapping(value = "/memberHome", method = RequestMethod.GET)
     public String getHome() {
-        return "memberHome";
+        return "classList";
     }
     @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
     public String getMemberLogin() {
@@ -30,8 +30,16 @@ public class MainController {
     public String getRegister() {
         return "register";
     }
+
+    //充值
+    @RequestMapping(value = "/recharge", method = RequestMethod.GET)
+    public String getRecharge() {
+        return "recharge";
+    }
+
     @RequestMapping(value = "/mine", method = RequestMethod.GET)
     public String index() {
         return "mine";
     }
+
 }

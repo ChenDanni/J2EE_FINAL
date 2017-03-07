@@ -1,15 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: user
+  User: chendanni
   Date: 17/3/1
   Time: 下午3:20
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<c:import url="_head.jsp" var="head"></c:import>
+<c:import url="_head.jsp" var="head">
+    <c:param name="title" value="学员登陆"/>
+</c:import>
 ${head}
 
 <body>
@@ -27,7 +29,10 @@ ${head}
                 <input type="checkbox" value="remember-me">记住密码
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+        <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
+        <%--<p class="lead">--%>
+            <a href="/memberHome" class="btn btn-lg btn-default">登陆</a>
+        <%--</p>--%>
     </form>
 
 </div> <!-- /container -->
