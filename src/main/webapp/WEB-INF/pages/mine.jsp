@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<c:import url="_head.jsp" var="head">
+<c:import url="component/_head.jsp" var="head">
     <c:param name="title" value="个人中心"/>
 </c:import>
 <c:import url="nav.jsp" var="nav"></c:import>
-<c:import url="component/memberSelect.jsp" var="select"></c:import>
+<c:import url="component/sidebar.jsp" var="sidebar"></c:import>
 ${head}
 
 <body>
@@ -22,7 +22,7 @@ ${nav}
 <div class="container-fluid">
     <div class="row">
 
-        ${select}
+        ${sidebar}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Dashboard</h1>
@@ -63,7 +63,7 @@ ${nav}
 </div>
 
 
-<c:import url="_script.jsp" var="script"></c:import>
+<c:import url="component/_script.jsp" var="script"></c:import>
 ${script}
 </body>
 </html>

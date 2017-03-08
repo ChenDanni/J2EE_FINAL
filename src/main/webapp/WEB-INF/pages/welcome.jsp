@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<c:import url="_head.jsp" var="head">
+<c:import url="component/_head.jsp" var="head">
     <c:param name="title" value="首页"/>
 </c:import>
 ${head}
@@ -29,7 +29,7 @@ ${head}
 </div>
 
 
-<c:import url="_script.jsp" var="script"></c:import>
+<c:import url="component/_script.jsp" var="script"></c:import>
 ${script}
 </body>
 </html>

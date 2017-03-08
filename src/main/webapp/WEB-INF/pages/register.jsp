@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<c:import url="_head.jsp" var="head">
+<c:import url="component/_head.jsp" var="head">
     <c:param name="title" value="注册"/>
 </c:import>
 ${head}
@@ -35,7 +35,7 @@ ${head}
 
 
 
-<c:import url="_script.jsp" var="script"></c:import>
+<c:import url="component/_script.jsp" var="script"></c:import>
 ${script}
 </body>
 </html>
