@@ -51,6 +51,10 @@ public class MainController {
         return "member/cardStatistics";
     }
 
+    @RequestMapping(value = "/cardSetting", method = RequestMethod.GET)
+    public String getCardSetting() {
+        return "member/cardSetting";
+    }
 
 
 
@@ -67,12 +71,39 @@ public class MainController {
     //充值
     @RequestMapping(value = "/recharge", method = RequestMethod.GET)
     public String getRecharge() {
-        return "recharge";
+        return "member/recharge";
     }
 
     @RequestMapping(value = "/mine", method = RequestMethod.GET)
     public String index() {
         return "mine";
+    }
+
+
+    //------------机构----------
+    @RequestMapping(value = "/org_courses", method = RequestMethod.GET)
+    public String getOrgCourses() {
+        return "organization/courses";
+    }
+    @RequestMapping(value = "/org_applying", method = RequestMethod.GET)
+    public String getOrgApplying() {
+        return "organization/applying";
+    }
+    @RequestMapping(value = "/org_class_apply", method = RequestMethod.GET)
+    public String getOrgClassApply() {
+        return "organization/classApply";
+    }
+    @RequestMapping(value = "/org_learn_record", method = RequestMethod.GET)
+    public String getOrgLearnRecord() {
+        return "organization/learnRecord";
+    }
+    @RequestMapping(value = "/org_account", method = RequestMethod.GET)
+    public String getOrgAccount() {
+        return "organization/orgAccount";
+    }
+    @RequestMapping(value = "/org_statistics", method = RequestMethod.GET)
+    public String getOrgStatistics() {
+        return "organization/orgStatistics";
     }
 
 }

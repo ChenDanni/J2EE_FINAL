@@ -16,7 +16,7 @@ ${head}
 
             <div class="inner cover">
                 <p class="lead">
-                    <a href="#" class="btn btn-lg btn-default">机构入口</a>
+                    <a href="/org_courses" class="btn btn-lg btn-default">机构入口</a>
                 </p>
                 <p class="lead">
                     <a href="/memberHome" class="btn btn-lg btn-default">学员入口</a>

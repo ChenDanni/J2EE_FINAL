@@ -11,11 +11,11 @@
 <c:import url="../component/_head.jsp" var="head">
     <c:param name="title" value="正在学习的课程"/>
 </c:import>
-<c:import url="../nav.jsp" var="nav"></c:import>
+<c:import url="../component/nav.jsp" var="nav"></c:import>
 <c:import url="../component/sidebar.jsp" var="sidebar">
     <c:param name="current" value="courses-stu"/>
 </c:import>
-<c:import url="../component/courseCardDetail.jsp" var="courseCardDetail"></c:import>
+<c:import url="../component/courseLearningCard.jsp" var="courseLearningCard"></c:import>
 <c:import url="../component/siftButtons.jsp" var="shiftButtons"></c:import>
 ${head}
 
@@ -29,8 +29,8 @@ ${nav}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             ${shiftButtons}
             <div class="row">
-                ${courseCardDetail}
-                ${courseCardDetail}
+                ${courseLearningCard}
+                ${courseLearningCard}
             </div>
         </div>
 
@@ -40,5 +40,6 @@ ${nav}
 
 <c:import url="../component/_script.jsp" var="script"></c:import>
 ${script}
+<script src="../../assets/js/learning.js"></script>
 </body>
 </html>

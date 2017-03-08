@@ -11,7 +11,7 @@
 <c:import url="../component/_head.jsp" var="head">
     <c:param name="title" value="热门课程"/>
 </c:import>
-<c:import url="../nav.jsp" var="nav"></c:import>
+<c:import url="../component/nav.jsp" var="nav"></c:import>
 <c:import url="../component/sidebar.jsp" var="sidebar">
     <c:param name="current" value="hot-courses"/>
 </c:import>
