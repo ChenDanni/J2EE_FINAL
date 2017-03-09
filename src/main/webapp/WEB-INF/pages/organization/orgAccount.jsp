@@ -26,21 +26,41 @@ ${nav}
         ${sidebar}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h5 class="page-header">会员卡充值</h5>
+            <h5 class="page-header">机构账户</h5>
 
-            <%--<form class="form-signin">--%>
-            <form>
-                <p>账户余额: 9000</p>
-                <p>银行卡号: 3241****6352</p>
-                <label for="rechargeNum">充值金额</label>
-                <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
-
-                <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
-                <%--<p class="lead">--%>
-                <a href="/card" class="btn btn-lg btn-default">取消</a>
-                <a href="/card" class="btn btn-lg btn-default">充值</a>
-                <%--</p>--%>
-            </form>
+            <p>账户余额: 10000</p>
+            <p>银行卡号: 3241****6352 <a>修改</a></p>
+            <hr>
+            <h5 class="page-header">账户明细</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>操作</th>
+                        <th>金额</th>
+                        <th>余额</th>
+                        <th>日期</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2</td>
+                        <td>0000001预定课程一</td>
+                        <td>+1000</td>
+                        <td>10000</td>
+                        <td>2017-03-01</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0000002退订课程二</td>
+                        <td>-1000</td>
+                        <td>9000</td>
+                        <td>2017-03-01</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>

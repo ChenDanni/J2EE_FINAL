@@ -26,21 +26,38 @@ ${nav}
         ${sidebar}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h5 class="page-header">会员卡充值</h5>
 
-            <%--<form class="form-signin">--%>
-            <form>
-                <p>账户余额: 9000</p>
-                <p>银行卡号: 3241****6352</p>
-                <label for="rechargeNum">充值金额</label>
-                <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    所有申请 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">所有申请</a></li>
+                    <li><a href="#">申请中</a></li>
+                    <li><a href="#">已通过</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">未通过</a></li>
+                </ul>
+            </div>
 
-                <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
-                <%--<p class="lead">--%>
-                <a href="/card" class="btn btn-lg btn-default">取消</a>
-                <a href="/card" class="btn btn-lg btn-default">充值</a>
-                <%--</p>--%>
-            </form>
+            <hr>
+
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <p><b class="text-info"> [申请中]</b>课程名</p>
+                </div>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-body">
+                    <p><b class="text-success"> [申请成功]</b>课程名</p>
+                </div>
+            </div>
+            <div class="panel panel-danger">
+                <div class="panel-body">
+                    <p><b class="text-danger"> [申请失败]</b>课程名</p>
+                </div>
+            </div>
+
         </div>
 
     </div>

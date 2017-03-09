@@ -15,7 +15,7 @@ ${head}
 <body>
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin col-md-4">
         <h2 class="form-signin-heading">学员注册</h2>
         <label for="inputUsername" class="sr-only">用户名</label>
         <input type="email" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>

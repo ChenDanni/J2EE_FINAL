@@ -9,15 +9,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<c:import url="component/_head.jsp" var="head">
+<c:import url="../component/_head.jsp" var="head">
     <c:param name="title" value="学员登陆"/>
 </c:import>
 ${head}
 
 <body>
+
 <div class="container">
 
-    <form class="form-signin">
+    <form class="form-signin col-md-4">
         <h2 class="form-signin-heading">学员登陆</h2>
         <label for="inputCardId" class="sr-only">会员卡号</label>
         <input type="email" id="inputCardId" class="form-control" placeholder="会员卡号" required autofocus>
@@ -38,7 +39,7 @@ ${head}
 </div> <!-- /container -->
 
 
-<c:import url="component/_script.jsp" var="script"></c:import>
+<c:import url="../component/_script.jsp" var="script"></c:import>
 ${script}
 </body>
 </html>

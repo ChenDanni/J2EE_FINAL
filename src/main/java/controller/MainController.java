@@ -61,7 +61,7 @@ public class MainController {
 
     @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
     public String getMemberLogin() {
-        return "memberLogin";
+        return "member/memberLogin";
     }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegister() {
@@ -79,6 +79,10 @@ public class MainController {
         return "mine";
     }
 
+    @RequestMapping(value = "/course_detail", method = RequestMethod.GET)
+    public String getCourseDetail() {
+        return "member/courseDetail";
+    }
 
     //------------机构----------
     @RequestMapping(value = "/org_courses", method = RequestMethod.GET)

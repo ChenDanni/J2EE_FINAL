@@ -5,7 +5,7 @@
         <div class="caption">
             <h4>课程名</h4>
             <p>来自: 新东方   2100 人学过</p>
-            <p> <a href="#" class="btn btn-default" role="button">查看详情</a></p>
+            <p> <a href="/course_detail" class="btn btn-default" role="button">查看详情</a></p>
         </div>
     </div>
 </div>
