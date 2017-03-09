@@ -11,6 +11,8 @@
         <class>model.LogEntity</class>
         <class>model.ManagerEntity</class>
         <class>model.OrganizationEntity</class>
+
+
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:8889/j2ee_final"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

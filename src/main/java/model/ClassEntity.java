@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Collection;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "class", schema = "j2ee_final", catalog = "")
@@ -18,8 +18,9 @@ public class ClassEntity {
     private int memberNum;
     private int state;
     private String description;
-    private OrganizationEntity orgByorgId;
-    private Collection<LessonEntity> lessonsById;
+    private String learnTime;
+    private OrganizationEntity orgId;
+    private Collection<LessonEntity> lessones;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -101,6 +102,16 @@ public class ClassEntity {
         this.description = description;
     }
 
+    @Basic
+    @Column(name = "learn_time", nullable = false, length = 64)
+    public String getLearnTime() {
+        return learnTime;
+    }
+
+    public void setLearnTime(String learnTime) {
+        this.learnTime = learnTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,6 +127,7 @@ public class ClassEntity {
         if (time != null ? !time.equals(that.time) : that.time != null) return false;
         if (teacher != null ? !teacher.equals(that.teacher) : that.teacher != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (learnTime != null ? !learnTime.equals(that.learnTime) : that.learnTime != null) return false;
 
         return true;
     }
@@ -130,25 +142,26 @@ public class ClassEntity {
         result = 31 * result + memberNum;
         result = 31 * result + state;
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (learnTime != null ? learnTime.hashCode() : 0);
         return result;
     }
 
     @ManyToOne
     @JoinColumn(name = "org_id", referencedColumnName = "id", nullable = false)
-    public OrganizationEntity getOrgByorgId() {
-        return orgByorgId;
+    public OrganizationEntity getOrgId() {
+        return orgId;
     }
 
-    public void setOrgByorgId(OrganizationEntity orgByorgId) {
-        this.orgByorgId = orgByorgId;
+    public void setOrgId(OrganizationEntity orgId) {
+        this.orgId = orgId;
     }
 
-    @OneToMany(mappedBy = "classByclassId")
-    public Collection<LessonEntity> getLessonsById() {
-        return lessonsById;
+    @OneToMany(mappedBy = "classId")
+    public Collection<LessonEntity> getLessones() {
+        return lessones;
     }
 
-    public void setLessonsById(Collection<LessonEntity> lessonsById) {
-        this.lessonsById = lessonsById;
+    public void setLessones(Collection<LessonEntity> lessones) {
+        this.lessones = lessones;
     }
 }

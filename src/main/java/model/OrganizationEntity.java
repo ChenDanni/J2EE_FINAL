@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "organization", schema = "j2ee_final", catalog = "")
@@ -15,7 +15,7 @@ public class OrganizationEntity {
     private String phone;
     private String address;
     private Integer balance;
-    private Collection<ClassEntity> classesById;
+    private Collection<ClassEntity> classes;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -105,12 +105,12 @@ public class OrganizationEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "orgByorgId")
-    public Collection<ClassEntity> getClassesById() {
-        return classesById;
+    @OneToMany(mappedBy = "orgId")
+    public Collection<ClassEntity> getClasses() {
+        return classes;
     }
 
-    public void setClassesById(Collection<ClassEntity> classesById) {
-        this.classesById = classesById;
+    public void setClasses(Collection<ClassEntity> classes) {
+        this.classes = classes;
     }
 }

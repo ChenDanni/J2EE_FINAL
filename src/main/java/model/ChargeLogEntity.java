@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "charge_log", schema = "j2ee_final", catalog = "")
@@ -12,7 +12,7 @@ public class ChargeLogEntity {
     private int id;
     private int money;
     private Timestamp date;
-    private CardEntity cardBycardId;
+    private CardEntity cardId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -68,11 +68,11 @@ public class ChargeLogEntity {
 
     @ManyToOne
     @JoinColumn(name = "card_id", referencedColumnName = "id", nullable = false)
-    public CardEntity getCardBycardId() {
-        return cardBycardId;
+    public CardEntity getCardId() {
+        return cardId;
     }
 
-    public void setCardBycardId(CardEntity cardBycardId) {
-        this.cardBycardId = cardBycardId;
+    public void setCardId(CardEntity cardId) {
+        this.cardId = cardId;
     }
 }

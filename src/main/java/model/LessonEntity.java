@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "lesson", schema = "j2ee_final", catalog = "")
@@ -12,7 +12,7 @@ public class LessonEntity {
     private String name;
     private int order;
     private String description;
-    private ClassEntity classByclassId;
+    private ClassEntity classId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -80,11 +80,11 @@ public class LessonEntity {
 
     @ManyToOne
     @JoinColumn(name = "class_id", referencedColumnName = "id", nullable = false)
-    public ClassEntity getClassByclassId() {
-        return classByclassId;
+    public ClassEntity getClassId() {
+        return classId;
     }
 
-    public void setClassByclassId(ClassEntity classByclassId) {
-        this.classByclassId = classByclassId;
+    public void setClassId(ClassEntity classId) {
+        this.classId = classId;
     }
 }

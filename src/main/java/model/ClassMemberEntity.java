@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "class_member", schema = "j2ee_final", catalog = "")

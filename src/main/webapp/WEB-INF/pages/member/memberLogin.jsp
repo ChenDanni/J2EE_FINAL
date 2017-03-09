@@ -18,12 +18,12 @@ ${head}
 
 <div class="container">
 
-    <form class="form-signin col-md-4">
+    <form class="form-signin col-md-4" action="/memberHome" method="post">
         <h2 class="form-signin-heading">学员登陆</h2>
         <label for="inputCardId" class="sr-only">会员卡号</label>
-        <input type="email" id="inputCardId" class="form-control" placeholder="会员卡号" required autofocus>
+        <input type="text" id="inputCardId" class="form-control" placeholder="会员卡号" name="cardId" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password" required>
         <a href="/register" class="btn btn-lg btn-default">注册</a>
         <div class="checkbox">
             <label>
@@ -32,7 +32,7 @@ ${head}
         </div>
         <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
         <%--<p class="lead">--%>
-            <a href="/memberHome" class="btn btn-lg btn-default">登陆</a>
+        <button type="submit" class="btn btn-lg btn-default">登陆</button>
         <%--</p>--%>
     </form>
 

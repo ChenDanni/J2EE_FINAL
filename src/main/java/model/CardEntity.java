@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by user on 17/3/2.
+ * Created by cdn on 17/3/9.
  */
 @Entity
 @Table(name = "card", schema = "j2ee_final", catalog = "")
@@ -17,7 +17,7 @@ public class CardEntity {
     private String password;
     private String name;
     private String phone;
-    private Collection<ChargeLogEntity> chargeLogsById;
+    private Collection<ChargeLogEntity> orgs;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -131,12 +131,12 @@ public class CardEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "cardBycardId")
-    public Collection<ChargeLogEntity> getChargeLogsById() {
-        return chargeLogsById;
+    @OneToMany(mappedBy = "cardId")
+    public Collection<ChargeLogEntity> getOrgs() {
+        return orgs;
     }
 
-    public void setChargeLogsById(Collection<ChargeLogEntity> chargeLogsById) {
-        this.chargeLogsById = chargeLogsById;
+    public void setOrgs(Collection<ChargeLogEntity> orgs) {
+        this.orgs = orgs;
     }
 }

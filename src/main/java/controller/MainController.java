@@ -16,14 +16,14 @@ public class MainController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/memberHome", method = RequestMethod.GET)
-    public String getHome() {
-        return "member/classList";
-    }
-    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
-    public String getAllCourses() {
-        return "member/allCourses";
-    }
+//    @RequestMapping(value = "/memberHome", method = RequestMethod.GET)
+//    public String getHome() {
+//        return "member/classList";
+//    }
+//    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
+//    public String getAllCourses() {
+//        return "member/allCourses";
+//    }
     @RequestMapping(value = "/allOrgs", method = RequestMethod.GET)
     public String getAllOrgs() {
         return "member/allOrgs";
@@ -59,10 +59,10 @@ public class MainController {
 
 
 
-    @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
-    public String getMemberLogin() {
-        return "member/memberLogin";
-    }
+//    @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
+//    public String getMemberLogin() {
+//        return "member/memberLogin";
+//    }
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String getRegister() {
         return "register";
