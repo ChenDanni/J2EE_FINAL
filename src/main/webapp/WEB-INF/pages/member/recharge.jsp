@@ -30,8 +30,9 @@ ${nav}
 
             <%--<form class="form-signin">--%>
             <form>
-                <p>账户余额: 9000</p>
-                <p>银行卡号: 3241****6352</p>
+                <p>会员卡号: ${cardId}</p>
+                <p>账户余额: ${balance}</p>
+                <p>银行卡号: ${accountId}</p>
                 <label for="rechargeNum">充值金额</label>
                 <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
 

@@ -21,6 +21,7 @@ public class ClassEntity {
     private String learnTime;
     private OrganizationEntity orgId;
     private Collection<LessonEntity> lessones;
+    private Collection<ChargeLogEntity> chargeLogs;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -163,5 +164,14 @@ public class ClassEntity {
 
     public void setLessones(Collection<LessonEntity> lessones) {
         this.lessones = lessones;
+    }
+
+    @OneToMany(mappedBy = "classId")
+    public Collection<ChargeLogEntity> getChargeLogs() {
+        return chargeLogs;
+    }
+
+    public void setChargeLogs(Collection<ChargeLogEntity> chargeLogs) {
+        this.chargeLogs = chargeLogs;
     }
 }

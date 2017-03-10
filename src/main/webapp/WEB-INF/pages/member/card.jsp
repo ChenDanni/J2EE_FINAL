@@ -34,7 +34,7 @@ ${nav}
                 </div>
                 <div class="col-xs-6 col-sm-3">
 
-                    <span class="text-muted">等级: Lv.4 <a>关闭会员</a></span>
+                    <span class="text-muted">等级: Lv.4 <a href="#">关闭会员</a></span>
                     <p>账户余额: 10000 <a href="/recharge">充值</a></p>
 
                 </div>

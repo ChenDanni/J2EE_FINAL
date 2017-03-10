@@ -29,23 +29,23 @@ ${nav}
             ${shiftButtons}
             <div class="row">
                 <div class="col-sm-12 col-md-10">
-                    <div class="panel panel-default">
-                        <div class="panel-body course-detail-card">
-
-                            <c:forEach items="${allCourses}" var="course">
+                    <c:forEach items="${allCourses}" var="course">
+                        <div class="panel panel-default">
+                            <div class="panel-body course-detail-card">
                                 <img src="assets/images/black.jpeg" alt="...">
                                 <div class="course-card-info">
                                     <h4>${course.name}</h4>
                                     <p>价格: ${course.price} 人数: ${course.memberNum} 人</p>
                                     <p>上课时间: ${course.learn_time}</p>
-                                    <p>来自: ${course.orgName} | 发布时间: ${course.create_time}</p>
-                                    <p> <a href="/course_detail" class="btn btn-default" role="button">查看详情</a></p>
+                                    <p>来自: ${course.orgName} | 开课日期: ${course.start_time}</p>
+                                    <p><a href="/course_detail?id=${course.id}" class="btn btn-default" role="button">查看详情</a>
+                                    </p>
                                 </div>
-                            </c:forEach>
+                            </div>
                         </div>
-                    </div>
-
+                    </c:forEach>
                 </div>
+
             </div>
         </div>
 
@@ -55,6 +55,7 @@ ${nav}
 
 <c:import url="../component/_script.jsp" var="script"></c:import>
 ${script}
+<script src="../../assets/js/allCourses.js"></script>
 </body>
 </html>
 

@@ -1,5 +1,6 @@
 package service;
 
+import vo.member.courseDetailVO;
 import vo.member.courseVO;
 
 import java.util.List;
@@ -10,5 +11,7 @@ import java.util.List;
 public interface ClassService {
 
     public List<courseVO> getAllCoursesBrief();
+
+    public courseDetailVO getCourseDetail(int courseId, int cardId);
 
 }

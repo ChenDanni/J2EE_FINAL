@@ -11,13 +11,15 @@ import java.util.Collection;
 public class CardEntity {
     private int id;
     private Integer balance;
-    private Integer accountId;
+    private String accountId;
     private int state;
     private Integer level;
     private String password;
     private String name;
     private String phone;
-    private Collection<ChargeLogEntity> orgs;
+    private int consume;
+    private int points;
+    private Collection<ChargeLogEntity> chargeLogs;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,11 +43,11 @@ public class CardEntity {
 
     @Basic
     @Column(name = "account_id", nullable = true)
-    public Integer getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(String accountId) {
         this.accountId = accountId;
     }
 
@@ -95,8 +97,29 @@ public class CardEntity {
         return phone;
     }
 
+
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Basic
+    @Column(name = "consume", nullable = true)
+    public int getConsume() {
+        return consume;
+    }
+
+    public void setConsume(int consume) {
+        this.consume = consume;
+    }
+
+    @Basic
+    @Column(name = "points", nullable = true)
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     @Override
@@ -114,6 +137,8 @@ public class CardEntity {
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
+        if (consume != that.consume) return false;
+        if (points != that.points) return false;
 
         return true;
     }
@@ -128,15 +153,17 @@ public class CardEntity {
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + consume;
+        result = 31 * result + points;
         return result;
     }
 
     @OneToMany(mappedBy = "cardId")
-    public Collection<ChargeLogEntity> getOrgs() {
-        return orgs;
+    public Collection<ChargeLogEntity> getChargeLogs() {
+        return chargeLogs;
     }
 
-    public void setOrgs(Collection<ChargeLogEntity> orgs) {
-        this.orgs = orgs;
+    public void setChargeLogs(Collection<ChargeLogEntity> chargeLogs) {
+        this.chargeLogs = chargeLogs;
     }
 }

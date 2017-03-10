@@ -10,9 +10,12 @@ import java.sql.Timestamp;
 @Table(name = "charge_log", schema = "j2ee_final", catalog = "")
 public class ChargeLogEntity {
     private int id;
+    private int operation;
     private int money;
     private Timestamp date;
     private CardEntity cardId;
+    private ClassEntity classId;
+
 
     @Id
     @Column(name = "id", nullable = false)
@@ -22,6 +25,16 @@ public class ChargeLogEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "operation", nullable = false)
+    public int getOperation() {
+        return operation;
+    }
+
+    public void setOperation(int operation) {
+        this.operation = operation;
     }
 
     @Basic
@@ -74,5 +87,15 @@ public class ChargeLogEntity {
 
     public void setCardId(CardEntity cardId) {
         this.cardId = cardId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "class_id", referencedColumnName = "id", nullable = false)
+    public ClassEntity getClassId() {
+        return classId;
+    }
+
+    public void setClassId(ClassEntity classId) {
+        this.classId = classId;
     }
 }

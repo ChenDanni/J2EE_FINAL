@@ -6,11 +6,11 @@
         <class>model.CardEntity</class>
         <class>model.ChargeLogEntity</class>
         <class>model.ClassEntity</class>
-        <class>model.ClassMemberEntity</class>
         <class>model.LessonEntity</class>
         <class>model.LogEntity</class>
         <class>model.ManagerEntity</class>
         <class>model.OrganizationEntity</class>
+        <class>model.ClassMemberEntity</class>
 
 
         <properties>
@@ -27,6 +27,8 @@
             <property name="hibernate.connection.autoReconnect" value="true"/>
             <property name="connection.autoReconnectForPools" value="true"/>
             <property name="connection.is-connection-validation-required" value="true"/>
+
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

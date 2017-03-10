@@ -69,20 +69,20 @@ public class MainController {
     }
 
     //充值
-    @RequestMapping(value = "/recharge", method = RequestMethod.GET)
-    public String getRecharge() {
-        return "member/recharge";
-    }
+//    @RequestMapping(value = "/recharge", method = RequestMethod.GET)
+//    public String getRecharge() {
+//        return "member/recharge";
+//    }
 
     @RequestMapping(value = "/mine", method = RequestMethod.GET)
     public String index() {
         return "mine";
     }
 
-    @RequestMapping(value = "/course_detail", method = RequestMethod.GET)
-    public String getCourseDetail() {
-        return "member/courseDetail";
-    }
+//    @RequestMapping(value = "/course_detail", method = RequestMethod.GET)
+//    public String getCourseDetail() {
+//        return "member/courseDetail";
+//    }
 
     //------------机构----------
     @RequestMapping(value = "/org_courses", method = RequestMethod.GET)

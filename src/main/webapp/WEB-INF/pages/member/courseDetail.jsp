@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <c:import url="../component/_head.jsp" var="head">
-    <c:param name="title" value="所有课程"/>
+    <c:param name="title" value="课程详情"/>
 </c:import>
 <c:import url="../component/nav.jsp" var="nav"></c:import>
 <c:import url="../component/sidebar.jsp" var="sidebar">
@@ -28,27 +28,28 @@ ${nav}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>课程名</h3>
+                    <h3>${name}</h3>
                     <p class="text-muted">2100 人学过</p>
                     <hr>
-                    <p>价格: <span class="text-info">1980</span></p>
-                    <p>时间: <span class="text-info">每周三20:00-21:00</span></p>
-                    <p>来自: <span class="text-info">新东方南京店</span></p>
-                    <p>教师: <span class="text-info">教师名</span></p>
-                    <p> <a href="/course_detail" class="btn btn-primary" role="button">预约</a></p>
+                    <p>价格: <span class="text-info">${price}</span></p>
+                    <p>时间: <span class="text-info">${learn_time}</span></p>
+                    <p>来自: <span class="text-info">${orgName}</span></p>
+                    <p>教师: <span class="text-info">${teacher}</span></p>
+                    <p>开课时间: <span class="text-info">${start_time}</span></p>
+                    <c:if test="${state == 0}">
+                        <p class="btn btn-default disabled">已预定</p>
+                    </c:if>
+                    <c:if test="${state != 0}">
+                        <p> <a href="/course_detail" class="btn btn-primary">预约</a></p>
+                    </c:if>
+
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h3>简介</h3>
                     <hr>
-                    <p>新东方在线资深一线名师
-                        结合近3年托福动向，紧跟趋势
-                        独家1对1平台，全程跟踪学习进程
-                        15大金牌服务，360°保障学习进度
-                        未达目标，协议重读，分数有保障
-                        ETS官方TPO，正版授权
-                        适中，平均382元/小时</p>
+                    <p>${description}</p>
                 </div>
             </div>
 

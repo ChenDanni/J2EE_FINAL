@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * Created by cdn on 17/3/9.
+ * Created by cdn on 17/3/10.
  */
 public class ClassMemberEntityPK implements Serializable {
     private int classId;
