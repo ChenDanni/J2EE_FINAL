@@ -30,12 +30,13 @@ ${nav}
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="../../assets/images/black.jpeg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>会员名 <a href="/cardSetting">修改信息</a></h4>
+                    <h4>${name} <a href="/cardSetting">修改信息</a></h4>
                 </div>
                 <div class="col-xs-6 col-sm-3">
 
-                    <span class="text-muted">等级: Lv.4 <a href="#">关闭会员</a></span>
-                    <p>账户余额: 10000 <a href="/recharge">充值</a></p>
+                    <span class="text-muted">等级: Lv.${level} <a href="#">关闭会员</a></span>
+                    <p>账户余额: ${balance} <a href="/recharge">充值</a></p>
+                    <p>积分: ${points} <a href="#">使用积分</a></p>
 
                 </div>
             </div>
@@ -49,17 +50,23 @@ ${nav}
                         <th>操作</th>
                         <th>金额</th>
                         <th>余额</th>
+                        <th>剩余积分</th>
                         <th>日期</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>预定课程一</td>
-                        <td>1000</td>
-                        <td>10000</td>
-                        <td>2017-03-01</td>
-                    </tr>
+                    <c:forEach items="${ops}" var="op">
+                        <tr>
+                            <td>1</td>
+                            <td>${op.name}</td>
+                            <td>${op.charge}</td>
+                            <td>${op.balance}</td>
+                            <td>${op.points}</td>
+                            <td>${op.time}</td>
+                        </tr>
+                    </c:forEach>
+
+
                     </tbody>
                 </table>
             </div>

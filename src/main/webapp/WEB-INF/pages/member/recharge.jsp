@@ -29,17 +29,19 @@ ${nav}
             <h5 class="page-header">会员卡充值</h5>
 
             <%--<form class="form-signin">--%>
-            <form>
+            <form class="col-md-4" action="/recharge" method="post">
                 <p>会员卡号: ${cardId}</p>
                 <p>账户余额: ${balance}</p>
                 <p>银行卡号: ${accountId}</p>
+                <hr>
                 <label for="rechargeNum">充值金额</label>
-                <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
+
+                <input type="text" id="rechargeNum" class="form-control" name="rechargeNum" placeholder="充值金额" required autofocus>
 
                 <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
                 <%--<p class="lead">--%>
                 <a href="/card" class="btn btn-lg btn-default">取消</a>
-                <a href="/card" class="btn btn-lg btn-default">充值</a>
+                <button type="submit" class="btn btn-lg btn-default">充值</button>
                 <%--</p>--%>
             </form>
         </div>

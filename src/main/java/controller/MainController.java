@@ -42,10 +42,10 @@ public class MainController {
         return "member/finishing";
     }
 
-    @RequestMapping(value = "/card", method = RequestMethod.GET)
-    public String getCard() {
-        return "member/card";
-    }
+//    @RequestMapping(value = "/card", method = RequestMethod.GET)
+//    public String getCard() {
+//        return "member/card";
+//    }
     @RequestMapping(value = "/cardStatistic", method = RequestMethod.GET)
     public String getCardStatistic() {
         return "member/cardStatistics";

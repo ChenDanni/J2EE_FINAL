@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.CardService;
+import utility.CardHelper;
 import vo.member.rechargeVO;
 
 import javax.servlet.http.HttpSession;
@@ -34,6 +36,23 @@ public class RechargeController {
 
         return "member/recharge";
     }
+    @RequestMapping(value = "/recharge", method = RequestMethod.POST)
+    public String addBalance(@RequestParam("rechargeNum") int charge, HttpSession session, ModelMap model) {
+
+        System.out.println("==================recharge==============");
+        System.out.println(charge);
+        System.out.println("=========");
+
+
+        boolean res = cardService.addBalance(CardHelper.getCurrentCardId(session),charge);
+
+        if (res){
+            return "redirect:/card";
+        }
+
+        return "member/recharge";
+    }
+
 
 
 }
