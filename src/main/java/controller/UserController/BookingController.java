@@ -76,16 +76,16 @@ public class BookingController {
         ClassEntity classEntity = classDAO.findOne(id);
         ClassMemberEntity cm = LogHelper.getBookCM(cardId,id);
 
-        int consume = (int)(classEntity.getPrice()*0.1);
-        int totalConsume = cardEntity.getConsume() + consume;
-        int points = (int)(consume*0.01);
-        int level = CardHelper.getLevel(totalConsume);
+        int consume = classEntity.getPrice();
+//        int totalConsume = cardEntity.getConsume() + consume;
+//        int points = (int)(consume*0.01);
+//        int level = CardHelper.getLevel(totalConsume);
         int leftMember = classEntity.getLeftMembers() - 1;
 
         cardDAO.updateCardBalance(cardEntity.getBalance() - consume,cardId);
-        cardDAO.updateCardPoints(cardEntity.getPoints() + points,cardId);
-        cardDAO.updateCardConsume(totalConsume,cardId);
-        cardDAO.updateCardLevel(level,cardId);
+//        cardDAO.updateCardPoints(cardEntity.getPoints() + points,cardId);
+//        cardDAO.updateCardConsume(totalConsume,cardId);
+//        cardDAO.updateCardLevel(level,cardId);
         classDAO.updateClassLeftMember(leftMember,id);
 
         cardEntity = cardDAO.findOne(cardId);
@@ -106,11 +106,14 @@ public class BookingController {
         ClassEntity classEntity = classDAO.findOne(id);
         ClassMemberEntity cm = LogHelper.getUnbookCM(cardId,id);
 
-        int leftMember = classEntity.getLeftMembers() + 1;
+        int consume = classEntity.getPrice();
 
+        cardDAO.updateCardBalance(cardEntity.getBalance() + (int)(consume*0.9),cardId);
+        int leftMember = classEntity.getLeftMembers() + 1;
         classDAO.updateClassLeftMember(leftMember,id);
 
         classEntity = classDAO.findOne(id);
+        cardEntity = cardDAO.findOne(cardId);
         ChargeLogEntity chargeLog = LogHelper.getUnbookChargeLog(cardEntity,classEntity);
 
         classMemberDAO.save(cm);

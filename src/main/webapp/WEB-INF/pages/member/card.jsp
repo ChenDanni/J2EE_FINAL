@@ -30,7 +30,7 @@ ${nav}
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
                     <img src="../../assets/images/black.jpeg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>${name} <a href="/cardSetting">修改信息</a></h4>
+                    <h4>${name} <a href="/setCardInfo">修改信息</a></h4>
                 </div>
                 <div class="col-xs-6 col-sm-3">
 

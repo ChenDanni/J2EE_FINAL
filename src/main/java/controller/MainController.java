@@ -51,10 +51,6 @@ public class MainController {
         return "member/cardStatistics";
     }
 
-    @RequestMapping(value = "/cardSetting", method = RequestMethod.GET)
-    public String getCardSetting() {
-        return "member/cardSetting";
-    }
 
 
 
@@ -63,10 +59,10 @@ public class MainController {
 //    public String getMemberLogin() {
 //        return "member/memberLogin";
 //    }
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String getRegister() {
-        return "register";
-    }
+//    @RequestMapping(value = "/register", method = RequestMethod.GET)
+//    public String getRegister() {
+//        return "register";
+//    }
 
     //充值
 //    @RequestMapping(value = "/recharge", method = RequestMethod.GET)

@@ -1,9 +1,6 @@
 package service;
 
-import vo.member.cardManageVO;
-import vo.member.opVO;
-import vo.member.rechargeVO;
-import vo.member.usePointsVO;
+import vo.member.*;
 
 import java.util.List;
 
@@ -24,4 +21,9 @@ public interface CardService {
 
     public usePointsVO getUsePoints(int cardId);
 
+    public setCardInfoVO getSetCardInfo(int cardId);
+
+    public boolean updateCardInfo(int id, String name, String accountId, String phone, String password);
+
+    public int register(String username, String phone, String pwd);
 }

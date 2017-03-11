@@ -15,25 +15,26 @@ ${head}
 <body>
 <div class="container">
 
-    <form class="form-signin col-md-4">
+
+    <form class="form-signin col-md-4" action="/register" method="post">
         <h2 class="form-signin-heading">学员注册</h2>
         <label for="inputUsername" class="sr-only">用户名</label>
-        <input type="email" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
+        <input type="text" id="inputUsername" class="form-control" name="username" placeholder="用户名" required autofocus>
         <label for="inputPhone" class="sr-only">手机</label>
-        <input type="email" id="inputPhone" class="form-control" placeholder="手机" required autofocus>
+        <input type="text" id="inputPhone" class="form-control" placeholder="手机" name="phone" required autofocus>
         <label for="inputPassword" class="sr-only">输入密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="输入密码" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="输入密码" name="password" required>
         <label for="inputPasswordAgain" class="sr-only">再次输入密码</label>
-        <input type="password" id="inputPasswordAgain" class="form-control" placeholder="再次输入密码" required>
+        <input type="password" id="inputPasswordAgain" class="form-control" name="pwd_again" placeholder="再次输入密码" required>
+
+        <c:if test="${!empty message}">
+            <span class="text-danger">${message}</span>
+        </c:if>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
 
 </div> <!-- /container -->
-
-
-
-
 
 <c:import url="component/_script.jsp" var="script"></c:import>
 ${script}

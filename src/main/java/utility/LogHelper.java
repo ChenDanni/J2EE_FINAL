@@ -47,7 +47,7 @@ public class LogHelper {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ChargeLogEntity chargeLog = new ChargeLogEntity();
         chargeLog.setOperation(1);
-        chargeLog.setMoney((int)(classEntity.getPrice()*0.1));
+        chargeLog.setMoney(-classEntity.getPrice());
         chargeLog.setDate(time);
         chargeLog.setBalance(cardEntity.getBalance());
         chargeLog.setCardId(cardEntity);
@@ -61,7 +61,7 @@ public class LogHelper {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ChargeLogEntity chargeLog = new ChargeLogEntity();
         chargeLog.setOperation(2);
-        chargeLog.setMoney(0);
+        chargeLog.setMoney((int)(classEntity.getPrice()*0.9));
         chargeLog.setDate(time);
         chargeLog.setBalance(cardEntity.getBalance());
         chargeLog.setCardId(cardEntity);

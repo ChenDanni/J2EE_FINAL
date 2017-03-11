@@ -10,10 +10,10 @@ import java.util.Collection;
 @Table(name = "card", schema = "j2ee_final", catalog = "")
 public class CardEntity {
     private int id;
-    private Integer balance;
+    private int balance;
     private String accountId;
     private int state;
-    private Integer level;
+    private int level;
     private String password;
     private String name;
     private String phone;
@@ -33,11 +33,11 @@ public class CardEntity {
 
     @Basic
     @Column(name = "balance", nullable = true)
-    public Integer getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(Integer balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
@@ -63,11 +63,11 @@ public class CardEntity {
 
     @Basic
     @Column(name = "level", nullable = true)
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -131,9 +131,9 @@ public class CardEntity {
 
         if (id != that.id) return false;
         if (state != that.state) return false;
-        if (balance != null ? !balance.equals(that.balance) : that.balance != null) return false;
+        if (balance != that.balance) return false;
+        if (level != that.level) return false;
         if (accountId != null ? !accountId.equals(that.accountId) : that.accountId != null) return false;
-        if (level != null ? !level.equals(that.level) : that.level != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
@@ -146,10 +146,10 @@ public class CardEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + balance;
         result = 31 * result + (accountId != null ? accountId.hashCode() : 0);
         result = 31 * result + state;
-        result = 31 * result + (level != null ? level.hashCode() : 0);
+        result = 31 * result + level;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);

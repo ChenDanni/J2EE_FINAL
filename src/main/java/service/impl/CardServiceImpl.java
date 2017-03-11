@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.CardService;
 import utility.CardHelper;
+import utility.IdHelper;
 import utility.LogHelper;
 import utility.OperationHelper;
-import vo.member.cardManageVO;
-import vo.member.opVO;
-import vo.member.rechargeVO;
-import vo.member.usePointsVO;
+import vo.member.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -113,6 +111,32 @@ public class CardServiceImpl implements CardService{
         CardEntity c = cardDAO.findOne(cardId);
         usePointsVO vo = new usePointsVO(c.getPoints());
         return vo;
+    }
+
+    @Override
+    public setCardInfoVO getSetCardInfo(int cardId) {
+        CardEntity c = cardDAO.findOne(cardId);
+        setCardInfoVO vo = new setCardInfoVO(c.getName(),c.getAccountId(),c.getPhone(),c.getPassword());
+        return vo;
+    }
+
+    @Override
+    public boolean updateCardInfo(int id, String name, String accountId, String phone, String password) {
+        cardDAO.updateCardInfo(name,accountId,phone,password,id);
+        return true;
+    }
+
+    @Override
+    public int register(String username, String phone, String pwd) {
+        int cardId = IdHelper.getCardId();
+        CardEntity c = new CardEntity();
+        c.setId(cardId);
+        c.setName(username);
+        c.setPhone(phone);
+        c.setPassword(pwd);
+        c.setLevel(1);
+        cardDAO.save(c);
+        return cardId;
     }
 
 
