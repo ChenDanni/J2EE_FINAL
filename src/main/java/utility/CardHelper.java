@@ -15,4 +15,25 @@ public class CardHelper {
         return cardId;
     }
 
+    /*
+       *level
+       *1: 0-1000
+       *2: 1001-3000
+       *3: 3001-10000
+       *4: >10001
+     */
+
+    public static int getLevel(int consume){
+        int[] levels = {0,1000,3000,10000};
+        for (int i = 0;i < levels.length;i++){
+            if (consume < levels[i])
+                return i;
+        }
+        return levels.length;
+    }
+
+    public static int getChargeByPoints(int points){
+        return points;
+    }
+
 }

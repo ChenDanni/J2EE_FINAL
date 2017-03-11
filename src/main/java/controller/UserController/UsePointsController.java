@@ -6,45 +6,43 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import service.CardService;
 import utility.CardHelper;
 import vo.member.rechargeVO;
+import vo.member.usePointsVO;
 
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by cdn on 17/3/10.
+ * Created by cdn on 17/3/11.
  */
 @Controller
-public class RechargeController {
-
+public class UsePointsController {
     @Autowired
     CardService cardService;
 
-    @RequestMapping(value = "/recharge", method = RequestMethod.GET)
-    public String getRecharge(HttpSession session, ModelMap model) {
 
+    @RequestMapping(value = "/use_points", method = RequestMethod.GET)
+    public String getRecharge(HttpSession session, ModelMap model) {
         int cardId = CardHelper.getCurrentCardId(session);
-        rechargeVO vo = cardService.getRecharge(cardId);
+        usePointsVO vo = cardService.getUsePoints(cardId);
 
         model.addAttribute("cardId",cardId);
-        model.addAttribute("balance",vo.balance);
-        model.addAttribute("accountId",vo.accountId);
+        model.addAttribute("points",vo.points);
 
-        return "member/recharge";
+        return "member/usePoints";
     }
-    @RequestMapping(value = "/recharge", method = RequestMethod.POST)
-    public String addBalance(@RequestParam("rechargeNum") int charge, HttpSession session, ModelMap model) {
 
-        boolean res = cardService.addBalance(CardHelper.getCurrentCardId(session),charge);
+    @RequestMapping(value = "/use_points", method = RequestMethod.POST)
+    public String addBalance(@RequestParam("pointNum") int pointNum, HttpSession session) {
+
+        boolean res = cardService.usePoints(CardHelper.getCurrentCardId(session),pointNum);
 
         if (res){
             return "redirect:/card";
         }
 
-        return "member/recharge";
+        return "member/usePoints";
     }
-
-
-
 }

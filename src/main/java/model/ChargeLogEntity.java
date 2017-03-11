@@ -14,6 +14,7 @@ public class ChargeLogEntity {
     private int money;
     private Timestamp date;
     private int balance;
+    private int points;
     private CardEntity cardId;
     private ClassEntity classId;
 
@@ -69,6 +70,16 @@ public class ChargeLogEntity {
         this.balance = balance;
     }
 
+    @Basic
+    @Column(name = "points", nullable = false)
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -82,6 +93,7 @@ public class ChargeLogEntity {
         if (operation != that.operation) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
         if (balance != that.balance) return false;
+        if (points != that.points) return false;
 
         return true;
     }
@@ -93,6 +105,7 @@ public class ChargeLogEntity {
         result = 31 * result + operation;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + balance;
+        result = 31 * result + points;
 
         return result;
     }

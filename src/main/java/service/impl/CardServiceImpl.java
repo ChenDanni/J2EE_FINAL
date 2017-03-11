@@ -8,11 +8,13 @@ import model.ChargeLogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.CardService;
+import utility.CardHelper;
 import utility.LogHelper;
 import utility.OperationHelper;
 import vo.member.cardManageVO;
 import vo.member.opVO;
 import vo.member.rechargeVO;
+import vo.member.usePointsVO;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,7 +52,7 @@ public class CardServiceImpl implements CardService{
         while (it.hasNext()){
             ChargeLogEntity cl = it.next();
             String opName = OperationHelper.getOperationName(cl.getOperation(),cl.getClassId().getName());
-            opVO op = new opVO(opName,cl.getMoney(),cl.getBalance(),c.getPoints(),cl.getDate());
+            opVO op = new opVO(opName,cl.getMoney(),cl.getBalance(),cl.getPoints(),cl.getDate());
             ops.add(op);
         }
         return ops;
@@ -82,11 +84,35 @@ public class CardServiceImpl implements CardService{
         if (ret == 0){
             return false;
         }
-
         ChargeLogEntity chargeLog = LogHelper.getRechargeLog(charge,balance,c,classDAO.findOne(LogHelper.getSysClassId()));
 
         chargeLogDAO.save(chargeLog);
         return true;
+    }
+
+    @Override
+    public boolean usePoints(int cardId, int points) {
+        CardEntity c = cardDAO.findOne(cardId);
+        int charges = CardHelper.getChargeByPoints(points);
+        int balance = c.getBalance() + charges;
+        int ret = cardDAO.updateCardBalance(balance,cardId);
+        cardDAO.updateCardPoints(c.getPoints() - points,cardId);
+
+        if (ret == 0){
+            return false;
+        }
+        c = cardDAO.findOne(cardId);
+        ChargeLogEntity chargeLog = LogHelper.getUsePointsChargeLog(charges,balance,c,classDAO.findOne(LogHelper.getSysClassId()));
+
+        chargeLogDAO.save(chargeLog);
+        return true;
+    }
+
+    @Override
+    public usePointsVO getUsePoints(int cardId) {
+        CardEntity c = cardDAO.findOne(cardId);
+        usePointsVO vo = new usePointsVO(c.getPoints());
+        return vo;
     }
 
 

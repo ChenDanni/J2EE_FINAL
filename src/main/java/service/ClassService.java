@@ -1,5 +1,6 @@
 package service;
 
+import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
 
@@ -14,4 +15,7 @@ public interface ClassService {
 
     public courseDetailVO getCourseDetail(int courseId, int cardId);
 
+    public List<BookingVO> getBookings(int cardId);
+
+    public boolean bookCourse(int classId, int cardId);
 }

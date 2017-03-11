@@ -33,10 +33,10 @@ public class MainController {
     public String getStudying() {
         return "member/learning";
     }
-    @RequestMapping(value = "/booking", method = RequestMethod.GET)
-    public String getBooking() {
-        return "member/booking";
-    }
+//    @RequestMapping(value = "/booking", method = RequestMethod.GET)
+//    public String getBooking() {
+//        return "member/booking";
+//    }
     @RequestMapping(value = "/finishing", method = RequestMethod.GET)
     public String getFinishing() {
         return "member/finishing";

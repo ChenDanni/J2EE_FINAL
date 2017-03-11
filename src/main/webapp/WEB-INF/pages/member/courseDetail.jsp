@@ -33,14 +33,19 @@ ${nav}
                     <hr>
                     <p>价格: <span class="text-info">${price}</span></p>
                     <p>时间: <span class="text-info">${learn_time}</span></p>
+                    <p>总人数: <span class="text-info">${memberNum}</span> 剩余名额: <span class="text-info">${leftMember}</span></p>
                     <p>来自: <span class="text-info">${orgName}</span></p>
                     <p>教师: <span class="text-info">${teacher}</span></p>
                     <p>开课时间: <span class="text-info">${start_time}</span></p>
                     <c:if test="${state == 0}">
                         <p class="btn btn-default disabled">已预定</p>
                     </c:if>
-                    <c:if test="${state != 0}">
-                        <p> <a href="/course_detail" class="btn btn-primary">预约</a></p>
+                    <c:if test="${leftMember > 0 && state != 0}">
+                        <p> <a href="/bookCourse?id=${id}" class="btn btn-primary">预约</a></p>
+                    </c:if>
+
+                    <c:if test="${leftMember <= 0}">
+                        <p class="btn btn-default disabled">人数已满</p>
                     </c:if>
 
                 </div>

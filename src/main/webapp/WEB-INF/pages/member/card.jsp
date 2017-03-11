@@ -36,7 +36,7 @@ ${nav}
 
                     <span class="text-muted">等级: Lv.${level} <a href="#">关闭会员</a></span>
                     <p>账户余额: ${balance} <a href="/recharge">充值</a></p>
-                    <p>积分: ${points} <a href="#">使用积分</a></p>
+                    <p>积分: ${points} <a href="/use_points">使用积分</a></p>
 
                 </div>
             </div>

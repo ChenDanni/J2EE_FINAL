@@ -3,6 +3,7 @@ package service;
 import vo.member.cardManageVO;
 import vo.member.opVO;
 import vo.member.rechargeVO;
+import vo.member.usePointsVO;
 
 import java.util.List;
 
@@ -18,5 +19,9 @@ public interface CardService {
     public List<opVO> getCardOPs(int cardId);
 
     public boolean addBalance(int cardId, int charge);
+
+    public boolean usePoints(int cardId, int points);
+
+    public usePointsVO getUsePoints(int cardId);
 
 }

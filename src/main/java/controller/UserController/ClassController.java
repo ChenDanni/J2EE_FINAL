@@ -39,6 +39,7 @@ public class ClassController {
             obj.put("name",vo.name);
             obj.put("price",vo.price);
             obj.put("memberNum",vo.memberNum);
+            obj.put("leftMembers",vo.leftMembers);
             obj.put("learn_time",vo.learn_time);
             obj.put("orgName",vo.orgName);
             obj.put("start_time",DateHelper.getDate(vo.start_time));
@@ -71,7 +72,9 @@ public class ClassController {
         model.addAttribute("description",vo.description);
         model.addAttribute("start_time", DateHelper.getDate(vo.start_time));
         model.addAttribute("state",vo.state);
-
+        model.addAttribute("memberNum",vo.memberNum);
+        model.addAttribute("leftMember",vo.leftMembers);
+        model.addAttribute("id",vo.id);
 
         return "member/courseDetail";
     }

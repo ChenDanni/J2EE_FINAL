@@ -35,7 +35,7 @@ ${nav}
                                 <img src="assets/images/black.jpeg" alt="...">
                                 <div class="course-card-info">
                                     <h4>${course.name}</h4>
-                                    <p>价格: ${course.price} 人数: ${course.memberNum} 人</p>
+                                    <p>价格: ${course.price} 总人数: ${course.memberNum} 人 剩余名额: ${course.leftMembers} 人</p>
                                     <p>上课时间: ${course.learn_time}</p>
                                     <p>来自: ${course.orgName} | 开课日期: ${course.start_time}</p>
                                     <p><a href="/course_detail?id=${course.id}" class="btn btn-default" role="button">查看详情</a>

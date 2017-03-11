@@ -19,6 +19,7 @@ public class ClassEntity {
     private int state;
     private String description;
     private String learnTime;
+    private int leftMembers;
     private OrganizationEntity orgId;
     private Collection<LessonEntity> lessones;
     private Collection<ChargeLogEntity> chargeLogs;
@@ -113,6 +114,17 @@ public class ClassEntity {
         this.learnTime = learnTime;
     }
 
+
+    @Basic
+    @Column(name = "left_members", nullable = false)
+    public int getLeftMembers() {
+        return leftMembers;
+    }
+
+    public void setLeftMembers(int leftMembers) {
+        this.leftMembers = leftMembers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,7 +141,7 @@ public class ClassEntity {
         if (teacher != null ? !teacher.equals(that.teacher) : that.teacher != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (learnTime != null ? !learnTime.equals(that.learnTime) : that.learnTime != null) return false;
-
+        if (leftMembers != that.leftMembers) return false;
         return true;
     }
 
@@ -144,6 +156,7 @@ public class ClassEntity {
         result = 31 * result + state;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (learnTime != null ? learnTime.hashCode() : 0);
+        result = 31 * result + leftMembers;
         return result;
     }
 

@@ -2,7 +2,10 @@ package dao;
 
 import model.ClassEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by cdn on 17/3/9.
@@ -10,4 +13,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClassDAO extends JpaRepository<ClassEntity,Integer>{
 
+    @Modifying
+    @Transactional
+    @Query("update ClassEntity c set c.leftMembers = ?1 where c.id = ?2")
+    int updateClassLeftMember(int leftMember, int id);
 }
