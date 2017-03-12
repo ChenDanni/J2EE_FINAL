@@ -22,6 +22,11 @@ public interface ClassDAO extends JpaRepository<ClassEntity,Integer>{
     @Query("update ClassEntity c set c.leftMembers = ?1 where c.id = ?2")
     int updateClassLeftMember(int leftMember, int id);
 
+    @Modifying
+    @Transactional
+    @Query("update ClassEntity c set c.state = ?1 where c.id = ?2")
+    int updateClassState(int state, int id);
+
 
     @Query("select c from ClassEntity c where c.orgId = ?1")
     List<ClassEntity> findClassesByOrg(OrganizationEntity org);

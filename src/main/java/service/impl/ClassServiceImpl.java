@@ -1,9 +1,6 @@
 package service.impl;
 
-import dao.ClassDAO;
-import dao.ClassMemberDAO;
-import dao.LessonDAO;
-import dao.OrgDAO;
+import dao.*;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +33,9 @@ public class ClassServiceImpl implements ClassService{
     OrgDAO orgDAO;
     @Autowired
     LessonDAO lessonDAO;
+    @Autowired
+    LessonMemberDAO lessonMemberDAO;
+
 
     private List<courseVO> entityToVO(List<ClassEntity> classEntities){
         List<courseVO> ret = new ArrayList<>();
@@ -51,7 +51,22 @@ public class ClassServiceImpl implements ClassService{
 
     @Override
     public boolean startCourse(int classId) {
-        return false;
+        int cState = classDAO.updateClassState(3,classId);
+        int cmState = classMemberDAO.updateClassMemberStateByClassId(2,classId);
+        ClassEntity c = classDAO.findOne(classId);
+        List<Integer> cardIds = classMemberDAO.findCardByClassId(classId);
+        List<LessonEntity> lessons = lessonDAO.findByClassId(c);
+
+        for (int i = 0;i < cardIds.size();i++){
+            for (int j = 0;j < lessons.size();j++){
+                LessonMemberEntity lm = new LessonMemberEntity();
+                lm.setCardId(cardIds.get(i));
+                lm.setAttendance(0);
+                lm.setLessonId(lessons.get(j).getId());
+                lessonMemberDAO.save(lm);
+            }
+        }
+        return true;
     }
 
     @Override

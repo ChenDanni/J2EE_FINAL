@@ -11,8 +11,7 @@ import javax.persistence.*;
 public class LessonMemberEntity {
     private int lessonId;
     private int cardId;
-    private int records;
-    private Integer attendence;
+    private int attendance;
 
     @Id
     @Column(name = "lesson_id", nullable = false)
@@ -35,23 +34,13 @@ public class LessonMemberEntity {
     }
 
     @Basic
-    @Column(name = "records", nullable = false)
-    public int getRecords() {
-        return records;
+    @Column(name = "attendance", nullable = true)
+    public int getAttendance() {
+        return attendance;
     }
 
-    public void setRecords(int records) {
-        this.records = records;
-    }
-
-    @Basic
-    @Column(name = "attendence", nullable = true)
-    public Integer getAttendence() {
-        return attendence;
-    }
-
-    public void setAttendence(Integer attendence) {
-        this.attendence = attendence;
+    public void setAttendance(int attendance) {
+        this.attendance = attendance;
     }
 
     @Override
@@ -63,8 +52,7 @@ public class LessonMemberEntity {
 
         if (lessonId != that.lessonId) return false;
         if (cardId != that.cardId) return false;
-        if (records != that.records) return false;
-        if (attendence != null ? !attendence.equals(that.attendence) : that.attendence != null) return false;
+        if (attendance != that.attendance) return false;
 
         return true;
     }
@@ -73,8 +61,7 @@ public class LessonMemberEntity {
     public int hashCode() {
         int result = lessonId;
         result = 31 * result + cardId;
-        result = 31 * result + records;
-        result = 31 * result + (attendence != null ? attendence.hashCode() : 0);
+        result = 31 * result + attendance;
         return result;
     }
 }

@@ -36,11 +36,9 @@ public class ClassController {
     ClassService classService;
 
     @RequestMapping(value = "/start_course", method = RequestMethod.GET)
-    public String getAllCourses(@RequestParam("id") int id, ModelMap model) {
-
-
-
-        return "member/allCourses";
+    public String getStartCourses(@RequestParam("id") int id) {
+        classService.startCourse(id);
+        return "redirect:/org_course_detail?id=" + id;
     }
 
     @RequestMapping(value = "/course_detail",method = RequestMethod.GET)
