@@ -50,6 +50,11 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
+    public boolean startCourse(int classId) {
+        return false;
+    }
+
+    @Override
     public List<courseVO> getStartCourse(int orgId) {
         OrganizationEntity org = orgDAO.findOne(orgId);
         List<ClassEntity> classEntities = classDAO.findByOrgIdAndState(org,3);

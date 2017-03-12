@@ -65,8 +65,6 @@ ${nav}
                             <td>${op.time}</td>
                         </tr>
                     </c:forEach>
-
-
                     </tbody>
                 </table>
             </div>

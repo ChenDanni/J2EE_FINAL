@@ -28,6 +28,12 @@ public class LoginController {
     @Autowired
     OrgDAO orgDAO;
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "member/memberLogin";
+    }
+
 
     @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
     public String getMemberLogin() {

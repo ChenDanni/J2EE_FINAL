@@ -35,12 +35,10 @@ public class ClassController {
     @Autowired
     ClassService classService;
 
-    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
-    public String getAllCourses(ModelMap model) {
-        List<courseVO> vos = classService.getAllCoursesBrief();
-        JSONArray ret = JSONHelper.courseVOsToJson(vos);
+    @RequestMapping(value = "/start_course", method = RequestMethod.GET)
+    public String getAllCourses(@RequestParam("id") int id, ModelMap model) {
 
-        model.addAttribute("allCourses",ret);
+
 
         return "member/allCourses";
     }
@@ -69,6 +67,16 @@ public class ClassController {
         model.addAttribute("id",vo.id);
 
         return "member/courseDetail";
+    }
+
+    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
+    public String getAllCourses(ModelMap model) {
+        List<courseVO> vos = classService.getAllCoursesBrief();
+        JSONArray ret = JSONHelper.courseVOsToJson(vos);
+
+        model.addAttribute("allCourses",ret);
+
+        return "member/allCourses";
     }
 
 }

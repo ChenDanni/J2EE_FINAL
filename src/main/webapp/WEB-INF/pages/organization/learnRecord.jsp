@@ -29,7 +29,7 @@ ${nav}
             <h5 class="page-header">已开课课程</h5>
 
             <c:forEach items="${courses}" var="course">
-                <div class="panel panel-info">
+                <div class="panel panel-default">
                     <div class="panel-body course-detail-card">
                         <img src="assets/images/black.jpeg" alt="...">
                         <div class="course-card-info">
@@ -37,7 +37,7 @@ ${nav}
                             <p>价格: ${course.price} 总人数: ${course.memberNum} 人 剩余名额: ${course.leftMembers} 人</p>
                             <p>上课时间: ${course.learn_time}</p>
                             <p>开课日期: ${course.start_time}</p>
-                            <p><a href="/org_course_detail?id=${course.id}" class="btn btn-default" role="button">学习登记</a>
+                            <p><a href="/org_learn_record_detail?id=${course.id}" class="btn btn-default" role="button">学习登记</a>
                             </p>
                         </div>
                     </div>

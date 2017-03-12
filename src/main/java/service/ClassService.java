@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface ClassService {
 
+    public boolean startCourse(int classId);
+
     public List<courseVO> getStartCourse(int orgId);
 
     public List<applyInfoVO> getApplyInfo(int orgId);

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.ClassService;
 import utility.IdHelper;
 import utility.JSONHelper;
@@ -34,5 +35,16 @@ public class LearnRecordController {
         model.addAttribute("courses",ret);
 
         return "organization/learnRecord";
+    }
+
+    @RequestMapping(value = "/org_learn_record_detail", method = RequestMethod.GET)
+    public String getOrgLearnRecordDetail(HttpSession session, ModelMap model) {
+//        int orgId = OrgHelper.getCurrentOrgId(session);
+//        List<courseVO> vos = classService.getStartCourse(orgId);
+//        JSONArray ret = JSONHelper.courseVOsToJson(vos);
+//        model.addAttribute("courses",ret);
+
+
+        return "organization/recordDetail";
     }
 }
