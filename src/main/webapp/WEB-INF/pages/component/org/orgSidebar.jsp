@@ -5,7 +5,7 @@
         <li id="all-courses"><a href="/org_courses">所有课程</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li id="class-apply"><a href="/org_class_apply">开班申请</a></li>
+        <li id="class-apply"><a href="/org_class_apply">开班/修改申请</a></li>
         <li id="applying"><a href="/org_applying">申请信息</a></li>
     </ul>
     <ul class="nav nav-sidebar">

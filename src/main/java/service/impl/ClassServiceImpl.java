@@ -10,6 +10,7 @@ import service.ClassService;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
+import vo.org.applyInfoVO;
 import vo.org.classApplyInfo;
 import vo.org.lessonInfo;
 
@@ -32,9 +33,7 @@ public class ClassServiceImpl implements ClassService{
     @Autowired
     OrgDAO orgDAO;
 
-    @Override
-    public List<courseVO> getAllCoursesBrief() {
-        List<ClassEntity> classEntities = classDAO.findAll();
+    private List<courseVO> entityToVO(List<ClassEntity> classEntities){
         List<courseVO> ret = new ArrayList<>();
 
         for (int i = 0;i < classEntities.size();i++) {
@@ -44,6 +43,34 @@ public class ClassServiceImpl implements ClassService{
             ret.add(vo);
         }
         return ret;
+    }
+
+    @Override
+    public List<applyInfoVO> getApplyInfo(int orgId) {
+
+        OrganizationEntity org = orgDAO.findOne(orgId);
+        List<ClassEntity> cs = classDAO.findClassesByOrg(org);
+        List<applyInfoVO> vos = new ArrayList<>();
+        for (int i = 0;i < cs.size();i++){
+            ClassEntity c = cs.get(i);
+            applyInfoVO vo = new applyInfoVO(c.getId(),c.getName(),c.getState());
+            vos.add(vo);
+        }
+        return vos;
+    }
+
+    @Override
+    public List<courseVO> getAllCoursesBrief() {
+        List<ClassEntity> classEntities = classDAO.findByState(1);
+
+        return entityToVO(classEntities);
+    }
+
+    @Override
+    public List<courseVO> getOrgCoursesBrief(int orgId) {
+        OrganizationEntity org = orgDAO.findOne(orgId);
+        List<ClassEntity> classEntities = classDAO.findClassesByOrg(org);
+        return entityToVO(classEntities);
     }
 
     @Override

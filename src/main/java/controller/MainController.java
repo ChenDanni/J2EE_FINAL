@@ -85,14 +85,14 @@ public class MainController {
 //    public String getOrgCourses() {
 //        return "organization/courses";
 //    }
-    @RequestMapping(value = "/org_applying", method = RequestMethod.GET)
-    public String getOrgApplying() {
-        return "organization/applying";
-    }
-    @RequestMapping(value = "/org_class_apply", method = RequestMethod.GET)
-    public String getOrgClassApply() {
-        return "organization/classApply";
-    }
+//    @RequestMapping(value = "/org_applying", method = RequestMethod.GET)
+//    public String getOrgApplying() {
+//        return "organization/applying";
+//    }
+//    @RequestMapping(value = "/org_class_apply", method = RequestMethod.GET)
+//    public String getOrgClassApply() {
+//        return "organization/classApply";
+//    }
     @RequestMapping(value = "/org_learn_record", method = RequestMethod.GET)
     public String getOrgLearnRecord() {
         return "organization/learnRecord";

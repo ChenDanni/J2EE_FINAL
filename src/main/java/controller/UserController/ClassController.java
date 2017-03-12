@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.ClassService;
 import utility.DateHelper;
 import utility.IdHelper;
+import utility.JSONHelper;
 import utility.OrgHelper;
 import vo.member.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,24 +38,8 @@ public class ClassController {
     @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
     public String getAllCourses(ModelMap model) {
         List<courseVO> vos = classService.getAllCoursesBrief();
-        JSONArray ret = new JSONArray();
+        JSONArray ret = JSONHelper.courseVOsToJson(vos);
 
-        for (int i = 0;i < vos.size();i++){
-            courseVO vo = vos.get(i);
-
-            JSONObject obj = new JSONObject();
-            obj.put("id",vo.id);
-            obj.put("name",vo.name);
-            obj.put("price",vo.price);
-            obj.put("memberNum",vo.memberNum);
-            obj.put("leftMembers",vo.leftMembers);
-            obj.put("learn_time",vo.learn_time);
-            obj.put("orgName",vo.orgName);
-            obj.put("start_time",DateHelper.getDate(vo.start_time));
-            ret.add(obj);
-        }
-
-        System.out.println(ret);
         model.addAttribute("allCourses",ret);
 
         return "member/allCourses";

@@ -73,7 +73,7 @@ public class LoginController {
                     session.setAttribute("orgId",id);
                     session.setAttribute("name",o.getName());
                     model.addAttribute("name",o.getName());
-                    return "organization/courses";
+                    return "redirect:/org_courses";
                 }else {
                     System.err.println("密码错误");
                     return "member/classList";

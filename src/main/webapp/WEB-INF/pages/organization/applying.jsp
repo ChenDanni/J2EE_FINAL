@@ -42,22 +42,24 @@ ${nav}
 
             <hr>
 
-            <div class="panel panel-info">
-                <div class="panel-body">
-                    <p><b class="text-info"> [申请中]</b>课程名</p>
+            <c:forEach items="${applications}" var="a">
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <p>
+                        <c:if test="${a.state eq 0}">
+                            <b class="text-info">[申请中]</b>
+                        </c:if>
+                        <c:if test="${a.state eq 1}">
+                            <b class="text-success">[申请成功]</b>
+                        </c:if>
+                        <c:if test="${a.state eq 2}">
+                            <b class="text-success">[申请失败]</b>
+                        </c:if>
+                        ${a.name}
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="panel panel-success">
-                <div class="panel-body">
-                    <p><b class="text-success"> [申请成功]</b>课程名</p>
-                </div>
-            </div>
-            <div class="panel panel-danger">
-                <div class="panel-body">
-                    <p><b class="text-danger"> [申请失败]</b>课程名</p>
-                </div>
-            </div>
-
+            </c:forEach>
         </div>
 
     </div>

@@ -16,7 +16,7 @@
                 <c:if test="${(!empty sessionScope.get('cardId')) || (!empty sessionScope.get('orgId'))}">
                     <li><a href="#">${sessionScope.get('name')}</a></li>
                 </c:if>
-                <c:if test="${(empty sessionScope.get('cardId'))||(empty sessionScope.get('orgId'))}">
+                <c:if test="${(empty sessionScope.get('cardId'))&&(empty sessionScope.get('orgId'))}">
                     <li><a href="/memberLogin">登陆</a></li>
                     <li><a href="/register">注册</a></li>
                 </c:if>

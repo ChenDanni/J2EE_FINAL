@@ -3,6 +3,7 @@ package service;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
+import vo.org.applyInfoVO;
 import vo.org.classApplyInfo;
 
 import java.sql.Date;
@@ -14,7 +15,10 @@ import java.util.List;
  */
 public interface ClassService {
 
+    public List<applyInfoVO> getApplyInfo(int orgId);
+
     public List<courseVO> getAllCoursesBrief();
+    public List<courseVO> getOrgCoursesBrief(int orgId);
 
     public courseDetailVO getCourseDetail(int courseId, int cardId);
 
