@@ -76,7 +76,7 @@ public class LogHelper {
         ClassMemberEntity cm = new ClassMemberEntity();
         cm.setCardId(cardId);
         cm.setClassId(classId);
-        cm.setProgress(0);
+        cm.setScores(0);
         cm.setState(0);
         return cm;
     }
@@ -85,7 +85,7 @@ public class LogHelper {
         ClassMemberEntity cm = new ClassMemberEntity();
         cm.setCardId(cardId);
         cm.setClassId(classId);
-        cm.setProgress(0);
+        cm.setScores(0);
         cm.setState(1);
         return cm;
     }

@@ -12,7 +12,7 @@ public class ClassMemberEntity {
     private int classId;
     private int cardId;
     private int state;
-    private Integer progress;
+    private Integer scores;
 
     @Id
     @Column(name = "class_id", nullable = false)
@@ -45,13 +45,13 @@ public class ClassMemberEntity {
     }
 
     @Basic
-    @Column(name = "progress", nullable = true)
-    public Integer getProgress() {
-        return progress;
+    @Column(name = "scores", nullable = true)
+    public Integer getScores() {
+        return scores;
     }
 
-    public void setProgress(Integer progress) {
-        this.progress = progress;
+    public void setScores(Integer progress) {
+        this.scores = progress;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ClassMemberEntity {
         if (classId != that.classId) return false;
         if (cardId != that.cardId) return false;
         if (state != that.state) return false;
-        if (progress != null ? !progress.equals(that.progress) : that.progress != null) return false;
+        if (scores != null ? !scores.equals(that.scores) : that.scores != null) return false;
 
         return true;
     }
@@ -74,7 +74,7 @@ public class ClassMemberEntity {
         int result = classId;
         result = 31 * result + cardId;
         result = 31 * result + state;
-        result = 31 * result + (progress != null ? progress.hashCode() : 0);
+        result = 31 * result + (scores != null ? scores.hashCode() : 0);
         return result;
     }
 }

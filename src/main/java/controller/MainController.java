@@ -81,10 +81,10 @@ public class MainController {
 //    }
 
     //------------机构----------
-    @RequestMapping(value = "/org_courses", method = RequestMethod.GET)
-    public String getOrgCourses() {
-        return "organization/courses";
-    }
+//    @RequestMapping(value = "/org_courses", method = RequestMethod.GET)
+//    public String getOrgCourses() {
+//        return "organization/courses";
+//    }
     @RequestMapping(value = "/org_applying", method = RequestMethod.GET)
     public String getOrgApplying() {
         return "organization/applying";

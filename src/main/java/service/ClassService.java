@@ -3,7 +3,10 @@ package service;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
+import vo.org.classApplyInfo;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,4 +21,7 @@ public interface ClassService {
     public List<BookingVO> getBookings(int cardId);
 
     public boolean bookCourse(int classId, int cardId);
+
+    public boolean applyCourse(classApplyInfo ac);
+
 }

@@ -1,7 +1,9 @@
 package controller.UserController;
 
 import dao.CardDAO;
+import dao.OrgDAO;
 import model.CardEntity;
+import model.OrganizationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.UserManagerService;
 import service.impl.UserManagerServiceImpl;
+import utility.IdHelper;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,6 +25,8 @@ public class LoginController {
     UserManagerService userManagerService;
     @Autowired
     CardDAO cardDAO;
+    @Autowired
+    OrgDAO orgDAO;
 
 
     @RequestMapping(value = "/memberLogin", method = RequestMethod.GET)
@@ -35,24 +40,52 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/memberHome", method = RequestMethod.POST)
-    public String handleLogin(@RequestParam("cardId") int cardId,
+    public String handleLogin(@RequestParam("cardId") int id,
                               @RequestParam("password") String pwd, HttpSession session, ModelMap model) {
 
-        CardEntity card = cardDAO.findOne(cardId);
-        if (card == null){
-            System.err.println("用户名不存在");
-            return "member/memberLogin";
-        }else {
-            if (card.getPassword().equals(pwd)){
-                session.setAttribute("cardId",cardId);
-                session.setAttribute("username",card.getName());
-                model.addAttribute("username",card.getName());
-                return "member/classList";
+        int idType = IdHelper.getIdType(id);
+        System.err.println(idType);
+        if (idType == 1){
+            System.err.println("user login");
+            CardEntity card = cardDAO.findOne(id);
+            if (card == null){
+                System.err.println("用户名不存在");
+                return "member/memberLogin";
             }else {
-                System.err.println("密码错误");
-                return "member/classList";
+                if (card.getPassword().equals(pwd)){
+                    session.setAttribute("cardId",id);
+                    session.setAttribute("name",card.getName());
+                    model.addAttribute("name",card.getName());
+                    return "member/classList";
+                }else {
+                    System.err.println("密码错误");
+                    return "member/classList";
+                }
             }
+        } else if (idType == 2){
+            System.err.println("org login");
+            OrganizationEntity o = orgDAO.findOne(id);
+            if (o == null){
+                System.err.println("用户名不存在");
+                return "member/memberLogin";
+            }else {
+                if (o.getPassword().equals(pwd)){
+                    session.setAttribute("orgId",id);
+                    session.setAttribute("name",o.getName());
+                    model.addAttribute("name",o.getName());
+                    return "organization/courses";
+                }else {
+                    System.err.println("密码错误");
+                    return "member/classList";
+                }
+            }
+        }else {
+            return "member/memberLogin";
         }
+
+
+
+
 
     }
 

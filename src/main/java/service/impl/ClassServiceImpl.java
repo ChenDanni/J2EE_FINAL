@@ -2,17 +2,19 @@ package service.impl;
 
 import dao.ClassDAO;
 import dao.ClassMemberDAO;
-import model.ClassEntity;
-import model.ClassMemberEntity;
-import model.ClassMemberEntityPK;
+import dao.OrgDAO;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ClassService;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
+import vo.org.classApplyInfo;
+import vo.org.lessonInfo;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -27,6 +29,8 @@ public class ClassServiceImpl implements ClassService{
     ClassDAO classDAO;
     @Autowired
     ClassMemberDAO classMemberDAO;
+    @Autowired
+    OrgDAO orgDAO;
 
     @Override
     public List<courseVO> getAllCoursesBrief() {
@@ -86,6 +90,39 @@ public class ClassServiceImpl implements ClassService{
 
 
         return false;
+    }
+
+    @Override
+    public boolean applyCourse(classApplyInfo ac) {
+
+        OrganizationEntity org = orgDAO.findOne(ac.orgId);
+        ArrayList<LessonEntity> ls = new ArrayList<>();
+
+        ClassEntity c = new ClassEntity();
+        c.setName(ac.name);
+        c.setTime(ac.time);
+        c.setTeacher(ac.teacher);
+        c.setPrice(ac.price);
+        c.setMemberNum(ac.memberNum);
+        c.setState(0);
+        c.setDescription(ac.description);
+        c.setLearnTime(ac.learnTime);
+        c.setLeftMembers(ac.memberNum);
+        c.setOrgId(org);
+
+        ClassEntity cl = classDAO.findOne(ac.id);
+        for (int i = 0;i < ac.lessons.size();i++){
+            lessonInfo li = ac.lessons.get(i);
+            LessonEntity l = new LessonEntity();
+            l.setName(li.name);
+            l.setDescription(li.description);
+            l.setClassId(cl);
+            l.setOrder(i);
+            ls.add(l);
+        }
+        c.setLessones(ls);
+        classDAO.save(c);
+        return true;
     }
 
 

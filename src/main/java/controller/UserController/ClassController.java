@@ -6,14 +6,22 @@ import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.ClassService;
 import utility.DateHelper;
+import utility.IdHelper;
+import utility.OrgHelper;
 import vo.member.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import vo.org.classApplyInfo;
+import vo.org.lessonInfo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,7 +69,6 @@ public class ClassController {
             cardId = (int)session.getAttribute("cardId");
         }
 
-
         courseDetailVO vo = classService.getCourseDetail(id,cardId);
 
         model.addAttribute("name",vo.name);
@@ -79,6 +86,40 @@ public class ClassController {
         return "member/courseDetail";
     }
 
+    @RequestMapping(value = "/apply_class",method = RequestMethod.POST)
+    public String applyClass(HttpServletResponse response, HttpServletRequest request,HttpSession session){
+
+        int orgId = OrgHelper.getCurrentOrgId(session);
+        ArrayList<lessonInfo> ls = new ArrayList<>();
+        int classId = IdHelper.getClassId();
+        int i = 0;
+        while (request.getParameter("lesson-title-" + i) != null){
+            String title = request.getParameter("lesson-title-" + i);
+            String des = request.getParameter("lesson-des-" + i);
+            lessonInfo l = new lessonInfo(title,i,des,classId);
+            ls.add(l);
+        }
+        String name = request.getParameter("course-name");
+        Date time = Date.valueOf(request.getParameter("start-time"));
+        String learn_time = request.getParameter("learn-time");
+        String teacher = request.getParameter("teacher");
+        int price = Integer.valueOf(request.getParameter("price"));
+        int memberNum = Integer.valueOf(request.getParameter("memberNum"));
+        String des = request.getParameter("description");
+
+        classApplyInfo ac = new classApplyInfo(classId,name,time,teacher,
+                price,memberNum,des,learn_time,memberNum,orgId,ls);
+
+        boolean res = classService.applyCourse(ac);
+
+        if (res){
+            return "redirect:/org_applying";
+        }else {
+            String msg = "申请失败";
+            return msg;
+        }
+
+    }
 
 }
 

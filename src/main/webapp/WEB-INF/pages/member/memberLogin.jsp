@@ -19,8 +19,8 @@ ${head}
 <div class="container">
 
     <form class="form-signin col-md-4" action="/memberHome" method="post">
-        <h2 class="form-signin-heading">学员登陆</h2>
-        <label for="inputCardId" class="sr-only">会员卡号</label>
+        <h2 class="form-signin-heading">登陆</h2>
+        <label for="inputCardId" class="sr-only">帐号</label>
         <input type="text" id="inputCardId" class="form-control" placeholder="会员卡号" name="cardId" required autofocus>
         <label for="inputPassword" class="sr-only">密码</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password" required>

@@ -11,6 +11,7 @@
         <class>model.ManagerEntity</class>
         <class>model.OrganizationEntity</class>
         <class>model.ClassMemberEntity</class>
+        <class>model.LessonMemberEntity</class>
 
 
         <properties>
