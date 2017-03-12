@@ -27,4 +27,6 @@ public interface ClassDAO extends JpaRepository<ClassEntity,Integer>{
     List<ClassEntity> findClassesByOrg(OrganizationEntity org);
 
     List<ClassEntity> findByState(int state);
+
+    List<ClassEntity> findByOrgIdAndState(OrganizationEntity orgId, int state);
 }

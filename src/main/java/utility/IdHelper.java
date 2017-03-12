@@ -20,9 +20,10 @@ public class IdHelper {
             int id = Integer.parseInt(reader.readLine());
             int orgId = Integer.parseInt(reader.readLine());
             int classId = Integer.parseInt(reader.readLine());
+            int lessonId = Integer.parseInt(reader.readLine());
             reader.close();
 
-            int[] ret = {id,orgId,classId};
+            int[] ret = {id,orgId,classId,lessonId};
             return ret;
         }catch (Exception e) {
             e.printStackTrace();
@@ -38,6 +39,8 @@ public class IdHelper {
             writer.write(Integer.toString(ids[1]));
             writer.newLine();
             writer.write(Integer.toString(ids[2]));
+            writer.newLine();
+            writer.write(Integer.toString(ids[3]));
             writer.close();
             return true;
         } catch (Exception e) {
@@ -50,8 +53,8 @@ public class IdHelper {
         int[] ids = readFile();
 
         if (ids != null){
-            int id = ids[0] + 1;
-            ids[0] = id;
+            int id = ids[index] + 1;
+            ids[index] = id;
             boolean save = writeFile(ids);
             if (save){
                 return id;
@@ -71,6 +74,10 @@ public class IdHelper {
 
     public static int getClassId(){
         return getId(2);
+    }
+
+    public static int getLessonId(){
+        return getId(3);
     }
 
     //用户1 机构2 管理员3

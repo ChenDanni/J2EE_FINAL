@@ -26,21 +26,24 @@ ${nav}
         ${sidebar}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h5 class="page-header">会员卡充值</h5>
+            <h5 class="page-header">已开课课程</h5>
 
-            <%--<form class="form-signin">--%>
-            <form>
-                <p>账户余额: 9000</p>
-                <p>银行卡号: 3241****6352</p>
-                <label for="rechargeNum">充值金额</label>
-                <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
+            <c:forEach items="${courses}" var="course">
+                <div class="panel panel-info">
+                    <div class="panel-body course-detail-card">
+                        <img src="assets/images/black.jpeg" alt="...">
+                        <div class="course-card-info">
+                            <h4>${course.name}</h4>
+                            <p>价格: ${course.price} 总人数: ${course.memberNum} 人 剩余名额: ${course.leftMembers} 人</p>
+                            <p>上课时间: ${course.learn_time}</p>
+                            <p>开课日期: ${course.start_time}</p>
+                            <p><a href="/org_course_detail?id=${course.id}" class="btn btn-default" role="button">学习登记</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
 
-                <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
-                <%--<p class="lead">--%>
-                <a href="/card" class="btn btn-lg btn-default">取消</a>
-                <a href="/card" class="btn btn-lg btn-default">充值</a>
-                <%--</p>--%>
-            </form>
         </div>
 
     </div>

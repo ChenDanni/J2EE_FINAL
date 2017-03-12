@@ -2,11 +2,13 @@ package service.impl;
 
 import dao.ClassDAO;
 import dao.ClassMemberDAO;
+import dao.LessonDAO;
 import dao.OrgDAO;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ClassService;
+import utility.IdHelper;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
@@ -32,6 +34,8 @@ public class ClassServiceImpl implements ClassService{
     ClassMemberDAO classMemberDAO;
     @Autowired
     OrgDAO orgDAO;
+    @Autowired
+    LessonDAO lessonDAO;
 
     private List<courseVO> entityToVO(List<ClassEntity> classEntities){
         List<courseVO> ret = new ArrayList<>();
@@ -43,6 +47,13 @@ public class ClassServiceImpl implements ClassService{
             ret.add(vo);
         }
         return ret;
+    }
+
+    @Override
+    public List<courseVO> getStartCourse(int orgId) {
+        OrganizationEntity org = orgDAO.findOne(orgId);
+        List<ClassEntity> classEntities = classDAO.findByOrgIdAndState(org,3);
+        return entityToVO(classEntities);
     }
 
     @Override
@@ -91,6 +102,9 @@ public class ClassServiceImpl implements ClassService{
             state = cm.getState();
         }
 
+        if (cardId == -1){
+            state = c.getState();
+        }
         String orgName = c.getOrgId().getName();
 
         courseDetailVO vo = new courseDetailVO(c.getId(), c.getMemberNum(), c.getLeftMembers(), state,c.getName(),c.getPrice(),c.getLearnTime(),orgName,c.getTeacher(),c.getDescription(),c.getTime());
@@ -126,6 +140,7 @@ public class ClassServiceImpl implements ClassService{
         ArrayList<LessonEntity> ls = new ArrayList<>();
 
         ClassEntity c = new ClassEntity();
+        c.setId(ac.id);
         c.setName(ac.name);
         c.setTime(ac.time);
         c.setTeacher(ac.teacher);
@@ -136,8 +151,12 @@ public class ClassServiceImpl implements ClassService{
         c.setLearnTime(ac.learnTime);
         c.setLeftMembers(ac.memberNum);
         c.setOrgId(org);
+        classDAO.saveAndFlush(c);
 
         ClassEntity cl = classDAO.findOne(ac.id);
+        System.err.println("had find cl");
+//        c.setLessones(ls);
+
         for (int i = 0;i < ac.lessons.size();i++){
             lessonInfo li = ac.lessons.get(i);
             LessonEntity l = new LessonEntity();
@@ -145,10 +164,10 @@ public class ClassServiceImpl implements ClassService{
             l.setDescription(li.description);
             l.setClassId(cl);
             l.setOrder(i);
+            l.setId(IdHelper.getLessonId());
+            lessonDAO.save(l);
             ls.add(l);
         }
-        c.setLessones(ls);
-        classDAO.save(c);
         return true;
     }
 

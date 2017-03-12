@@ -15,9 +15,12 @@ import java.util.List;
  */
 public interface ClassService {
 
+    public List<courseVO> getStartCourse(int orgId);
+
     public List<applyInfoVO> getApplyInfo(int orgId);
 
     public List<courseVO> getAllCoursesBrief();
+
     public List<courseVO> getOrgCoursesBrief(int orgId);
 
     public courseDetailVO getCourseDetail(int courseId, int cardId);
@@ -27,5 +30,6 @@ public interface ClassService {
     public boolean bookCourse(int classId, int cardId);
 
     public boolean applyCourse(classApplyInfo ac);
+
 
 }

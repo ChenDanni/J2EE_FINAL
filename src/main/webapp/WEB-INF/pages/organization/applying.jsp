@@ -47,15 +47,15 @@ ${nav}
                     <div class="panel-body">
                         <p>
                         <c:if test="${a.state eq 0}">
-                            <b class="text-info">[申请中]</b>
+                            <b class="text-info">[申请中]</b>${a.name}
                         </c:if>
-                        <c:if test="${a.state eq 1}">
-                            <b class="text-success">[申请成功]</b>
+                        <c:if test="${a.state eq 1 || a.state eq 3}">
+                            <b class="text-success">[申请成功]</b>${a.name}
                         </c:if>
                         <c:if test="${a.state eq 2}">
-                            <b class="text-success">[申请失败]</b>
+                            <b class="text-danger">[申请失败]</b>${a.name}
+                            <a href="/org_course_fix?id=${id}" class="btn btn-info">修改信息</a>
                         </c:if>
-                        ${a.name}
                         </p>
                     </div>
                 </div>

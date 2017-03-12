@@ -93,10 +93,10 @@ public class MainController {
 //    public String getOrgClassApply() {
 //        return "organization/classApply";
 //    }
-    @RequestMapping(value = "/org_learn_record", method = RequestMethod.GET)
-    public String getOrgLearnRecord() {
-        return "organization/learnRecord";
-    }
+//    @RequestMapping(value = "/org_learn_record", method = RequestMethod.GET)
+//    public String getOrgLearnRecord() {
+//        return "organization/learnRecord";
+//    }
     @RequestMapping(value = "/org_account", method = RequestMethod.GET)
     public String getOrgAccount() {
         return "organization/orgAccount";

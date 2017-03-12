@@ -58,7 +58,6 @@ ${nav}
                         <input type="text" name="lesson-des-1" class="form-control" placeholder="本节内容" required autofocus></p>
                 </div>
 
-
             </form>
             <button id="add-lesson" class="btn btn-lg btn-default">增加课时</button>
             <hr>

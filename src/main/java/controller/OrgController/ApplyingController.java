@@ -36,6 +36,7 @@ public class ApplyingController {
             JSONObject o = new JSONObject();
             o.put("name",vo.name);
             o.put("state",vo.state);
+            o.put("id",vo.id);
             ret.add(o);
         }
         model.addAttribute("applications",ret);

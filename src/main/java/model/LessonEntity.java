@@ -35,7 +35,7 @@ public class LessonEntity {
     }
 
     @Basic
-    @Column(name = "order", nullable = false)
+    @Column(name = "`order`", nullable = false)
     public int getOrder() {
         return order;
     }
