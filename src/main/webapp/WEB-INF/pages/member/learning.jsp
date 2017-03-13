@@ -38,7 +38,7 @@ ${nav}
                                     <p>价格: ${lesson.price} 总人数: ${lesson.totalMember} 人</p>
                                     <p>上课时间: ${lesson.learn_time}</p>
                                     <p>来自: ${lesson.orgName} | 开课时间: ${lesson.start_time}</p>
-                                    <p> <a href="#" class="btn btn-info packup-btn" role="button">收起进度</a> <a href="#" class="btn btn-danger packup-btn" role="button">退课</a></p>
+                                    <p> <a href="#" class="btn btn-info packup-btn" role="button">收起进度</a> <a href="#" class="btn btn-danger quit-btn" role="button">退课</a></p>
                                 </div>
                             </div>
                             <div class="list-group">
@@ -57,8 +57,6 @@ ${nav}
                             </div>
                         </div>
                     </c:forEach>
-
-
                 </div>
             </div>
         </div>

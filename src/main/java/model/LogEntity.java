@@ -4,43 +4,66 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by cdn on 17/3/9.
+ * Created by cdn on 17/3/13.
  */
 @Entity
 @Table(name = "log", schema = "j2ee_final", catalog = "")
+@IdClass(LogEntityPK.class)
 public class LogEntity {
-    private int id;
-    private String name;
-    private Timestamp date;
+    private int cardId;
+    private int classId;
+    private Timestamp time;
+    private Integer state;
+    private Integer money;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    @Column(name = "card_id", nullable = false)
+    public int getCardId() {
+        return cardId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
+    }
+
+    @Id
+    @Column(name = "class_id", nullable = false)
+    public int getClassId() {
+        return classId;
+    }
+
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 32)
-    public String getName() {
-        return name;
+    @Column(name = "time", nullable = false)
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     @Basic
-    @Column(name = "date", nullable = false)
-    public Timestamp getDate() {
-        return date;
+    @Column(name = "state", nullable = true)
+    public Integer getState() {
+        return state;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    @Basic
+    @Column(name = "money", nullable = true)
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
     }
 
     @Override
@@ -50,18 +73,22 @@ public class LogEntity {
 
         LogEntity logEntity = (LogEntity) o;
 
-        if (id != logEntity.id) return false;
-        if (name != null ? !name.equals(logEntity.name) : logEntity.name != null) return false;
-        if (date != null ? !date.equals(logEntity.date) : logEntity.date != null) return false;
+        if (cardId != logEntity.cardId) return false;
+        if (classId != logEntity.classId) return false;
+        if (time != null ? !time.equals(logEntity.time) : logEntity.time != null) return false;
+        if (state != null ? !state.equals(logEntity.state) : logEntity.state != null) return false;
+        if (money != null ? !money.equals(logEntity.money) : logEntity.money != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
+        int result = cardId;
+        result = 31 * result + classId;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + (money != null ? money.hashCode() : 0);
         return result;
     }
 }

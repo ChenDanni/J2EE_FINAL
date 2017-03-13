@@ -16,6 +16,7 @@ public class OrganizationEntity {
     private String address;
     private Integer balance;
     private Collection<ClassEntity> classes;
+    private Collection<OrghandleLogEntity> orghandleLog;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -112,5 +113,14 @@ public class OrganizationEntity {
 
     public void setClasses(Collection<ClassEntity> classes) {
         this.classes = classes;
+    }
+
+    @OneToMany(mappedBy = "orgId")
+    public Collection<OrghandleLogEntity> getOrghandleLog() {
+        return orghandleLog;
+    }
+
+    public void setOrghandleLog(Collection<OrghandleLogEntity> orghandleLog) {
+        this.orghandleLog = orghandleLog;
     }
 }

@@ -20,6 +20,8 @@ public class CardEntity {
     private int consume;
     private int points;
     private Collection<ChargeLogEntity> chargeLogs;
+    private Collection<MemberhandleLogEntity> memberhandleLog;
+    private Collection<RechargeLogEntity> rechargeLog;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -97,7 +99,6 @@ public class CardEntity {
         return phone;
     }
 
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -165,5 +166,23 @@ public class CardEntity {
 
     public void setChargeLogs(Collection<ChargeLogEntity> chargeLogs) {
         this.chargeLogs = chargeLogs;
+    }
+
+    @OneToMany(mappedBy = "cardId")
+    public Collection<MemberhandleLogEntity> getMemberhandleLog() {
+        return memberhandleLog;
+    }
+
+    public void setMemberhandleLog(Collection<MemberhandleLogEntity> memberhandleLog) {
+        this.memberhandleLog = memberhandleLog;
+    }
+
+    @OneToMany(mappedBy = "cardId")
+    public Collection<RechargeLogEntity> getRechargeLog() {
+        return rechargeLog;
+    }
+
+    public void setRechargeLog(Collection<RechargeLogEntity> rechargeLog) {
+        this.rechargeLog = rechargeLog;
     }
 }

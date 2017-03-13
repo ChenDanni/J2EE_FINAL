@@ -12,6 +12,9 @@
         <class>model.OrganizationEntity</class>
         <class>model.ClassMemberEntity</class>
         <class>model.LessonMemberEntity</class>
+        <class>model.MemberhandleLogEntity</class>
+        <class>model.OrghandleLogEntity</class>
+        <class>model.RechargeLogEntity</class>
 
 
         <properties>

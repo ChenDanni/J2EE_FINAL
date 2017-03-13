@@ -11,7 +11,9 @@ public class ManagerEntity {
     private int id;
     private String login;
     private String password;
-    private Integer balance;
+    private int recharge;
+    private int memberHandle;
+    private int orgHandle;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -44,14 +46,36 @@ public class ManagerEntity {
     }
 
     @Basic
-    @Column(name = "balance", nullable = true)
-    public Integer getBalance() {
-        return balance;
+    @Column(name = "recharge", nullable = false)
+    public int getRecharge() {
+        return recharge;
     }
 
-    public void setBalance(Integer balance) {
-        this.balance = balance;
+    public void setRecharge(int recharge) {
+        this.recharge = recharge;
     }
+
+
+    @Basic
+    @Column(name = "member_handle", nullable = false)
+    public int getMemberHandle() {
+        return memberHandle;
+    }
+
+    public void setMemberHandle(int memberHandle) {
+        this.memberHandle = memberHandle;
+    }
+
+    @Basic
+    @Column(name = "org_handle", nullable = false)
+    public int getOrgHandle() {
+        return orgHandle;
+    }
+
+    public void setOrgHandle(int orgHandle) {
+        this.orgHandle = orgHandle;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -63,7 +87,9 @@ public class ManagerEntity {
         if (id != that.id) return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (balance != null ? !balance.equals(that.balance) : that.balance != null) return false;
+        if (recharge != that.recharge) return false;
+        if (memberHandle != that.memberHandle) return false;
+        if (orgHandle != that.orgHandle) return false;
 
         return true;
     }
@@ -73,7 +99,10 @@ public class ManagerEntity {
         int result = id;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + recharge;
+        result = 31 * result + memberHandle;
+        result = 31 * result + orgHandle;
+
         return result;
     }
 }

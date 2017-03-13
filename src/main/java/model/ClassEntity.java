@@ -23,6 +23,8 @@ public class ClassEntity {
     private OrganizationEntity orgId;
     private Collection<LessonEntity> lessones;
     private Collection<ChargeLogEntity> chargeLogs;
+    private Collection<MemberhandleLogEntity> memberhandleLog;
+    private Collection<OrghandleLogEntity> orghandleLog;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -114,7 +116,6 @@ public class ClassEntity {
         this.learnTime = learnTime;
     }
 
-
     @Basic
     @Column(name = "left_members", nullable = false)
     public int getLeftMembers() {
@@ -186,5 +187,23 @@ public class ClassEntity {
 
     public void setChargeLogs(Collection<ChargeLogEntity> chargeLogs) {
         this.chargeLogs = chargeLogs;
+    }
+
+    @OneToMany(mappedBy = "classId")
+    public Collection<MemberhandleLogEntity> getMemberhandleLog() {
+        return memberhandleLog;
+    }
+
+    public void setMemberhandleLog(Collection<MemberhandleLogEntity> memberhandleLog) {
+        this.memberhandleLog = memberhandleLog;
+    }
+
+    @OneToMany(mappedBy = "classId")
+    public Collection<OrghandleLogEntity> getOrghandleLog() {
+        return orghandleLog;
+    }
+
+    public void setOrghandleLog(Collection<OrghandleLogEntity> orghandleLog) {
+        this.orghandleLog = orghandleLog;
     }
 }

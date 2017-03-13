@@ -1,10 +1,11 @@
 package service.impl;
 
-import dao.CardDAO;
-import dao.ChargeLogDAO;
-import dao.ClassDAO;
+import dao.*;
 import model.CardEntity;
 import model.ChargeLogEntity;
+import model.ManagerEntity;
+import model.RechargeLogEntity;
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.CardService;
@@ -31,6 +32,10 @@ public class CardServiceImpl implements CardService{
     ClassDAO classDAO;
     @Autowired
     ChargeLogDAO chargeLogDAO;
+    @Autowired
+    ManagerDAO managerDAO;
+    @Autowired
+    RechargeLogDAO rechargeLogDAO;
 
     @Override
     public rechargeVO getRecharge(int cardId) {
@@ -76,15 +81,22 @@ public class CardServiceImpl implements CardService{
     public boolean addBalance(int cardId, int charge){
 
         CardEntity c = cardDAO.findOne(cardId);
+
         int balance = c.getBalance() + charge;
+        int recharge = managerDAO.findOne(1).getRecharge();
+
         int ret = cardDAO.updateCardBalance(balance,cardId);
+        managerDAO.updateManagerRecharge(recharge+charge,1);
 
         if (ret == 0){
             return false;
         }
+        c = cardDAO.findOne(cardId);
         ChargeLogEntity chargeLog = LogHelper.getRechargeLog(charge,balance,c,classDAO.findOne(LogHelper.getSysClassId()));
+        RechargeLogEntity rechargeLogEntity = LogHelper.getRechargeLogEntity(c,charge,recharge,chargeLog.getDate());
 
         chargeLogDAO.save(chargeLog);
+        rechargeLogDAO.save(rechargeLogEntity);
         return true;
     }
 

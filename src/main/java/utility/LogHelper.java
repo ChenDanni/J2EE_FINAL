@@ -1,10 +1,9 @@
 package utility;
 
-import model.CardEntity;
-import model.ChargeLogEntity;
-import model.ClassEntity;
-import model.ClassMemberEntity;
+import model.*;
 
+import javax.smartcardio.Card;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -16,6 +15,18 @@ public class LogHelper {
     }
 
 
+    //---------manager---------
+    public static RechargeLogEntity getRechargeLogEntity(CardEntity card, int money, int recharge, Timestamp time){
+        RechargeLogEntity rechargeLogEntity = new RechargeLogEntity();
+        rechargeLogEntity.setCardId(card);
+        rechargeLogEntity.setMoney(money);
+        rechargeLogEntity.setRecharge(recharge);
+        rechargeLogEntity.setTime(time);
+        return  rechargeLogEntity;
+    }
+
+
+    //------------member-------
     //上课产生的chargelog
     public static ChargeLogEntity getStudyChargeLog(CardEntity c, ClassEntity classEntity){
         Timestamp time = new Timestamp(System.currentTimeMillis());
