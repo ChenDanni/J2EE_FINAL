@@ -15,6 +15,22 @@ public class LogHelper {
         return 99999999;
     }
 
+
+    //上课产生的chargelog
+    public static ChargeLogEntity getStudyChargeLog(CardEntity c, ClassEntity classEntity){
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        ChargeLogEntity chargeLog = new ChargeLogEntity();
+        chargeLog.setOperation(5);
+        chargeLog.setMoney(0);
+        chargeLog.setDate(time);
+        chargeLog.setBalance(c.getBalance());
+        chargeLog.setCardId(c);
+        chargeLog.setClassId(classEntity);
+        chargeLog.setPoints(c.getPoints());
+
+        return chargeLog;
+    }
+
     public static ChargeLogEntity getRechargeLog(int charge, int balance, CardEntity c, ClassEntity sys){
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ChargeLogEntity chargeLog = new ChargeLogEntity();

@@ -13,7 +13,8 @@ import java.util.List;
  * Created by cdn on 17/3/11.
  */
 @Repository
-public interface LessonDAO extends JpaRepository<LessonEntity, LessonMemberEntityPK>{
+public interface LessonDAO extends JpaRepository<LessonEntity, Integer>{
 
     List<LessonEntity> findByClassId(ClassEntity classId);
+
 }

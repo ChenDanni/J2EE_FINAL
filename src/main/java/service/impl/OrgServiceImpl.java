@@ -4,10 +4,7 @@ import dao.CardDAO;
 import dao.ClassDAO;
 import dao.ClassMemberDAO;
 import dao.LessonMemberDAO;
-import model.CardEntity;
-import model.ClassEntity;
-import model.ClassMemberEntity;
-import model.LessonMemberEntity;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.OrgService;
@@ -45,14 +42,23 @@ public class OrgServiceImpl implements OrgService{
         List<attendanceVO> vos = new ArrayList<>();
 
         List<Integer> cardIds = classMemberDAO.findCardByClassId(classId);
+
         for (int i = 0;i < cardIds.size();i++){
             CardEntity card = cardDAO.findOne(cardIds.get(i));
-            List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByAttendanceAsc(cardIds.get(i));
+
+            ClassMemberEntityPK cmpk = new ClassMemberEntityPK();
+            cmpk.setCardId(card.getId());
+            cmpk.setClassId(classId);
+            ClassMemberEntity cm = classMemberDAO.findOne(cmpk);
+            List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByLessonIdAsc(cardIds.get(i));
+            List<Integer> lessonIds = new ArrayList<>();
             List<Integer> ab = new ArrayList<>();
+
             for (int j = 0;j < lm.size();j++){
+                lessonIds.add(lm.get(j).getLessonId());
                 ab.add(lm.get(j).getAttendance());
             }
-            attendanceVO at = new attendanceVO(cardIds.get(i),card.getName(),ab);
+            attendanceVO at = new attendanceVO(cardIds.get(i),card.getName(),lessonIds,ab,cm.getScores());
             vos.add(at);
         }
         recordDetailVO ret = new recordDetailVO(name,totalMember,price,learn_time,start_time,vos);

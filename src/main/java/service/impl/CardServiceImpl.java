@@ -44,7 +44,7 @@ public class CardServiceImpl implements CardService{
     }
 
     private List<opVO> getCardOPs(CardEntity c){
-        Collection<ChargeLogEntity> charges = c.getChargeLogs();
+        Collection<ChargeLogEntity> charges = chargeLogDAO.findByCardId(c);
         Iterator<ChargeLogEntity> it = charges.iterator();
         List<opVO> ops = new ArrayList<>();
         while (it.hasNext()){

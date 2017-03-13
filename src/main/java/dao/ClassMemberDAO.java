@@ -30,4 +30,17 @@ public interface ClassMemberDAO extends JpaRepository<ClassMemberEntity, ClassMe
 
     @Query("select cm.cardId from ClassMemberEntity cm where cm.classId = ?1")
     List<Integer> findCardByClassId(int classId);
+
+
+    @Modifying
+    @Transactional
+    @Query("update ClassMemberEntity cm set cm.scores = ?1 where cm.cardId = ?2 and cm.classId = ?3")
+    int updateScore(int score, int cardId, int classId);
+
+    @Modifying
+    @Transactional
+    @Query("update ClassMemberEntity cm set cm.state = ?1 where cm.classId = ?2 and cm.cardId = ?3")
+    int updateClassMemberState(int state,int classId,int cardId);
+
+
 }

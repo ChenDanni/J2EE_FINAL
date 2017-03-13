@@ -17,6 +17,8 @@ public class OperationHelper {
                 return "退课 " + className;
             case 4:
                 return "积分兑换";
+            case 5:
+                return "上课: " + className;
             default:
                 System.err.println("WRONG OPTYPE");
                 return "";
