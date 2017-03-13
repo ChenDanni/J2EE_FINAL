@@ -33,11 +33,11 @@ ${nav}
             <div class="course-detail-card">
                 <img src="assets/images/black.jpeg" alt="...">
                 <div class="course-card-info">
-                    <h4>${course.name}</h4>
-                    <p>选课人数: ${memberNum - leftMember} 人</p>
-                    <p>价格: ${course.price}</p>
-                    <p>上课时间: ${course.learn_time}</p>
-                    <p>开课日期: ${course.start_time}</p>
+                    <h4>${name}</h4>
+                    <p>选课人数: ${totalMember} 人</p>
+                    <p>价格: ${price}</p>
+                    <p>上课时间: ${learn_time}</p>
+                    <p>开课日期: ${start_time}</p>
                     </p>
                 </div>
             </div>
@@ -47,31 +47,31 @@ ${nav}
                     <thead>
                     <tr>
                         <th>学员</th>
-                        <th>课时1</th>
-                        <th>课时2</th>
+                        <c:forEach var="i" begin="1" end="${lessonNum}">
+                            <th>课时${i}</th>
+                        </c:forEach>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>陈睿</td>
-                        <td><button disabled="disabled" class="btn btn-info">出席</button></td>
-                        <td>
-                            <button class="btn btn-success">出席</button>
-                            <button class="btn btn-danger">缺席</button>
-                        </td>
-                    </tr>
-                    <c:forEach items="${ops}" var="op">
+                    <c:forEach items="${attendances}" var="attendance">
                         <tr>
-                            <td>1</td>
-                            <td>${op.name}</td>
-                            <td>${op.charge}</td>
-                            <td>${op.balance}</td>
-                            <td>${op.points}</td>
-                            <td>${op.time}</td>
+                            <td>${attendance.name}</td>
+                            <c:forEach items="${attendance.ats}" var="at">
+                                <c:if test="${at eq 0}">
+                                    <td>
+                                        <button class="btn btn-success">出席</button>
+                                        <button class="btn btn-danger">缺席</button>
+                                    </td>
+                                </c:if>
+                                <c:if test="${at eq 1}">
+                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                </c:if>
+                                <c:if test="${at eq 2}">
+                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                </c:if>
+                            </c:forEach>
                         </tr>
                     </c:forEach>
-
-
                     </tbody>
                 </table>
             </div>

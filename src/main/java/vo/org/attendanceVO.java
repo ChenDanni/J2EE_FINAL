@@ -5,15 +5,15 @@ import java.util.List;
 /**
  * Created by cdn on 17/3/12.
  */
-public class abstanceVO {
+public class attendanceVO {
 
     public int cardId;
     public String name;
-    List<Integer> abstances;
+    public List<Integer> attendances;
 
-    public abstanceVO(int cardId, String name, List<Integer> abstances) {
+    public attendanceVO(int cardId, String name, List<Integer> attendances) {
         this.cardId = cardId;
         this.name = name;
-        this.abstances = abstances;
+        this.attendances = attendances;
     }
 }
