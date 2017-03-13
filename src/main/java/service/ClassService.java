@@ -2,6 +2,7 @@ package service;
 
 import vo.manager.applicationHandleVO;
 import vo.member.BookingVO;
+import vo.member.LearningVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
 import vo.org.applyInfoVO;
@@ -15,6 +16,9 @@ import java.util.List;
  * Created by cdn on 17/3/10.
  */
 public interface ClassService {
+
+    //0:learn  1:finishing
+    public List<LearningVO> getLearnings(int cardId,int type);
 
     public boolean setApplicationSuccess(int classId);
 

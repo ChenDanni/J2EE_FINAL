@@ -8,9 +8,11 @@ import service.ClassService;
 import utility.IdHelper;
 import vo.manager.applicationHandleVO;
 import vo.member.BookingVO;
+import vo.member.LearningVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
 import vo.org.applyInfoVO;
+import vo.org.attendanceVO;
 import vo.org.classApplyInfo;
 import vo.org.lessonInfo;
 
@@ -168,6 +170,45 @@ public class ClassServiceImpl implements ClassService{
             BookingVO vo = new BookingVO(c.getId(),c.getName(),c.getPrice(),c.getMemberNum(), c.getLeftMembers(),c.getLearnTime(),c.getOrgId().getName(),c.getTime());
             vos.add(vo);
         }
+        return vos;
+    }
+
+    @Override
+    public List<LearningVO> getLearnings(int cardId,int type) {
+
+        List<LearningVO> vos = new ArrayList<>();
+        Collection<ClassMemberEntity> cms;
+        if (type == 0){
+            //learning
+            cms = classMemberDAO.findByCardIdAndState(cardId,2);
+        }else if (type == 1){
+            //finishing
+            cms = classMemberDAO.findByCardIdAndState(cardId,4);
+        }else {
+            return vos;
+        }
+        Iterator<ClassMemberEntity> it = cms.iterator();
+        while(it.hasNext()){
+            ClassMemberEntity cm = it.next();
+            int classId = cm.getClassId();
+            ClassEntity c = classDAO.findOne(classId);
+
+            List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByLessonIdAsc(cardId);
+            List<Integer> lessonId = new ArrayList<>();
+            List<Integer> attendances = new ArrayList<>();
+
+            for (int i = 0;i < lm.size();i++){
+                lessonId.add(lm.get(i).getLessonId());
+                attendances.add(lm.get(i).getAttendance());
+            }
+
+            attendanceVO a = new attendanceVO(cardId,c.getName(),lessonId,attendances,cm.getScores());
+
+            LearningVO vo = new LearningVO(c.getId(),c.getName(),c.getPrice(),
+                    c.getMemberNum()- c.getLeftMembers(),c.getLearnTime(),c.getOrgId().getName(),c.getTime(),a);
+            vos.add(vo);
+        }
+
         return vos;
     }
 

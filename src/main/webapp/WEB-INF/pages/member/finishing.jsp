@@ -29,7 +29,38 @@ ${nav}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             ${shiftButtons}
             <div class="row">
-                ${courseFinishCard}
+                <div class="col-sm-12 col-md-10">
+                    <c:forEach items="${lessons}" var="lesson">
+                        <div class="panel panel-default">
+                            <div class="panel-body course-detail-card">
+                                <img src="assets/images/black.jpeg" alt="...">
+                                <div class="course-card-info">
+                                    <h4>${lesson.name}</h4>
+                                    <p>价格: ${lesson.price} 总人数: ${lesson.totalMember} 人</p>
+                                    <p>上课时间: ${lesson.learn_time}</p>
+                                    <p>来自: ${lesson.orgName} | 开课时间: ${lesson.start_time}</p>
+                                    <p> <a href="#" class="btn btn-info packup-btn" role="button">收起详情</a></p>
+                                </div>
+                            </div>
+                            <div class="list-group">
+                                <c:forEach items="${lesson.attendance}" var="at">
+                                    <c:if test="${at.attendance eq 0}">
+                                        <p class="list-group-item">${at.lesson_name} <a class="btn btn-info disabled">未开始</a></p>
+                                    </c:if>
+                                    <c:if test="${at.attendance eq 1}">
+                                        <p class="list-group-item">${at.lesson_name} <a class="btn btn-success disabled">出席</a></p>
+                                    </c:if>
+                                    <c:if test="${at.attendance eq 2}">
+                                        <p class="list-group-item">${at.lesson_name} <a class="btn btn-danger disabled">缺席</a></p>
+                                    </c:if>
+                                </c:forEach>
+                                <p class="list-group-item">成绩:  <b>${lesson.score}</b></p>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+
+                </div>
             </div>
         </div>
 

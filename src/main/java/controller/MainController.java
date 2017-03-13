@@ -29,18 +29,18 @@ public class MainController {
         return "member/allOrgs";
     }
 
-    @RequestMapping(value = "/learning", method = RequestMethod.GET)
-    public String getStudying() {
-        return "member/learning";
-    }
+//    @RequestMapping(value = "/learning", method = RequestMethod.GET)
+//    public String getStudying() {
+//        return "member/learning";
+//    }
 //    @RequestMapping(value = "/booking", method = RequestMethod.GET)
 //    public String getBooking() {
 //        return "member/booking";
 //    }
-    @RequestMapping(value = "/finishing", method = RequestMethod.GET)
-    public String getFinishing() {
-        return "member/finishing";
-    }
+//    @RequestMapping(value = "/finishing", method = RequestMethod.GET)
+//    public String getFinishing() {
+//        return "member/finishing";
+//    }
 
 //    @RequestMapping(value = "/card", method = RequestMethod.GET)
 //    public String getCard() {

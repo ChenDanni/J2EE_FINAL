@@ -30,18 +30,9 @@ public class OrgServiceImpl implements OrgService{
     @Autowired
     CardDAO cardDAO;
 
-    @Override
-    public recordDetailVO getRecordDetail(int classId) {
-
-        ClassEntity c = classDAO.findOne(classId);
-        String name = c.getName();
-        int totalMember = c.getMemberNum() - c.getLeftMembers();
-        int price = c.getPrice();
-        String learn_time = c.getLearnTime();
-        Date start_time = c.getTime();
-        List<attendanceVO> vos = new ArrayList<>();
-
+    private List<attendanceVO> getAttendanceVO(int classId){
         List<Integer> cardIds = classMemberDAO.findCardByClassId(classId);
+        List<attendanceVO> vos = new ArrayList<>();
 
         for (int i = 0;i < cardIds.size();i++){
             CardEntity card = cardDAO.findOne(cardIds.get(i));
@@ -50,6 +41,7 @@ public class OrgServiceImpl implements OrgService{
             cmpk.setCardId(card.getId());
             cmpk.setClassId(classId);
             ClassMemberEntity cm = classMemberDAO.findOne(cmpk);
+
             List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByLessonIdAsc(cardIds.get(i));
             List<Integer> lessonIds = new ArrayList<>();
             List<Integer> ab = new ArrayList<>();
@@ -61,6 +53,21 @@ public class OrgServiceImpl implements OrgService{
             attendanceVO at = new attendanceVO(cardIds.get(i),card.getName(),lessonIds,ab,cm.getScores());
             vos.add(at);
         }
+        return vos;
+    }
+
+
+
+    @Override
+    public recordDetailVO getRecordDetail(int classId) {
+
+        ClassEntity c = classDAO.findOne(classId);
+        String name = c.getName();
+        int totalMember = c.getMemberNum() - c.getLeftMembers();
+        int price = c.getPrice();
+        String learn_time = c.getLearnTime();
+        Date start_time = c.getTime();
+        List<attendanceVO> vos = getAttendanceVO(classId);
         recordDetailVO ret = new recordDetailVO(name,totalMember,price,learn_time,start_time,vos);
         return ret;
     }
