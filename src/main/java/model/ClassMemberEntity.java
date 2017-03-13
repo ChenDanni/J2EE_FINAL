@@ -12,7 +12,7 @@ public class ClassMemberEntity {
     private int classId;
     private int cardId;
     private int state;
-    private Integer scores;
+    private int scores;
 
     @Id
     @Column(name = "class_id", nullable = false)
@@ -45,12 +45,12 @@ public class ClassMemberEntity {
     }
 
     @Basic
-    @Column(name = "scores", nullable = true)
-    public Integer getScores() {
+    @Column(name = "scores", nullable = false)
+    public int getScores() {
         return scores;
     }
 
-    public void setScores(Integer progress) {
+    public void setScores(int progress) {
         this.scores = progress;
     }
 
@@ -64,7 +64,7 @@ public class ClassMemberEntity {
         if (classId != that.classId) return false;
         if (cardId != that.cardId) return false;
         if (state != that.state) return false;
-        if (scores != null ? !scores.equals(that.scores) : that.scores != null) return false;
+        if (scores != that.scores) return false;
 
         return true;
     }
@@ -74,7 +74,7 @@ public class ClassMemberEntity {
         int result = classId;
         result = 31 * result + cardId;
         result = 31 * result + state;
-        result = 31 * result + (scores != null ? scores.hashCode() : 0);
+        result = 31 * result + scores;
         return result;
     }
 }

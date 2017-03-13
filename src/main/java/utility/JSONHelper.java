@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.javafx.jmx.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.ui.ModelMap;
+import vo.member.courseDetailVO;
 import vo.member.courseVO;
 
 import java.io.IOException;
@@ -51,6 +53,23 @@ public class JSONHelper {
             ret.add(obj);
         }
         return ret;
+    }
+
+    public static ModelMap courseDetailVOToModel(ModelMap model, courseDetailVO vo){
+
+        model.addAttribute("id",vo.id);
+        model.addAttribute("name",vo.name);
+        model.addAttribute("price",vo.price);
+        model.addAttribute("learn_time",vo.learn_time);
+        model.addAttribute("orgName",vo.orgName);
+        model.addAttribute("teacher",vo.teacher);
+        model.addAttribute("description",vo.description);
+        model.addAttribute("start_time", DateHelper.getDate(vo.start_time));
+        model.addAttribute("state",vo.state);
+        model.addAttribute("memberNum",vo.memberNum);
+        model.addAttribute("leftMember",vo.leftMembers);
+
+        return model;
     }
 
 }

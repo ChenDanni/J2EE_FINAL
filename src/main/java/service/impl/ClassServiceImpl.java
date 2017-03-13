@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.ClassService;
 import utility.IdHelper;
+import vo.manager.applicationHandleVO;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
@@ -47,6 +48,30 @@ public class ClassServiceImpl implements ClassService{
             ret.add(vo);
         }
         return ret;
+    }
+
+    @Override
+    public boolean setApplicationSuccess(int classId) {
+        classDAO.updateClassState(1,classId);
+        return true;
+    }
+
+    @Override
+    public boolean setApplicationFail(int classId) {
+        classDAO.updateClassState(2,classId);
+        return true;
+    }
+
+    @Override
+    public List<applicationHandleVO> getApplicationHandle() {
+        List<ClassEntity> c = classDAO.findAllClassesOrderByTimeDesc();
+        List<applicationHandleVO> vos = new ArrayList<>();
+        for (int i = 0;i < c.size();i++){
+            ClassEntity e = c.get(i);
+            applicationHandleVO vo = new applicationHandleVO(e.getId(),e.getName(),e.getOrgId().getName(),e.getState(),e.getTime());
+            vos.add(vo);
+        }
+        return vos;
     }
 
     @Override

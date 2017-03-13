@@ -1,5 +1,6 @@
 package service;
 
+import vo.manager.applicationHandleVO;
 import vo.member.BookingVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
@@ -14,6 +15,12 @@ import java.util.List;
  * Created by cdn on 17/3/10.
  */
 public interface ClassService {
+
+    public boolean setApplicationSuccess(int classId);
+
+    public boolean setApplicationFail(int classId);
+
+    public List<applicationHandleVO> getApplicationHandle();
 
     public boolean startCourse(int classId);
 

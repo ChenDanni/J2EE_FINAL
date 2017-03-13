@@ -34,4 +34,7 @@ public interface ClassDAO extends JpaRepository<ClassEntity,Integer>{
     List<ClassEntity> findByState(int state);
 
     List<ClassEntity> findByOrgIdAndState(OrganizationEntity orgId, int state);
+
+    @Query("select c from ClassEntity c order by c.time desc ")
+    List<ClassEntity> findAllClassesOrderByTimeDesc();
 }

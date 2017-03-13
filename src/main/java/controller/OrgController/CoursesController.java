@@ -44,17 +44,18 @@ public class CoursesController {
 
         courseDetailVO vo = classService.getCourseDetail(id,-1);
 
-        model.addAttribute("id",vo.id);
-        model.addAttribute("name",vo.name);
-        model.addAttribute("price",vo.price);
-        model.addAttribute("learn_time",vo.learn_time);
-        model.addAttribute("orgName",vo.orgName);
-        model.addAttribute("teacher",vo.teacher);
-        model.addAttribute("description",vo.description);
-        model.addAttribute("start_time", DateHelper.getDate(vo.start_time));
-        model.addAttribute("state",vo.state);
-        model.addAttribute("memberNum",vo.memberNum);
-        model.addAttribute("leftMember",vo.leftMembers);
+        model = JSONHelper.courseDetailVOToModel(model, vo);
+//        model.addAttribute("id",vo.id);
+//        model.addAttribute("name",vo.name);
+//        model.addAttribute("price",vo.price);
+//        model.addAttribute("learn_time",vo.learn_time);
+//        model.addAttribute("orgName",vo.orgName);
+//        model.addAttribute("teacher",vo.teacher);
+//        model.addAttribute("description",vo.description);
+//        model.addAttribute("start_time", DateHelper.getDate(vo.start_time));
+//        model.addAttribute("state",vo.state);
+//        model.addAttribute("memberNum",vo.memberNum);
+//        model.addAttribute("leftMember",vo.leftMembers);
 
         return "organization/courseDetail";
     }
