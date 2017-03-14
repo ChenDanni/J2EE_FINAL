@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by cdn on 17/3/9.
@@ -17,6 +18,7 @@ public class OrganizationEntity {
     private Integer balance;
     private Collection<ClassEntity> classes;
     private Collection<OrghandleLogEntity> orghandleLog;
+    private List<OrgLogEntity> orgLog;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -122,5 +124,14 @@ public class OrganizationEntity {
 
     public void setOrghandleLog(Collection<OrghandleLogEntity> orghandleLog) {
         this.orghandleLog = orghandleLog;
+    }
+
+    @OneToMany(mappedBy = "orgId")
+    public List<OrgLogEntity> getOrgLog() {
+        return orgLog;
+    }
+
+    public void setOrgLog(List<OrgLogEntity> orgLog) {
+        this.orgLog = orgLog;
     }
 }

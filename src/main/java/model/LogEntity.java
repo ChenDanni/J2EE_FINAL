@@ -18,6 +18,7 @@ public class LogEntity {
     private int total;
     private int finish;
     private int moneyBack;
+    private Integer moneyAccount;
 
     @Id
     @Column(name = "card_id", nullable = false)
@@ -123,5 +124,15 @@ public class LogEntity {
 
     public void setMoneyBack(int moneyBack) {
         this.moneyBack = moneyBack;
+    }
+
+    @Basic
+    @Column(name = "money_account", nullable = true)
+    public Integer getMoneyAccount() {
+        return moneyAccount;
+    }
+
+    public void setMoneyAccount(Integer moneyAccount) {
+        this.moneyAccount = moneyAccount;
     }
 }

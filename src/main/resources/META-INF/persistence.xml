@@ -15,6 +15,7 @@
         <class>model.MemberhandleLogEntity</class>
         <class>model.OrghandleLogEntity</class>
         <class>model.RechargeLogEntity</class>
+        <class>model.OrgLogEntity</class>
 
 
         <properties>

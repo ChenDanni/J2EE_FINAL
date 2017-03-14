@@ -7,6 +7,7 @@ import com.oracle.javafx.jmx.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.ui.ModelMap;
+import vo.manager.LogVO;
 import vo.member.courseDetailVO;
 import vo.member.courseVO;
 
@@ -17,6 +18,28 @@ import java.util.List;
  * Created by cdn on 17/3/9.
  */
 public class JSONHelper {
+
+    public static JSONArray logVOsToJson(List<LogVO> vos){
+        JSONArray ret = new JSONArray();
+        for (int i = 0;i < vos.size();i++){
+            LogVO vo = vos.get(i);
+            JSONObject obj = new JSONObject();
+            obj.put("username",vo.username);
+            obj.put("cardId",vo.cardId);
+            obj.put("className",vo.className);
+            obj.put("classId",vo.classId);
+            obj.put("orgName",vo.orgName);
+            obj.put("orgId",vo.orgId);
+            obj.put("finish",vo.finish);
+            obj.put("total",vo.total);
+            obj.put("price",vo.money);
+            obj.put("time", DateHelper.getDate(vo.time));
+            obj.put("state",vo.state);
+            obj.put("money_back",vo.money_back);
+            ret.add(obj);
+        }
+        return ret;
+    }
 
     public static String getJson(Object obj){
         ObjectMapper mapper = new ObjectMapper();

@@ -3,6 +3,7 @@ package model;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by cdn on 17/3/9.
@@ -25,6 +26,7 @@ public class ClassEntity {
     private Collection<ChargeLogEntity> chargeLogs;
     private Collection<MemberhandleLogEntity> memberhandleLog;
     private Collection<OrghandleLogEntity> orghandleLog;
+    private List<OrgLogEntity> orgLog;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -205,5 +207,14 @@ public class ClassEntity {
 
     public void setOrghandleLog(Collection<OrghandleLogEntity> orghandleLog) {
         this.orghandleLog = orghandleLog;
+    }
+
+    @OneToMany(mappedBy = "classId")
+    public List<OrgLogEntity> getOrgLog() {
+        return orgLog;
+    }
+
+    public void setOrgLog(List<OrgLogEntity> orgLog) {
+        this.orgLog = orgLog;
     }
 }

@@ -14,6 +14,22 @@ public class LogHelper {
         return 99999999;
     }
 
+    //---------org---------
+    public static OrgLogEntity getOrgLogEntity(CardEntity card,ClassEntity classEntity, OrganizationEntity org,
+                                               int money, int balance, int type){
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        OrgLogEntity o = new OrgLogEntity();
+        o.setTime(time);
+        o.setCardId(card);
+        o.setClassId(classEntity);
+        o.setMoney(money);
+        o.setBalance(balance);
+        o.setOrgId(org);
+        o.setType(type);
+        return o;
+    }
+
+
 
     //---------manager---------
     public static RechargeLogEntity getRechargeLogEntity(CardEntity card, int money, int recharge, Timestamp time){
@@ -48,6 +64,17 @@ public class LogHelper {
         return m;
     }
 
+    public static OrghandleLogEntity getOrgHandleLogEntity(OrganizationEntity org, int money,
+                                                           ClassEntity classEntity, Timestamp time){
+        OrghandleLogEntity o = new OrghandleLogEntity();
+        o.setOrgId(org);
+        o.setMoney(money);
+        o.setClassId(classEntity);
+        o.setTime(time);
+        return o;
+    }
+
+
 
     //------------member-------
     //退课chargelog
@@ -64,8 +91,6 @@ public class LogHelper {
 
         return chargeLog;
     }
-
-
 
     //上课产生的chargelog
     public static ChargeLogEntity getStudyChargeLog(CardEntity c, ClassEntity classEntity){

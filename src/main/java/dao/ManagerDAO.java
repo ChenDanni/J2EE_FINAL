@@ -23,4 +23,9 @@ public interface ManagerDAO extends JpaRepository<ManagerEntity,Integer>{
     @Query("update ManagerEntity m set m.memberHandle = ?1 where m.id = ?2")
     int updateManagerMemberHandle(int memberHandle, int id);
 
+    @Modifying
+    @Transactional
+    @Query("update ManagerEntity m set m.orgHandle = ?1 where m.id = ?2")
+    int updateManagerOrgHandle(int orgHandle, int id);
+
 }

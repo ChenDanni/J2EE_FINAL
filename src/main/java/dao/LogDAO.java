@@ -23,4 +23,9 @@ public interface LogDAO extends JpaRepository<LogEntity,Integer>{
     @Query("update LogEntity l set l.moneyBack = ?1, l.state = ?2 where l.classId = ?3 and l.cardId = ?4")
     int updateLog(int moneyback, int state, int classId, int cardId);
 
+    @Modifying
+    @Transactional
+    @Query("update LogEntity l set l.moneyAccount = ?1, l.state = ?2 where l.classId = ?3 and l.cardId = ?4")
+    int updateLogOrg(int money_account, int state, int classId, int cardId);
+
 }
