@@ -10,7 +10,7 @@
     </ul>
     <ul class="nav nav-sidebar">
         <li id="org-analysis"><a href="/org_recruits">机构招生情况</a></li>
-        <li id="member-study"><a href="/org_learn_record">学员学习</a></li>
+        <li id="member-study"><a href="/learnAnalysis">学员学习</a></li>
     </ul>
     <ul class="nav nav-sidebar">
         <li id="platform-account"><a href="/manager_balance">账户收支明细</a></li>
