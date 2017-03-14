@@ -95,7 +95,7 @@ public class OrgHandleController {
         managerDAO.updateManagerOrgHandle(orgHandle,1);
 
         //增加org_handleLog
-        OrghandleLogEntity orghandleLogEntity = LogHelper.getOrgHandleLogEntity(org,money,classEntity,org_log.getTime());
+        OrghandleLogEntity orghandleLogEntity = LogHelper.getOrgHandleLogEntity(org,money,orgHandle,classEntity,org_log.getTime());
         orgHandleLogDAO.save(orghandleLogEntity);
 
         JSONObject o = new JSONObject();

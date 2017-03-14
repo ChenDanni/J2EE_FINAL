@@ -14,6 +14,7 @@ public class OrghandleLogEntity {
     private Timestamp time;
     private ClassEntity classId;
     private OrganizationEntity orgId;
+    private int orghandle;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -85,5 +86,15 @@ public class OrghandleLogEntity {
 
     public void setOrgId(OrganizationEntity orgId) {
         this.orgId = orgId;
+    }
+
+    @Basic
+    @Column(name = "orghandle", nullable = false)
+    public int getOrghandle() {
+        return orghandle;
+    }
+
+    public void setOrghandle(int orghandle) {
+        this.orghandle = orghandle;
     }
 }

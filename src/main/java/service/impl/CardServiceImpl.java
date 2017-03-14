@@ -93,7 +93,7 @@ public class CardServiceImpl implements CardService{
         }
         c = cardDAO.findOne(cardId);
         ChargeLogEntity chargeLog = LogHelper.getRechargeLog(charge,balance,c,classDAO.findOne(LogHelper.getSysClassId()));
-        RechargeLogEntity rechargeLogEntity = LogHelper.getRechargeLogEntity(c,charge,recharge,chargeLog.getDate());
+        RechargeLogEntity rechargeLogEntity = LogHelper.getRechargeLogEntity(c,charge,recharge+charge,chargeLog.getDate());
 
         chargeLogDAO.save(chargeLog);
         rechargeLogDAO.save(rechargeLogEntity);

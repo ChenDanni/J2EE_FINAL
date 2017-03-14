@@ -14,6 +14,7 @@ public class MemberhandleLogEntity {
     private Timestamp time;
     private CardEntity cardId;
     private ClassEntity classId;
+    private int memberhandle;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -85,5 +86,15 @@ public class MemberhandleLogEntity {
 
     public void setClassId(ClassEntity classId) {
         this.classId = classId;
+    }
+
+    @Basic
+    @Column(name = "memberhandle", nullable = false)
+    public int getMemberhandle() {
+        return memberhandle;
+    }
+
+    public void setMemberhandle(int memberhandle) {
+        this.memberhandle = memberhandle;
     }
 }

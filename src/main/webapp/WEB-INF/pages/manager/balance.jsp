@@ -35,51 +35,94 @@ ${nav}
             </div>
 
             <hr>
-
             <h5 class="page-header">收支记录</h5>
-            <ul class="nav nav-tabs">
-                <c:if test="${type eq 0}">
-                    <li role="presentation" class="active"><a href="#">会员充值</a></li>
-                    <li role="presentation"><a href="/manager_balance?type=1">退课结算</a></li>
-                    <li role="presentation"><a href="/manager_balance?type=2">平台结算</a></li>
-                </c:if>
-                <c:if test="${type eq 1}">
-                    <li role="presentation"><a href="/manager_balance?type=0">会员充值</a></li>
-                    <li role="presentation" class="active"><a href="#">退课结算</a></li>
-                    <li role="presentation"><a href="/manager_balance?type=2">平台结算</a></li>
-                </c:if>
-                <c:if test="${type eq 2}">
-                    <li role="presentation"><a href="/manager_balance?type=0">会员充值</a></li>
-                    <li role="presentation"><a href="/manager_balance?type=1">退课结算</a></li>
-                    <li role="presentation" class="active"><a href="#">平台结算</a></li>
-                </c:if>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">会员充值</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">退课结算</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">平台结算</a></li>
             </ul>
 
-            <c:if test="${type eq 0}">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>会员卡号</th>
-                            <th>金额</th>
-                            <th>平台充值总额</th>
-                            <th>时间</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${ops}" var="op">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
                             <tr>
-                                <td>1</td>
-                                <td>${op.cardId}</td>
-                                <td>${op.money}</td>
-                                <td>${op.recharge}</td>
-                                <td>${op.time}</td>
+                                <th>会员卡号</th>
+                                <th>金额</th>
+                                <th>平台充值总额</th>
+                                <th>时间</th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${ops}" var="op">
+                                <tr>
+                                    <td>${op.cardId}</td>
+                                    <td>${op.money}</td>
+                                    <td>${op.recharge}</td>
+                                    <td>${op.time}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </c:if>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>会员卡号</th>
+                                <th>课程号</th>
+                                <th>金额</th>
+                                <th>退课结算总额</th>
+                                <th>时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${mhs}" var="op">
+                                <tr>
+                                    <td>${op.cardId}</td>
+                                    <td>${op.classId}</td>
+                                    <td>${op.money}</td>
+                                    <td>${op.memberhandle}</td>
+                                    <td>${op.time}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>机构号</th>
+                                <th>课程号</th>
+                                <th>金额</th>
+                                <th>机构结算总额</th>
+                                <th>时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${ohs}" var="op">
+                                <tr>
+                                    <td>${op.orgId}</td>
+                                    <td>${op.classId}</td>
+                                    <td>${op.money}</td>
+                                    <td>${op.orghandle}</td>
+                                    <td>${op.time}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
 

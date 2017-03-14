@@ -68,22 +68,26 @@ public class LogHelper {
     }
 
     public static MemberhandleLogEntity getMemberHandleLogEntity(CardEntity cardEntity,
+                                                                 int memberhandle,
                                                                  ClassEntity classEntity, int money, Timestamp time){
         MemberhandleLogEntity m = new MemberhandleLogEntity();
         m.setCardId(cardEntity);
         m.setMoney(money);
         m.setClassId(classEntity);
         m.setTime(time);
+        m.setMemberhandle(memberhandle);
         return m;
     }
 
     public static OrghandleLogEntity getOrgHandleLogEntity(OrganizationEntity org, int money,
+                                                           int orghandle,
                                                            ClassEntity classEntity, Timestamp time){
         OrghandleLogEntity o = new OrghandleLogEntity();
         o.setOrgId(org);
         o.setMoney(money);
         o.setClassId(classEntity);
         o.setTime(time);
+        o.setOrghandle(orghandle);
         return o;
     }
 

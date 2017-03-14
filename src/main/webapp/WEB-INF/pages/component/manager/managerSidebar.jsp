@@ -13,7 +13,7 @@
         <li id="member-study"><a href="/org_learn_record">学员学习</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li id="platform-account"><a href="/manager_balance?type=0">账户收支明细</a></li>
+        <li id="platform-account"><a href="/manager_balance">账户收支明细</a></li>
     </ul>
     <input id="sidebar-current" type="hidden" value="${param.current}">
 </div>

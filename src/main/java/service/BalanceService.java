@@ -12,6 +12,8 @@ public interface BalanceService {
 
     public List<RechargeLogVO> getRechargeLog();
 
+
+
     public BalanceInfoVO getBalanceInfo();
 
 }

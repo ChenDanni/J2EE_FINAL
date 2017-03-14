@@ -118,7 +118,7 @@ public class MemberHandleController {
         System.err.println("add member handle");
 
         //增加member handle log
-        MemberhandleLogEntity m = LogHelper.getMemberHandleLogEntity(c,classEntity,money,chargelog.getDate());
+        MemberhandleLogEntity m = LogHelper.getMemberHandleLogEntity(c,memberHandle,classEntity,money,chargelog.getDate());
         memberHandleLogDAO.save(m);
 
         System.err.println("add member handle log");
