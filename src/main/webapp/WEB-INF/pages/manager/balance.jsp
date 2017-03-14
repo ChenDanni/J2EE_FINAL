@@ -81,33 +81,6 @@ ${nav}
                 </div>
             </c:if>
 
-
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>操作</th>
-                        <th>金额</th>
-                        <th>余额</th>
-                        <th>剩余积分</th>
-                        <th>日期</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${ops}" var="op">
-                        <tr>
-                            <td>1</td>
-                            <td>${op.name}</td>
-                            <td>${op.charge}</td>
-                            <td>${op.balance}</td>
-                            <td>${op.points}</td>
-                            <td>${op.time}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
     </div>

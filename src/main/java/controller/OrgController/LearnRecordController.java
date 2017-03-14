@@ -1,5 +1,6 @@
 package controller.OrgController;
 
+import model.LogEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import service.OrgService;
 import service.RecordService;
 import utility.DateHelper;
 import utility.JSONHelper;
+import utility.LogHelper;
 import utility.OrgHelper;
 import vo.member.courseVO;
 import vo.org.attendanceVO;

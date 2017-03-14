@@ -17,4 +17,6 @@ public interface LessonDAO extends JpaRepository<LessonEntity, Integer>{
 
     List<LessonEntity> findByClassId(ClassEntity classId);
 
+    List<LessonEntity> findByClassIdOrderByIdAsc(ClassEntity classEntity);
+
 }

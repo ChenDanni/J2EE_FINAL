@@ -53,6 +53,18 @@ public class LogHelper {
         log.setFinish(finish);
         return log;
     }
+    public static LogEntity getFinishLogEntity(int money,int classId,int cardId){
+        LogEntity log = new LogEntity();
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        log.setTime(time);
+        log.setMoney(money);
+        log.setClassId(classId);
+        log.setCardId(cardId);
+        log.setState(1);
+        log.setTotal(1);
+        log.setFinish(1);
+        return log;
+    }
 
     public static MemberhandleLogEntity getMemberHandleLogEntity(CardEntity cardEntity,
                                                                  ClassEntity classEntity, int money, Timestamp time){

@@ -1,10 +1,7 @@
 package service.impl;
 
 import dao.*;
-import model.CardEntity;
-import model.ChargeLogEntity;
-import model.ClassEntity;
-import model.LessonEntity;
+import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.RecordService;
@@ -28,6 +25,10 @@ public class RecordServiceImpl implements RecordService{
     CardDAO cardDAO;
     @Autowired
     ChargeLogDAO chargeLogDAO;
+    @Autowired
+    ClassDAO classDAO;
+    @Autowired
+    LogDAO logDAO;
 
     private void addLog(int cardId, int lessonId){
         //增加学员的point和consume
@@ -73,6 +74,11 @@ public class RecordServiceImpl implements RecordService{
         classMemberDAO.updateScore(score,cardId,classId);
         //设置classmember状态为4 (已完成课)
         classMemberDAO.updateClassMemberState(4,classId,cardId);
+
+        int money = classDAO.findOne(classId).getPrice();
+        //log 增加
+        LogEntity log = LogHelper.getFinishLogEntity(money,classId,cardId);
+        logDAO.save(log);
         return true;
     }
 }

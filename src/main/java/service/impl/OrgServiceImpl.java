@@ -33,10 +33,14 @@ public class OrgServiceImpl implements OrgService{
     OrgDAO orgDAO;
     @Autowired
     OrgLogDAO orgLogDAO;
+    @Autowired
+    LessonDAO lessonDAO;
 
     private List<attendanceVO> getAttendanceVO(int classId){
         List<Integer> cardIds = classMemberDAO.findCardByClassId(classId);
         List<attendanceVO> vos = new ArrayList<>();
+        ClassEntity classEntity = classDAO.findOne(classId);
+        List<LessonEntity> lessons = lessonDAO.findByClassIdOrderByIdAsc(classEntity);
 
         for (int i = 0;i < cardIds.size();i++){
             CardEntity card = cardDAO.findOne(cardIds.get(i));
@@ -46,14 +50,15 @@ public class OrgServiceImpl implements OrgService{
             cmpk.setClassId(classId);
             ClassMemberEntity cm = classMemberDAO.findOne(cmpk);
 
-            List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByLessonIdAsc(cardIds.get(i));
             List<Integer> lessonIds = new ArrayList<>();
             List<Integer> ab = new ArrayList<>();
 
-            for (int j = 0;j < lm.size();j++){
-                lessonIds.add(lm.get(j).getLessonId());
-                ab.add(lm.get(j).getAttendance());
+            for(int j = 0;j < lessons.size();j++){
+                LessonMemberEntity lm = lessonMemberDAO.findByLessonIdAndCardId(lessons.get(j).getId(),card.getId());
+                lessonIds.add(lm.getLessonId());
+                ab.add(lm.getAttendance());
             }
+
             attendanceVO at = new attendanceVO(cardIds.get(i),card.getName(),lessonIds,ab,cm.getScores());
             vos.add(at);
         }
