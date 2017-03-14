@@ -54,6 +54,7 @@ ${nav}
                 </thead>
                 <tbody>
                 <c:forEach items="${logs}" var="log">
+
                 <tr>
                     <td>${log.orgName}(${log.orgId})</td>
                     <td>${log.className}(${log.classId})</td>
@@ -66,11 +67,11 @@ ${nav}
                     </c:if>
                     <td>${log.price}</td>
                     <td>${log.time}</td>
-                    <c:if test="${log.state eq 2}">
-                    <td><input type="number" disabled="disabled" value="${log.money_back}"/>
+                    <c:if test="${log.state eq 2 || log.state eq 3 || log.state eq 5}">
+                    <td><input type="number" disabled="disabled" value="${log.money_account}"/>
                     </c:if>
 
-                    <c:if test="${log.state eq 0 || log.state eq 1}">
+                    <c:if test="${log.state eq 0 || log.state eq 1 || log.state eq 4}">
                     <td>
                         <input type="number"/>
                         <button class="btn btn-info set-account-btn">结算</button>

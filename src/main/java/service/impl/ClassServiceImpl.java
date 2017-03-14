@@ -38,6 +38,8 @@ public class ClassServiceImpl implements ClassService{
     LessonDAO lessonDAO;
     @Autowired
     LessonMemberDAO lessonMemberDAO;
+    @Autowired
+    CardDAO cardDAO;
 
 
     private List<courseVO> entityToVO(List<ClassEntity> classEntities){
@@ -204,8 +206,8 @@ public class ClassServiceImpl implements ClassService{
                 lessonId.add(lm.get(i).getLessonId());
                 attendances.add(lm.get(i).getAttendance());
             }
-
-            attendanceVO a = new attendanceVO(cardId,c.getName(),lessonId,attendances,cm.getScores());
+            CardEntity card = cardDAO.findOne(cardId);
+            attendanceVO a = new attendanceVO(cardId,card.getState(),c.getName(),lessonId,attendances,cm.getScores());
 
             LearningVO vo = new LearningVO(c.getId(),c.getName(),c.getPrice(),
                     c.getMemberNum()- c.getLeftMembers(),c.getLearnTime(),c.getOrgId().getName(),c.getTime(),a);

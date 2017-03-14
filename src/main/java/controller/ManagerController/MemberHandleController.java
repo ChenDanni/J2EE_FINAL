@@ -100,7 +100,13 @@ public class MemberHandleController {
         System.err.println("add chargelog");
 
         //更新log money, state
-        logDAO.updateLog(money,1,classId,cardId);
+        int state = logDAO.findByCardIdAndClassId(cardId,classId).getState();
+        if (state == 0)
+            state = 1;
+        if (state == 2)
+            state = 3;
+
+        logDAO.updateLog(money,state,classId,cardId);
 
         System.err.println("update log");
 

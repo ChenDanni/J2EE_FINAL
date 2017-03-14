@@ -8,13 +8,15 @@ import java.util.List;
 public class attendanceVO {
 
     public int cardId;
+    public int state;//是否是会员
     public String name;
     public List<Integer> lessonid;
     public List<Integer> attendances;
     public int score;
 
-    public attendanceVO(int cardId, String name, List<Integer> lessonid, List<Integer> attendances, int score) {
+    public attendanceVO(int cardId, int state, String name, List<Integer> lessonid, List<Integer> attendances, int score) {
         this.cardId = cardId;
+        this.state = state;
         this.name = name;
         this.lessonid = lessonid;
         this.attendances = attendances;

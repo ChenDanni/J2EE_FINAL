@@ -48,7 +48,7 @@ public class LogServiceImpl implements LogService{
 
             LogVO mh = new LogVO(username,l.getCardId(),classname,
                     l.getClassId(),orgname,orgid,l.getFinish(),l.getTotal(),
-                    l.getMoney(),l.getTime(),l.getState(),l.getMoneyBack());
+                    l.getMoney(),l.getTime(),l.getState(),l.getMoneyBack(),l.getMoneyAccount());
             vos.add(mh);
         }
         return vos;

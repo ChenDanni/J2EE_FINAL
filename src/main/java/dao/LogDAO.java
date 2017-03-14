@@ -15,6 +15,8 @@ import java.util.List;
 @Repository
 public interface LogDAO extends JpaRepository<LogEntity,Integer>{
 
+    LogEntity findByCardIdAndClassId(int cardId,int classId);
+
     @Query("select log from LogEntity log order by log.time desc ")
     List<LogEntity> findAllLogs();
 

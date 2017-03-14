@@ -41,71 +41,156 @@ ${nav}
                     </p>
                 </div>
             </div>
-            <%--</div>--%>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>学员</th>
-                        <c:forEach var="i" begin="1" end="${lessonNum}">
-                            <th>课时${i}</th>
-                        </c:forEach>
-                        <th>成绩</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            <hr>
 
-                    <c:forEach items="${attendances}" var="attendance">
-                        <tr>
-                            <td>${attendance.name}</td>
-                            <c:forEach items="${attendance.ats}" var="at">
-                                <c:if test="${at.state eq 0}">
-                                    <td>
-                                        <div>
-                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                            <button class="btn btn-success attend-btn">出席</button>
-                                        </div>
-                                        <div>
-                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                            <button class="btn btn-danger absence-btn">缺席</button>
-                                        </div>
-                                    </td>
-                                </c:if>
-                                <c:if test="${at.state eq 1}">
-                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
-                                </c:if>
-                                <c:if test="${at.state eq 2}">
-                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
-                                </c:if>
-                            </c:forEach>
-                            <td>
-                                <c:if test="${attendance.score ne 0}">
-                                    <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
-                                </c:if>
-                                <c:if test="${attendance.score eq 0}">
-                                    <div>
-                                        <input type="hidden" class="class-id" value="${classId}"/>
-                                        <input type="hidden" class="card-id" value="${attendance.cardId}"/>
-                                        <input type="number" name="score"/>
-                                        <button class="btn btn-info score-btn">确认</button>
-                                    </div>
-                                </c:if>
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">会员登记</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">非会员登记</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">新增非会员</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>学员</th>
+                                    <c:forEach var="i" begin="1" end="${lessonNum}">
+                                        <th>课时${i}</th>
+                                    </c:forEach>
+                                    <th>成绩</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <c:forEach items="${attendances}" var="attendance">
+                                    <c:if test="${attendance.state ne 4}">
+                                        <tr>
+                                            <td>${attendance.name}</td>
+                                            <c:forEach items="${attendance.ats}" var="at">
+                                                <c:if test="${at.state eq 0}">
+                                                    <td>
+                                                        <div>
+                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                            <button class="btn btn-success attend-btn">出席</button>
+                                                        </div>
+                                                        <div>
+                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                            <button class="btn btn-danger absence-btn">缺席</button>
+                                                        </div>
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${at.state eq 1}">
+                                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                </c:if>
+                                                <c:if test="${at.state eq 2}">
+                                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                </c:if>
+                                            </c:forEach>
+                                            <td>
+                                                <c:if test="${attendance.score ne 0}">
+                                                    <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                </c:if>
+                                                <c:if test="${attendance.score eq 0}">
+                                                    <div>
+                                                        <input type="hidden" class="class-id" value="${classId}"/>
+                                                        <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                        <input type="number" name="score"/>
+                                                        <button class="btn btn-info score-btn">确认</button>
+                                                    </div>
+                                                </c:if>
 
 
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                                            </td>
+                                        </tr>
+                                    </c:if>
+
+
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>学员</th>
+                                    <c:forEach var="i" begin="1" end="${lessonNum}">
+                                        <th>课时${i}</th>
+                                    </c:forEach>
+                                    <th>成绩</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <c:forEach items="${attendances}" var="attendance">
+                                    <c:if test="${attendance.state eq 4}">
+                                        <tr>
+                                            <td>${attendance.name}</td>
+                                            <c:forEach items="${attendance.ats}" var="at">
+                                                <c:if test="${at.state eq 0}">
+                                                    <td>
+                                                        <div>
+                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                            <button class="btn btn-success attend-btn">出席</button>
+                                                        </div>
+                                                        <div>
+                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                            <button class="btn btn-danger absence-btn">缺席</button>
+                                                        </div>
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${at.state eq 1}">
+                                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                </c:if>
+                                                <c:if test="${at.state eq 2}">
+                                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                </c:if>
+                                            </c:forEach>
+                                            <td>
+                                                <c:if test="${attendance.score ne 0}">
+                                                    <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                </c:if>
+                                                <c:if test="${attendance.score eq 0}">
+                                                    <div>
+                                                        <input type="hidden" class="class-id" value="${classId}"/>
+                                                        <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                        <input type="number" name="score"/>
+                                                        <button class="btn btn-info score-btn">确认</button>
+                                                    </div>
+                                                </c:if>
+                                            </td>
+                                        </tr>
+                                    </c:if>
+
+
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        <form class="form-signin col-md-4" action="/user/book/${classId}" method="post">
+                            <h2 class="form-signin-heading">增加非会员</h2>
+                            <label for="inputUsername" class="sr-only">用户名</label>
+                            <input type="text" id="inputUsername" class="form-control" name="name" placeholder="用户名" required autofocus>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
-            <form class="form-signin col-md-4" action="/user/book/${classId}" method="post">
-                <h2 class="form-signin-heading">增加非会员</h2>
-                <label for="inputUsername" class="sr-only">用户名</label>
-                <input type="text" id="inputUsername" class="form-control" name="name" placeholder="用户名" required autofocus>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
-            </form>
 
         </div>
 

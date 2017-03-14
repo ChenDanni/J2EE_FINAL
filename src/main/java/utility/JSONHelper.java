@@ -36,6 +36,7 @@ public class JSONHelper {
             obj.put("time", DateHelper.getDate(vo.time));
             obj.put("state",vo.state);
             obj.put("money_back",vo.money_back);
+            obj.put("money_account",vo.money_account);
             ret.add(obj);
         }
         return ret;

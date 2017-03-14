@@ -1,12 +1,7 @@
 package controller.OrgController;
 
-import dao.CardDAO;
-import dao.ClassDAO;
-import dao.ClassMemberDAO;
-import model.CardEntity;
-import model.ClassEntity;
-import model.ClassMemberEntity;
-import model.LogEntity;
+import dao.*;
+import model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +45,10 @@ public class LearnRecordController {
     ClassMemberDAO classMemberDAO;
     @Autowired
     CardService cardService;
+    @Autowired
+    LessonDAO lessonDAO;
+    @Autowired
+    LessonMemberDAO lessonMemberDAO;
 
     @RequestMapping(value = "/record_attend", method = RequestMethod.POST)
     @ResponseBody
@@ -120,6 +119,7 @@ public class LearnRecordController {
             o.put("cardId",a.cardId);
             o.put("name",a.name);
             o.put("score",a.score);
+            o.put("state",a.state);
 
             JSONArray ats = new JSONArray();
             for (int j = 0;j < a.attendances.size();j++){
@@ -147,6 +147,18 @@ public class LearnRecordController {
         return "organization/recordDetail";
     }
 
+    private void bindLessonMember(int cardId,ClassEntity c){
+        List<LessonEntity> lessons = lessonDAO.findByClassId(c);
+        for (int j = 0;j < lessons.size();j++){
+            LessonMemberEntity lm = new LessonMemberEntity();
+            lm.setCardId(cardId);
+            lm.setAttendance(0);
+            lm.setLessonId(lessons.get(j).getId());
+            lessonMemberDAO.save(lm);
+        }
+
+    }
+
     @RequestMapping(value = "/user/book/{cid}", method = RequestMethod.POST)
     public String bookCourseForUser(@PathVariable("cid") Integer id,
                                     @RequestParam("name") String name){
@@ -159,7 +171,8 @@ public class LearnRecordController {
         int leftMember = classEntity.getLeftMembers() - 1;
         classDAO.updateClassLeftMember(leftMember,id);
         classMemberDAO.save(cm);
-        classService.startCourse(id);
+
+        bindLessonMember(cardId,classEntity);
         return "redirect:/org_learn_record_detail?id="+id;
     }
 }

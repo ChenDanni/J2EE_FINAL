@@ -80,7 +80,14 @@ public class OrgHandleController {
         orgLogDAO.save(org_log);
 
         //更新log state为2
-        logDAO.updateLogOrg(money,2,classId,cardId);
+        int state = logDAO.findByCardIdAndClassId(cardId,classId).getState();
+        if (state == 0)
+            state = 2;
+        if (state == 1)
+            state = 3;
+        if (state == 4)
+            state = 5;
+        logDAO.updateLogOrg(money,state,classId,cardId);
 
         //orghandle增加
         ManagerEntity managerEntity = managerDAO.findOne(1);

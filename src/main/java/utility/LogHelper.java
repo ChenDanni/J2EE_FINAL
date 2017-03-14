@@ -41,6 +41,7 @@ public class LogHelper {
         return  rechargeLogEntity;
     }
 
+    //退课logentity
     public static LogEntity getLogEntity(int money,int classId,int cardId,int total,int finish){
         LogEntity log = new LogEntity();
         Timestamp time = new Timestamp(System.currentTimeMillis());
@@ -60,7 +61,7 @@ public class LogHelper {
         log.setMoney(money);
         log.setClassId(classId);
         log.setCardId(cardId);
-        log.setState(1);
+        log.setState(4);
         log.setTotal(1);
         log.setFinish(1);
         return log;
