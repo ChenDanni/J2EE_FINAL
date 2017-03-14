@@ -12,7 +12,7 @@
         <li id="learn-record"><a href="/org_learn_record">学习登记</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li id="org-account"><a href="/org_account">机构账户</a></li>
+        <li id="org-account"><a href="/org_account">机构财务</a></li>
         <li id="org-statistics"><a href="/org_statistics">机构统计信息</a></li>
     </ul>
     <input id="sidebar-current" type="hidden" value="${param.current}">

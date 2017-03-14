@@ -31,16 +31,17 @@ ${nav}
             <p>账户余额: 10000</p>
             <p>银行卡号: 3241****6352 <a>修改</a></p>
             <hr>
-            <h5 class="page-header">账户明细</h5>
+            <h5 class="page-header">结算明细</h5>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>操作</th>
+                        <th>课程</th>
+                        <th>用户</th>
+                        <th>状态</th>
                         <th>金额</th>
-                        <th>余额</th>
-                        <th>日期</th>
+                        <th>账户余额</th>
+                        <th>时间</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,15 +51,8 @@ ${nav}
                         <td>+1000</td>
                         <td>10000</td>
                         <td>2017-03-01</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>0000002退订课程二</td>
-                        <td>-1000</td>
-                        <td>9000</td>
                         <td>2017-03-01</td>
                     </tr>
-                    </tbody>
                 </table>
             </div>
         </div>

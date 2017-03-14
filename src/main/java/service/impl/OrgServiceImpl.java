@@ -1,13 +1,13 @@
 package service.impl;
 
-import dao.CardDAO;
-import dao.ClassDAO;
-import dao.ClassMemberDAO;
-import dao.LessonMemberDAO;
+import com.sun.org.apache.xpath.internal.operations.Or;
+import dao.*;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.OrgService;
+import vo.org.accountInfoVO;
+import vo.org.accountOPVO;
 import vo.org.attendanceVO;
 import vo.org.recordDetailVO;
 
@@ -29,6 +29,10 @@ public class OrgServiceImpl implements OrgService{
     LessonMemberDAO lessonMemberDAO;
     @Autowired
     CardDAO cardDAO;
+    @Autowired
+    OrgDAO orgDAO;
+    @Autowired
+    OrgLogDAO orgLogDAO;
 
     private List<attendanceVO> getAttendanceVO(int classId){
         List<Integer> cardIds = classMemberDAO.findCardByClassId(classId);
@@ -56,8 +60,6 @@ public class OrgServiceImpl implements OrgService{
         return vos;
     }
 
-
-
     @Override
     public recordDetailVO getRecordDetail(int classId) {
 
@@ -70,5 +72,26 @@ public class OrgServiceImpl implements OrgService{
         List<attendanceVO> vos = getAttendanceVO(classId);
         recordDetailVO ret = new recordDetailVO(name,totalMember,price,learn_time,start_time,vos);
         return ret;
+    }
+
+    @Override
+    public List<accountOPVO> getAccountOPs(int orgId) {
+        List<OrgLogEntity> logs = orgLogDAO.findLogsByOrdId(orgId);
+        List<accountOPVO> vos = new ArrayList<>();
+        for (int i = 0;i < logs.size();i++){
+            OrgLogEntity log = logs.get(i);
+            String className = log.getClassId().getName();
+            accountOPVO vo = new accountOPVO(log.getClassId().getId(),className,
+                    log.getType(), log.getMoney(),log.getBalance(),log.getTime());
+            vos.add(vo);
+        }
+        return vos;
+    }
+
+    @Override
+    public accountInfoVO getAccountInfo(int orgId) {
+        OrganizationEntity o = orgDAO.findOne(orgId);
+        accountInfoVO vo = new accountInfoVO(o.getBalance());
+        return vo;
     }
 }
