@@ -100,7 +100,12 @@ ${nav}
                     </tbody>
                 </table>
             </div>
-
+            <form class="form-signin col-md-4" action="/user/book/${classId}" method="post">
+                <h2 class="form-signin-heading">增加非会员</h2>
+                <label for="inputUsername" class="sr-only">用户名</label>
+                <input type="text" id="inputUsername" class="form-control" name="name" placeholder="用户名" required autofocus>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+            </form>
 
         </div>
 

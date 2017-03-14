@@ -1,15 +1,19 @@
 package controller.OrgController;
 
+import dao.CardDAO;
+import dao.ClassDAO;
+import dao.ClassMemberDAO;
+import model.CardEntity;
+import model.ClassEntity;
+import model.ClassMemberEntity;
 import model.LogEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import service.CardService;
 import service.ClassService;
 import service.OrgService;
 import service.RecordService;
@@ -38,6 +42,14 @@ public class LearnRecordController {
     OrgService orgService;
     @Autowired
     RecordService recordService;
+    @Autowired
+    ClassDAO classDAO;
+    @Autowired
+    CardDAO cardDAO;
+    @Autowired
+    ClassMemberDAO classMemberDAO;
+    @Autowired
+    CardService cardService;
 
     @RequestMapping(value = "/record_attend", method = RequestMethod.POST)
     @ResponseBody
@@ -133,6 +145,22 @@ public class LearnRecordController {
         model.addAttribute("lessonNum",lessonNum);
 
         return "organization/recordDetail";
+    }
+
+    @RequestMapping(value = "/user/book/{cid}", method = RequestMethod.POST)
+    public String bookCourseForUser(@PathVariable("cid") Integer id,
+                                    @RequestParam("name") String name){
+        int cardId = cardService.register(name, "123", "123");
+        CardEntity cardEntity = cardDAO.findOne(cardId);
+        cardEntity.setState(4);
+        cardDAO.saveAndFlush(cardEntity);
+        ClassEntity classEntity = classDAO.findOne(id);
+        ClassMemberEntity cm = LogHelper.getBookCM(cardId,id);
+        int leftMember = classEntity.getLeftMembers() - 1;
+        classDAO.updateClassLeftMember(leftMember,id);
+        classMemberDAO.save(cm);
+        classService.startCourse(id);
+        return "redirect:/org_learn_record_detail?id="+id;
     }
 }
 

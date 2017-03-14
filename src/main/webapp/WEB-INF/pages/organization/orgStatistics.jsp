@@ -26,21 +26,24 @@ ${nav}
         ${sidebar}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h5 class="page-header">会员卡充值</h5>
+            <h5 class="page-header">课程数据</h5>
+            <div id="courses-analysis" style="height: 400px;width: 500px;">
 
-            <%--<form class="form-signin">--%>
-            <form>
-                <p>账户余额: 9000</p>
-                <p>银行卡号: 3241****6352</p>
-                <label for="rechargeNum">充值金额</label>
-                <input type="text" id="rechargeNum" class="form-control" placeholder="充值金额" required autofocus>
+            </div>
+            <div id="courses-start-analysis" style="height: 400px;width: 500px;">
 
-                <%--<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>--%>
-                <%--<p class="lead">--%>
-                <a href="/card" class="btn btn-lg btn-default">取消</a>
-                <a href="/card" class="btn btn-lg btn-default">充值</a>
-                <%--</p>--%>
-            </form>
+            </div>
+            <h5 class="page-header">学员学习情况</h5>
+            <div id="learning-status" style="height: 400px;width: 500px;">
+
+            </div>
+
+            <h5 class="page-header">机构财务</h5>
+            <div id="org-balance-analysis" style="height: 400px;width: 500px;">
+
+            </div>
+
+
         </div>
 
     </div>
@@ -49,5 +52,6 @@ ${nav}
 
 <c:import url="../component/_script.jsp" var="script"></c:import>
 ${script}
+<script src="../../assets/js/orgStatistics.js"></script>
 </body>
 </html>

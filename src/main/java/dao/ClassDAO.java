@@ -37,4 +37,6 @@ public interface ClassDAO extends JpaRepository<ClassEntity,Integer>{
 
     @Query("select c from ClassEntity c order by c.time desc ")
     List<ClassEntity> findAllClassesOrderByTimeDesc();
+
+
 }

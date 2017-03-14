@@ -1,6 +1,5 @@
 package service.impl;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import dao.*;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +81,7 @@ public class OrgServiceImpl implements OrgService{
     @Override
     public List<accountOPVO> getAccountOPs(int orgId) {
         OrganizationEntity org = orgDAO.findOne(orgId);
-        List<OrgLogEntity> logs = orgLogDAO.findLogsByOrdId(org);
+        List<OrgLogEntity> logs = orgLogDAO.findLogsByOrgId(org);
         List<accountOPVO> vos = new ArrayList<>();
         for (int i = 0;i < logs.size();i++){
             OrgLogEntity log = logs.get(i);

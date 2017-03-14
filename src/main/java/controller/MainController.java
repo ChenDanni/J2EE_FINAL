@@ -101,9 +101,9 @@ public class MainController {
 //    public String getOrgAccount() {
 //        return "organization/orgAccount";
 //    }
-    @RequestMapping(value = "/org_statistics", method = RequestMethod.GET)
-    public String getOrgStatistics() {
-        return "organization/orgStatistics";
-    }
+//    @RequestMapping(value = "/org_statistics", method = RequestMethod.GET)
+//    public String getOrgStatistics() {
+//        return "organization/orgStatistics";
+//    }
 
 }

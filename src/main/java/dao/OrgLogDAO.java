@@ -15,7 +15,9 @@ import java.util.List;
 public interface OrgLogDAO extends JpaRepository<OrgLogEntity,Integer>{
 
     @Query("select o from OrgLogEntity o where o.orgId = ?1 order by o.time desc ")
-    List<OrgLogEntity> findLogsByOrdId(OrganizationEntity org);
+    List<OrgLogEntity> findLogsByOrgId(OrganizationEntity org);
 
+    @Query("select o from OrgLogEntity o where o.orgId = ?1 order by o.time asc ")
+    List<OrgLogEntity> findLogsByOrgIdOrderByTimeAsc(OrganizationEntity org);
 
 }

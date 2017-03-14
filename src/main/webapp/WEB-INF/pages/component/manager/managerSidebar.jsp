@@ -9,7 +9,7 @@
         <li id="org-account"><a href="/orgHandle">机构结算</a></li>
     </ul>
     <ul class="nav nav-sidebar">
-        <li id="recruit"><a href="/org_learn_record">机构招生情况</a></li>
+        <li id="org-analysis"><a href="/org_recruits">机构招生情况</a></li>
         <li id="member-study"><a href="/org_learn_record">学员学习</a></li>
     </ul>
     <ul class="nav nav-sidebar">

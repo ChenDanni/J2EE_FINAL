@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by cdn on 17/3/9.
  */
@@ -17,5 +19,8 @@ public interface OrgDAO extends JpaRepository<OrganizationEntity,Integer>{
     @Transactional
     @Query("update OrganizationEntity o set o.balance = ?1 where o.id = ?2")
     int updateOrgBalance(int balance, int id);
+
+    @Query("select o from OrganizationEntity o")
+    List<OrganizationEntity> findAllOrgs();
 
 }
