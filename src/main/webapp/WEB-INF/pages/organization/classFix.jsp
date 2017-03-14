@@ -30,40 +30,46 @@ ${nav}
 
             <%--<form class="form-signin">--%>
             <form>
+                <input type="hidden" name="classId" value="${id}">
                 <label for="course-name">课程名</label>
-                <input type="text" name="course-name" id="course-name" class="form-control" placeholder="课程名" required autofocus>
+                <input type="text" name="course-name" id="course-name" class="form-control" value="${name}" required autofocus>
 
                 <label for="start-time">开课时间</label>
-                <input type="date" id="start-time" name="start-time" class="form-control" placeholder="开课时间" required autofocus>
+                <input type="date" id="start-time" name="start-time" class="form-control" value="${start_time}" required autofocus>
 
                 <label for="learn-time">上课时间</label>
                 <input type="text" id="learn-time" name="learn-time" class="form-control" placeholder="上课时间" required autofocus>
 
                 <label for="teacher">教师</label>
-                <input type="text" id="teacher" class="form-control" name="teacher" placeholder="教师" required autofocus>
+                <input type="text" id="teacher" class="form-control" name="teacher" value="${teacher}" required autofocus>
 
                 <label for="price">价格</label>
-                <input type="text" id="price" class="form-control" placeholder="价格" name="price" required autofocus>
+                <input type="text" id="price" class="form-control" value="${price}" name="price" required autofocus>
 
                 <label for="memberNum">班级人数</label>
-                <input type="text" id="memberNum" class="form-control" placeholder="班级人数" name="memberNum" required autofocus>
+                <input type="text" id="memberNum" class="form-control" value="${memberNum}" name="memberNum" required autofocus>
 
                 <label for="description">课程简介</label>
                 <%--<input type="" id="description" class="form-control" placeholder="价格" required autofocus>--%>
-                <textarea id="description" class="form-control" placeholder="课程简介" name="description" rows="5"></textarea>
+                <textarea id="description" class="form-control" name="description" rows="5">${description}</textarea>
 
                 <h5 class="page-header">课时详情</h5>
+
+
                 <div id="lessons">
-                    <p>课时1: <input type="text" name="lesson-title-1" class="form-control" placeholder="本节标题" required autofocus>
-                        <input type="text" name="lesson-des-1" class="form-control" placeholder="本节内容" required autofocus></p>
+                    <c:forEach items="${lessons}" var="lesson">
+                        <p>课时${lesson.order}: <input type="text" name="lesson-title-${lesson.order}" class="form-control" value="${lesson.title}" required autofocus>
+                            <input type="text" name="lesson-des-${lesson.order}" class="form-control" value="${lesson.context}" required autofocus></p>
+                    </c:forEach>
+
                 </div>
 
 
             </form>
-            <button id="add-lesson" class="btn btn-lg btn-default">增加课时</button>
+            <%--<button id="add-lesson" class="btn btn-lg btn-default">增加课时</button>--%>
             <hr>
-            <a href="/card" class="btn btn-lg btn-default">取消</a>
-            <button id="apply-btn" class="btn btn-lg btn-default">申请开班</button>
+            <a href="/org_courses" class="btn btn-lg btn-default">取消</a>
+            <button id="apply-btn" class="btn btn-lg btn-default">申请修改</button>
         </div>
 
     </div>
@@ -72,6 +78,6 @@ ${nav}
 
 <c:import url="../component/_script.jsp" var="script"></c:import>
 ${script}
-<script src="../../assets/js/classApply.js"></script>
+<script src="../../assets/js/classFix.js"></script>
 </body>
 </html>

@@ -242,22 +242,38 @@ public class ClassServiceImpl implements ClassService{
         c.setLearnTime(ac.learnTime);
         c.setLeftMembers(ac.memberNum);
         c.setOrgId(org);
+        System.err.println("============"+c.getId());
         classDAO.saveAndFlush(c);
 
         ClassEntity cl = classDAO.findOne(ac.id);
         System.err.println("had find cl");
 //        c.setLessones(ls);
 
-        for (int i = 0;i < ac.lessons.size();i++){
-            lessonInfo li = ac.lessons.get(i);
-            LessonEntity l = new LessonEntity();
-            l.setName(li.name);
-            l.setDescription(li.description);
-            l.setClassId(cl);
-            l.setOrder(i);
-            l.setId(IdHelper.getLessonId());
-            lessonDAO.save(l);
-            ls.add(l);
+        List<LessonEntity> lessons = lessonDAO.findByClassIdOrderByIdAsc(c);
+        if (lessons.size() > 0){
+            for (int i = 0;i < ac.lessons.size();i++){
+                lessonInfo li = ac.lessons.get(i);
+                LessonEntity l = new LessonEntity();
+                l.setName(li.name);
+                l.setDescription(li.description);
+                l.setClassId(cl);
+                l.setOrder(i);
+                l.setId(lessons.get(i).getId());
+                lessonDAO.saveAndFlush(l);
+                ls.add(l);
+            }
+        }else {
+            for (int i = 0;i < ac.lessons.size();i++){
+                lessonInfo li = ac.lessons.get(i);
+                LessonEntity l = new LessonEntity();
+                l.setName(li.name);
+                l.setDescription(li.description);
+                l.setClassId(cl);
+                l.setOrder(i);
+                l.setId(IdHelper.getLessonId());
+                lessonDAO.save(l);
+                ls.add(l);
+            }
         }
         return true;
     }

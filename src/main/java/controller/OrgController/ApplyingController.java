@@ -43,4 +43,5 @@ public class ApplyingController {
 
         return "organization/applying";
     }
+
 }

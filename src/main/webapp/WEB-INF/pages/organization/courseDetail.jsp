@@ -50,7 +50,12 @@ ${nav}
                     <c:if test="${state eq 3}">
                         <p class="bg-success">已开课</p>
                     </c:if>
-                    <p> <a href="/org_course_fix?id=${id}" class="btn btn-primary">修改课程信息</a>
+
+                    <p>
+                        <c:if test="${state ne 3}">
+                            <a href="/org_course_fix?id=${id}" class="btn btn-primary">修改课程信息</a>
+                        </c:if>
+
                         <c:if test="${state eq 1}">
                             <a href="/start_course?id=${id}" class="btn btn-success">开课</a>
                         </c:if>
