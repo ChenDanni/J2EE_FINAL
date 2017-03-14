@@ -28,8 +28,8 @@ ${nav}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h5 class="page-header">机构账户</h5>
 
-            <p>账户余额: 10000</p>
-            <p>银行卡号: 3241****6352 <a>修改</a></p>
+            <p>账户余额: ${balance}</p>
+            <%--<p>银行卡号: 3241****6352 <a>修改</a></p>--%>
             <hr>
             <h5 class="page-header">结算明细</h5>
             <div class="table-responsive">
@@ -45,14 +45,22 @@ ${nav}
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${ops}" var="op">
                     <tr>
-                        <td>2</td>
-                        <td>0000001预定课程一</td>
-                        <td>+1000</td>
-                        <td>10000</td>
-                        <td>2017-03-01</td>
-                        <td>2017-03-01</td>
+                        <td>${op.className}(${op.classId})</td>
+                        <td>${op.cardId}</td>
+                        <c:if test="${op.state eq 0}">
+                            <td>退课</td>
+                        </c:if>
+                        <c:if test="${op.state eq 1}">
+                            <td>完成课程</td>
+                        </c:if>
+                        <td>${op.money}</td>
+                        <td>${op.balance}</td>
+                        <td>${op.time}</td>
                     </tr>
+                    </c:forEach>
+
                 </table>
             </div>
         </div>

@@ -76,13 +76,15 @@ public class OrgServiceImpl implements OrgService{
 
     @Override
     public List<accountOPVO> getAccountOPs(int orgId) {
-        List<OrgLogEntity> logs = orgLogDAO.findLogsByOrdId(orgId);
+        OrganizationEntity org = orgDAO.findOne(orgId);
+        List<OrgLogEntity> logs = orgLogDAO.findLogsByOrdId(org);
         List<accountOPVO> vos = new ArrayList<>();
         for (int i = 0;i < logs.size();i++){
             OrgLogEntity log = logs.get(i);
             String className = log.getClassId().getName();
             accountOPVO vo = new accountOPVO(log.getClassId().getId(),className,
-                    log.getType(), log.getMoney(),log.getBalance(),log.getTime());
+                    log.getType(), log.getMoney(),log.getBalance(),log.getTime(),
+                    log.getCardId().getId());
             vos.add(vo);
         }
         return vos;

@@ -1,0 +1,8 @@
+.course-detail-card {
+    display: flex;
+    flex-direction: row;
+}
+.course-card-info {
+    margin-left: 16px;
+    font-size: 16px;
+}
