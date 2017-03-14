@@ -9,11 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <c:import url="../component/_head.jsp" var="head">
-    <c:param name="title" value="正在学习的课程"/>
+    <c:param name="title" value="已退课程"/>
 </c:import>
 <c:import url="../component/nav.jsp" var="nav"></c:import>
 <c:import url="../component/sidebar.jsp" var="sidebar">
-    <c:param name="current" value="courses-stu"/>
+    <c:param name="current" value="courses-quit"/>
 </c:import>
 <c:import url="../component/siftButtons.jsp" var="shiftButtons"></c:import>
 ${head}
@@ -40,7 +40,7 @@ ${nav}
                                     <p>来自: ${lesson.orgName} | 开课时间: ${lesson.start_time}</p>
                                     <p>
                                         <a href="#" class="btn btn-info packup-btn" role="button">收起进度</a>
-                                        <a href="#" class="btn btn-danger quit-btn" role="button">退课</a>
+                                        <a href="#" class="btn btn-warning quit-btn" role="button">已申请退课</a>
                                         <input type="hidden" value="${lesson.classId}"/>
                                     </p>
                                 </div>

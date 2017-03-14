@@ -25,8 +25,48 @@ public class LogHelper {
         return  rechargeLogEntity;
     }
 
+    public static LogEntity getLogEntity(int money,int classId,int cardId,int total,int finish){
+        LogEntity log = new LogEntity();
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        log.setTime(time);
+        log.setMoney(money);
+        log.setClassId(classId);
+        log.setCardId(cardId);
+        log.setState(0);
+        log.setTotal(total);
+        log.setFinish(finish);
+        return log;
+    }
+
+    public static MemberhandleLogEntity getMemberHandleLogEntity(CardEntity cardEntity,
+                                                                 ClassEntity classEntity, int money, Timestamp time){
+        MemberhandleLogEntity m = new MemberhandleLogEntity();
+        m.setCardId(cardEntity);
+        m.setMoney(money);
+        m.setClassId(classEntity);
+        m.setTime(time);
+        return m;
+    }
+
 
     //------------member-------
+    //退课chargelog
+    public static ChargeLogEntity getQuitClassChargeLog(int money,int balance,CardEntity c,ClassEntity classEntity){
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        ChargeLogEntity chargeLog = new ChargeLogEntity();
+        chargeLog.setOperation(3);
+        chargeLog.setMoney(money);
+        chargeLog.setDate(time);
+        chargeLog.setBalance(balance);
+        chargeLog.setCardId(c);
+        chargeLog.setClassId(classEntity);
+        chargeLog.setPoints(c.getPoints());
+
+        return chargeLog;
+    }
+
+
+
     //上课产生的chargelog
     public static ChargeLogEntity getStudyChargeLog(CardEntity c, ClassEntity classEntity){
         Timestamp time = new Timestamp(System.currentTimeMillis());

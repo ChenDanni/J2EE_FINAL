@@ -12,6 +12,7 @@
             <li id="courses-stu"><a href="/learning">正在学习的课程</a></li>
             <li id="courses-book"><a href="/booking">预定中的课程</a></li>
             <li id="courses-fin"><a href="/finishing">已完成的课程</a></li>
+            <li id="courses-quit"><a href="/quitting">退课申请</a></li>
         </ul>
         <ul class="nav nav-sidebar">
             <li id="card-manage"><a href="/card">会员卡管理</a></li>

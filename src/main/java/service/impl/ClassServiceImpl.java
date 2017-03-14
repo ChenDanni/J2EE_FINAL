@@ -184,7 +184,10 @@ public class ClassServiceImpl implements ClassService{
         }else if (type == 1){
             //finishing
             cms = classMemberDAO.findByCardIdAndState(cardId,4);
-        }else {
+        }else if (type == 2) {
+            //quiting
+            cms = classMemberDAO.findByCardIdAndState(cardId,3);
+        }else{
             return vos;
         }
         Iterator<ClassMemberEntity> it = cms.iterator();

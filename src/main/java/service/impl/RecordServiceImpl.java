@@ -53,7 +53,7 @@ public class RecordServiceImpl implements RecordService{
     public boolean setAttend(int cardId, int lessonId) {
 
         //更新学员课程记录
-        lessonMemberDAO.updateAttendence(1,cardId,lessonId);
+        lessonMemberDAO.updateAttendance(1,cardId,lessonId);
 
         addLog(cardId,lessonId);
         return true;
@@ -62,7 +62,7 @@ public class RecordServiceImpl implements RecordService{
     @Override
     public boolean setAbsence(int cardId, int lessonId) {
 
-        lessonMemberDAO.updateAttendence(2,cardId,lessonId);
+        lessonMemberDAO.updateAttendance(2,cardId,lessonId);
         addLog(cardId,lessonId);
 
         return false;

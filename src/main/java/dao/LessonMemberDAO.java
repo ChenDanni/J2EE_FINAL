@@ -21,5 +21,6 @@ public interface LessonMemberDAO extends JpaRepository<LessonMemberEntity, Lesso
     @Modifying
     @Transactional
     @Query("update LessonMemberEntity lm set lm.attendance = ?1 where lm.cardId = ?2 and lm.lessonId = ?3")
-    int updateAttendence(int attendance,int cardId,int lessonId);
+    int updateAttendance(int attendance, int cardId, int lessonId);
+
 }

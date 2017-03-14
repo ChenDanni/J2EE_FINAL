@@ -15,6 +15,9 @@ public class LogEntity {
     private Timestamp time;
     private Integer state;
     private Integer money;
+    private int total;
+    private int finish;
+    private int moneyBack;
 
     @Id
     @Column(name = "card_id", nullable = false)
@@ -90,5 +93,35 @@ public class LogEntity {
         result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + (money != null ? money.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "total", nullable = false)
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    @Basic
+    @Column(name = "finish", nullable = false)
+    public int getFinish() {
+        return finish;
+    }
+
+    public void setFinish(int finish) {
+        this.finish = finish;
+    }
+
+    @Basic
+    @Column(name = "money_back", nullable = false)
+    public int getMoneyBack() {
+        return moneyBack;
+    }
+
+    public void setMoneyBack(int moneyBack) {
+        this.moneyBack = moneyBack;
     }
 }
