@@ -58,7 +58,7 @@ public class OrgServiceImpl implements OrgService{
                 ab.add(lm.getAttendance());
             }
 
-            attendanceVO at = new attendanceVO(cardIds.get(i),card.getState(),card.getName(),lessonIds,ab,cm.getScores());
+            attendanceVO at = new attendanceVO(cardIds.get(i),card.getState(),card.getName(),lessonIds,ab,cm.getScores(),cm.getState());
             vos.add(at);
         }
         return vos;

@@ -152,11 +152,11 @@ public class LogHelper {
         return chargeLog;
     }
 
-    public static ChargeLogEntity getBookChargeLog(CardEntity cardEntity, ClassEntity classEntity){
+    public static ChargeLogEntity getBookChargeLog(CardEntity cardEntity, ClassEntity classEntity,int money){
         Timestamp time = new Timestamp(System.currentTimeMillis());
         ChargeLogEntity chargeLog = new ChargeLogEntity();
         chargeLog.setOperation(1);
-        chargeLog.setMoney(-classEntity.getPrice());
+        chargeLog.setMoney(money);
         chargeLog.setDate(time);
         chargeLog.setBalance(cardEntity.getBalance());
         chargeLog.setCardId(cardEntity);

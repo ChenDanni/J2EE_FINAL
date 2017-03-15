@@ -16,6 +16,14 @@
     <c:param name="current" value="card-manage"/>
 </c:import>
 <c:import url="../component/orgCard.jsp" var="orgCard"></c:import>
+<style type="text/css">
+    .user-info-container{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+</style>
 ${head}
 
 <body>
@@ -29,14 +37,30 @@ ${nav}
 
             <div class="row placeholders">
                 <div class="col-xs-6 col-sm-3 placeholder">
-                    <img src="../../assets/images/black.jpeg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-                    <h4>${name} <a href="/setCardInfo">修改信息</a></h4>
+                    <img src="../../assets/images/black.jpeg" width="150" height="150" class="img-responsive" alt="Generic placeholder thumbnail">
+                    <h5>
+                        <c:if test="${state eq 1}">
+                            <p class="text-success"><b>[已激活]</b></p>
+                        </c:if>
+                    ${name} <a href="/setCardInfo">修改信息</a>
+                    </h5>
                 </div>
-                <div class="col-xs-6 col-sm-3">
 
-                    <span class="text-muted">等级: Lv.${level} <a href="#">关闭会员</a></span>
-                    <p>账户余额: ${balance} <a href="/recharge">充值</a></p>
-                    <p>积分: ${points} <a href="/use_points">使用积分</a></p>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="user-info-container">
+                        <p class="text-muted">等级: Lv.${level} <a href="#">关闭会员</a></p>
+                        <p>账户余额: ${balance}
+                            <%--<a href="/recharge">充值</a>--%>
+                            <c:if test="${state == 0}">
+                                <a class="btn btn-info btn-xs" href="/recharge">充值激活</a>
+                            </c:if>
+                            <c:if test="${state ne 0}">
+                                <a class="btn btn-default btn-xs" href="/recharge">充值</a>
+                            </c:if>
+                        </p>
+                        <p>积分: ${points} <a href="/use_points">使用积分</a></p>
+                    </div>
+
 
                 </div>
             </div>
@@ -46,7 +70,6 @@ ${nav}
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>#</th>
                         <th>操作</th>
                         <th>金额</th>
                         <th>余额</th>
@@ -57,7 +80,6 @@ ${nav}
                     <tbody>
                     <c:forEach items="${ops}" var="op">
                         <tr>
-                            <td>1</td>
                             <td>${op.name}</td>
                             <td>${op.charge}</td>
                             <td>${op.balance}</td>

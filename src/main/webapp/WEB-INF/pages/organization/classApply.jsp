@@ -16,6 +16,11 @@
     <c:param name="current" value="class-apply"/>
 </c:import>
 <c:import url="../component/orgCard.jsp" var="orgCard"></c:import>
+<style type="text/css">
+    label{
+        margin-top: 16px;
+    }
+</style>
 ${head}
 
 <body>
@@ -25,8 +30,8 @@ ${nav}
     <div class="row">
         ${sidebar}
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h5 class="page-header">开班申请</h5>
+        <div class="col-sm-6 col-sm-offset-3 col-md-7 col-md-offset-2 main">
+            <h4 class="page-header">开班申请</h4>
 
             <%--<form class="form-signin">--%>
             <form>

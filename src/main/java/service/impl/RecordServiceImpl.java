@@ -5,6 +5,7 @@ import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.RecordService;
+import utility.DiscountHelper;
 import utility.LogHelper;
 
 import java.util.List;
@@ -35,8 +36,13 @@ public class RecordServiceImpl implements RecordService{
         CardEntity card = cardDAO.findOne(cardId);
         LessonEntity lesson = lessonDAO.findOne(lessonId);
         ClassEntity classEntity = lesson.getClassId();
+
+        List<ChargeLogEntity> chs = chargeLogDAO.findByCardIdOrderByTimeDesc(card);
+        ChargeLogEntity ch = DiscountHelper.getBookChargeLog(chs,classEntity.getId());
+
+        int price = ch.getMoney();
         int classId = classEntity.getId();
-        int price = classEntity.getPrice();
+//        int price = classEntity.getPrice();
         List<LessonEntity> lessons = lessonDAO.findByClassId(classEntity);
         int lessonNum = lessons.size();
         int point = (int)((price*0.01)/lessonNum) + card.getPoints();
@@ -75,7 +81,15 @@ public class RecordServiceImpl implements RecordService{
         //设置classmember状态为4 (已完成课)
         classMemberDAO.updateClassMemberState(4,classId,cardId);
 
-        int money = classDAO.findOne(classId).getPrice();
+        CardEntity card = cardDAO.findOne(cardId);
+
+//        int money = classDAO.findOne(classId).getPrice();
+        //
+        List<ChargeLogEntity> chs = chargeLogDAO.findByCardIdOrderByTimeDesc(card);
+        ChargeLogEntity ch = DiscountHelper.getBookChargeLog(chs,classId);
+        int money = ch.getMoney();
+        //
+
         //log 增加
         LogEntity log = LogHelper.getFinishLogEntity(money,classId,cardId);
         logDAO.save(log);

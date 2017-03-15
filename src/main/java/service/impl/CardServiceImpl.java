@@ -66,7 +66,7 @@ public class CardServiceImpl implements CardService{
 
         CardEntity c = cardDAO.findOne(cardId);
         List<opVO> ops = getCardOPs(c);
-        cardManageVO vo = new cardManageVO(c.getName(),c.getLevel(),c.getBalance(),c.getPoints(),ops);
+        cardManageVO vo = new cardManageVO(c.getName(),c.getLevel(),c.getBalance(),c.getPoints(),c.getState(),ops);
 
         return vo;
     }
@@ -84,6 +84,11 @@ public class CardServiceImpl implements CardService{
 
         int balance = c.getBalance() + charge;
         int recharge = managerDAO.findOne(1).getRecharge();
+        int state = c.getState();
+
+        if (state == 0 && balance >= 1000){
+            cardDAO.updateCardState(1,cardId);
+        }
 
         int ret = cardDAO.updateCardBalance(balance,cardId);
         managerDAO.updateManagerRecharge(recharge+charge,1);

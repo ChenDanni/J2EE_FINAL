@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.ClassService;
 import utility.CardHelper;
 import utility.DateHelper;
+import utility.DiscountHelper;
 import utility.LogHelper;
 import vo.member.BookingVO;
 
@@ -75,22 +76,17 @@ public class BookingController {
         CardEntity cardEntity = cardDAO.findOne(cardId);
         ClassEntity classEntity = classDAO.findOne(id);
         ClassMemberEntity cm = LogHelper.getBookCM(cardId,id);
+        double discount = DiscountHelper.getDiscount(cardEntity.getLevel());
 
-        int consume = classEntity.getPrice();
-//        int totalConsume = cardEntity.getConsume() + consume;
-//        int points = (int)(consume*0.01);
-//        int level = CardHelper.getLevel(totalConsume);
+        int consume = (int)(classEntity.getPrice()*discount);
         int leftMember = classEntity.getLeftMembers() - 1;
 
         cardDAO.updateCardBalance(cardEntity.getBalance() - consume,cardId);
-//        cardDAO.updateCardPoints(cardEntity.getPoints() + points,cardId);
-//        cardDAO.updateCardConsume(totalConsume,cardId);
-//        cardDAO.updateCardLevel(level,cardId);
         classDAO.updateClassLeftMember(leftMember,id);
 
         cardEntity = cardDAO.findOne(cardId);
         classEntity = classDAO.findOne(id);
-        ChargeLogEntity chargeLog = LogHelper.getBookChargeLog(cardEntity,classEntity);
+        ChargeLogEntity chargeLog = LogHelper.getBookChargeLog(cardEntity,classEntity,consume);
 
         classMemberDAO.save(cm);
         chargeLogDAO.save(chargeLog);
@@ -106,7 +102,10 @@ public class BookingController {
         ClassEntity classEntity = classDAO.findOne(id);
         ClassMemberEntity cm = LogHelper.getUnbookCM(cardId,id);
 
-        int consume = classEntity.getPrice();
+        List<ChargeLogEntity> chs = chargeLogDAO.findByCardIdOrderByTimeDesc(cardEntity);
+        ChargeLogEntity ch = DiscountHelper.getBookChargeLog(chs,id);
+
+        int consume = ch.getMoney();
 
         cardDAO.updateCardBalance(cardEntity.getBalance() + (int)(consume*0.9),cardId);
         int leftMember = classEntity.getLeftMembers() + 1;

@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.ClassService;
 import service.LessonService;
-import utility.CardHelper;
-import utility.DateHelper;
-import utility.IdHelper;
-import utility.LogHelper;
+import utility.*;
 import vo.member.LearningVO;
 import vo.org.attendanceVO;
 
@@ -45,6 +42,10 @@ public class LearningController {
     ClassDAO classDAO;
     @Autowired
     LogDAO logDAO;
+    @Autowired
+    CardDAO cardDAO;
+    @Autowired
+    ChargeLogDAO chargeLogDAO;
 
 
     private JSONArray getClassInfo(List<LearningVO> vos){
@@ -98,7 +99,13 @@ public class LearningController {
             if (lm.getAttendance() == 0)
                 left++;
         }
-        int money = classEntity.getPrice();
+        //
+        CardEntity card = cardDAO.findOne(cardId);
+        List<ChargeLogEntity> chs = chargeLogDAO.findByCardIdOrderByTimeDesc(card);
+        ChargeLogEntity ch = DiscountHelper.getBookChargeLog(chs,classId);
+        int money = ch.getMoney();
+        //
+//        int money = classEntity.getPrice();
         LogEntity log = LogHelper.getLogEntity(money,classId,cardId,total,total-left);
         logDAO.save(log);
 

@@ -70,48 +70,90 @@ ${nav}
 
                                 <c:forEach items="${attendances}" var="attendance">
                                     <c:if test="${attendance.state ne 4}">
-                                        <tr>
-                                            <td>${attendance.name}</td>
-                                            <c:forEach items="${attendance.ats}" var="at">
-                                                <c:if test="${at.state eq 0}">
-                                                    <td>
-                                                        <div>
-                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                                            <button class="btn btn-success attend-btn">出席</button>
-                                                        </div>
-                                                        <div>
-                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                                            <button class="btn btn-danger absence-btn">缺席</button>
-                                                        </div>
-                                                    </td>
-                                                </c:if>
-                                                <c:if test="${at.state eq 1}">
-                                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
-                                                </c:if>
-                                                <c:if test="${at.state eq 2}">
-                                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
-                                                </c:if>
-                                            </c:forEach>
-                                            <td>
-                                                <c:if test="${attendance.score ne 0}">
-                                                    <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
-                                                </c:if>
-                                                <c:if test="${attendance.score eq 0}">
-                                                    <div>
-                                                        <input type="hidden" class="class-id" value="${classId}"/>
-                                                        <input type="hidden" class="card-id" value="${attendance.cardId}"/>
-                                                        <input type="number" name="score"/>
-                                                        <button class="btn btn-info score-btn">确认</button>
-                                                    </div>
-                                                </c:if>
 
+                                        <c:if test="${attendance.cmstate eq 3}">
+                                            <tr>
+                                                <td>${attendance.name}<button disabled="disabled" class="btn btn-warning">已退课</button></td>
 
-                                            </td>
-                                        </tr>
+                                                <c:forEach items="${attendance.ats}" var="at">
+                                                    <c:if test="${at.state eq 0}">
+                                                        <td>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-success" disabled="disabled">出席</button>
+                                                            </div>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-danger" disabled="disabled">缺席</button>
+                                                            </div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 1}">
+                                                        <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 2}">
+                                                        <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <td>
+                                                    <c:if test="${attendance.score ne 0}">
+                                                        <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                    </c:if>
+                                                    <c:if test="${attendance.score eq 0}">
+                                                        <div>
+                                                            <input type="hidden" class="class-id" value="${classId}"/>
+                                                            <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                            <input type="number" name="score" disabled="disabled"/>
+                                                            <button class="btn btn-info" disabled="disabled">确认</button>
+                                                        </div>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:if>
+                                        <c:if test="${attendance.cmstate ne 3}">
+                                            <tr>
+                                                <td>${attendance.name}</td>
+                                                <c:forEach items="${attendance.ats}" var="at">
+                                                    <c:if test="${at.state eq 0}">
+                                                        <td>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-success attend-btn">出席</button>
+                                                            </div>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-danger absence-btn">缺席</button>
+                                                            </div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 1}">
+                                                        <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 2}">
+                                                        <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <td>
+                                                    <c:if test="${attendance.score ne 0}">
+                                                        <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                    </c:if>
+                                                    <c:if test="${attendance.score eq 0}">
+                                                        <div>
+                                                            <input type="hidden" class="class-id" value="${classId}"/>
+                                                            <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                            <input type="number" name="score"/>
+                                                            <button class="btn btn-info score-btn">确认</button>
+                                                        </div>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:if>
+
                                     </c:if>
-
 
                                 </c:forEach>
                                 </tbody>
@@ -134,44 +176,94 @@ ${nav}
 
                                 <c:forEach items="${attendances}" var="attendance">
                                     <c:if test="${attendance.state eq 4}">
-                                        <tr>
-                                            <td>${attendance.name}</td>
-                                            <c:forEach items="${attendance.ats}" var="at">
-                                                <c:if test="${at.state eq 0}">
-                                                    <td>
+                                        <c:if test="${attendance.cmstate eq 3}">
+                                            <tr>
+                                                <td>${attendance.name}<button disabled="disabled" class="btn btn-warning">已退课</button></td>
+
+                                                <c:forEach items="${attendance.ats}" var="at">
+                                                    <c:if test="${at.state eq 0}">
+                                                        <td>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-success" disabled="disabled">出席</button>
+                                                            </div>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-danger" disabled="disabled">缺席</button>
+                                                            </div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 1}">
+                                                        <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 2}">
+                                                        <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <td>
+                                                    <c:if test="${attendance.score ne 0}">
+                                                        <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                    </c:if>
+                                                    <c:if test="${attendance.score eq 0}">
                                                         <div>
-                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                                            <button class="btn btn-success attend-btn">出席</button>
+                                                            <input type="hidden" class="class-id" value="${classId}"/>
+                                                            <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                            <input type="number" name="score" disabled="disabled"/>
+                                                            <button class="btn btn-info" disabled="disabled">确认</button>
                                                         </div>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:if>
+                                        <c:if test="${attendance.cmstate ne 3}">
+                                            <tr>
+                                                <td>${attendance.name}</td>
+                                                <c:forEach items="${attendance.ats}" var="at">
+                                                    <c:if test="${at.state eq 0}">
+                                                        <td>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-success attend-btn">出席</button>
+                                                            </div>
+                                                            <div>
+                                                                <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
+                                                                <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
+                                                                <button class="btn btn-danger absence-btn">缺席</button>
+                                                            </div>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 1}">
+                                                        <td><button disabled="disabled" class="btn btn-info">出席</button></td>
+                                                    </c:if>
+                                                    <c:if test="${at.state eq 2}">
+                                                        <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
+                                                    </c:if>
+                                                </c:forEach>
+                                                <td>
+                                                    <c:if test="${attendance.score ne 0}">
+                                                        <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
+                                                    </c:if>
+                                                    <c:if test="${attendance.score eq 0}">
                                                         <div>
-                                                            <input type="hidden" class="lesson-id" name="lessonId" value="${at.lessonId}"/>
-                                                            <input type="hidden" class="card-id" name="cardId" value="${attendance.cardId}"/>
-                                                            <button class="btn btn-danger absence-btn">缺席</button>
+                                                            <input type="hidden" class="class-id" value="${classId}"/>
+                                                            <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                            <input type="number" name="score"/>
+                                                            <button class="btn btn-info score-btn">确认</button>
                                                         </div>
-                                                    </td>
-                                                </c:if>
-                                                <c:if test="${at.state eq 1}">
-                                                    <td><button disabled="disabled" class="btn btn-info">出席</button></td>
-                                                </c:if>
-                                                <c:if test="${at.state eq 2}">
-                                                    <td><button disabled="disabled" class="btn btn-danger">缺席</button></td>
-                                                </c:if>
-                                            </c:forEach>
-                                            <td>
-                                                <c:if test="${attendance.score ne 0}">
-                                                    <input type="number" name="score" value="${attendance.score}" disabled="disabled"/>
-                                                </c:if>
-                                                <c:if test="${attendance.score eq 0}">
-                                                    <div>
-                                                        <input type="hidden" class="class-id" value="${classId}"/>
-                                                        <input type="hidden" class="card-id" value="${attendance.cardId}"/>
-                                                        <input type="number" name="score"/>
-                                                        <button class="btn btn-info score-btn">确认</button>
-                                                    </div>
-                                                </c:if>
-                                            </td>
-                                        </tr>
+                                                    </c:if>
+
+                                                </td>
+
+                                                <td>
+                                                    <input type="hidden" class="class-id" value="${classId}"/>
+                                                    <input type="hidden" class="card-id" value="${attendance.cardId}"/>
+                                                    <button class="btn btn-warning special-quit-btn">退课</button>
+                                                </td>
+                                            </tr>
+                                        </c:if>
                                     </c:if>
 
 

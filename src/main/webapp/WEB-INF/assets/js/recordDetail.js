@@ -45,6 +45,28 @@ $(document).ready(function () {
 
     });
 
+    $(document).on('click','.special-quit-btn',function () {
+        var td = $(this).parents('td').first();
+        var cardId = $(this).prev().val();
+        var classId = $(this).prev().prev().val();
+
+        var data = {
+            "classId":classId,
+            "cardId":cardId
+        };
+        console.log(data);
+        jQuery.ajax({
+            async: true,
+            data: data,
+            url: "special_quit",
+            type: "post",
+            success: function (res) {
+                td.html('<button class="btn btn-warning" disabled="disabled">已退课</button>');
+            }
+        });
+
+    });
+
     $(document).on('click','.score-btn',function () {
 
         var di = $(this).parent();

@@ -14,6 +14,7 @@
     </ul>
     <ul class="nav nav-sidebar">
         <li id="platform-account"><a href="/manager_balance">账户收支明细</a></li>
+        <li id="account-analysis"><a href="/manager_account_analysis">平台财务统计</a></li>
     </ul>
     <input id="sidebar-current" type="hidden" value="${param.current}">
 </div>

@@ -17,8 +17,9 @@ public class courseVO implements Serializable{
     public String learn_time;
     public String orgName;
     public Date start_time;
+    public int state;
 
-    public courseVO(int id, String name, int price, int memberNum, int leftMembers, String learn_time, String orgName, Date start_time) {
+    public courseVO(int id, String name, int price, int memberNum, int leftMembers, String learn_time, String orgName, Date start_time, int state) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -27,5 +28,6 @@ public class courseVO implements Serializable{
         this.learn_time = learn_time;
         this.orgName = orgName;
         this.start_time = start_time;
+        this.state = state;
     }
 }

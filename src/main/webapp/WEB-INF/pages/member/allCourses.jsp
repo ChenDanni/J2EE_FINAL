@@ -32,7 +32,7 @@ ${nav}
                     <c:forEach items="${allCourses}" var="course">
                         <div class="panel panel-default">
                             <div class="panel-body course-detail-card">
-                                <img src="assets/images/black.jpeg" alt="...">
+                                <img src="assets/images/java.jpg" alt="..." style="height: 80px;width: 80px">
                                 <div class="course-card-info">
                                     <h4>${course.name}</h4>
                                     <p>价格: ${course.price} 总人数: ${course.memberNum} 人 剩余名额: ${course.leftMembers} 人</p>

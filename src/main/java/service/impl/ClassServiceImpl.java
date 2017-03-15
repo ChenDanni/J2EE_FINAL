@@ -48,7 +48,7 @@ public class ClassServiceImpl implements ClassService{
         for (int i = 0;i < classEntities.size();i++) {
             ClassEntity c = classEntities.get(i);
             String orgName = c.getOrgId().getName();
-            courseVO vo = new courseVO(c.getId(),c.getName(), c.getPrice(), c.getMemberNum(), c.getLeftMembers(), c.getLearnTime(), orgName, c.getTime());
+            courseVO vo = new courseVO(c.getId(),c.getName(), c.getPrice(), c.getMemberNum(), c.getLeftMembers(), c.getLearnTime(), orgName, c.getTime(),c.getState());
             ret.add(vo);
         }
         return ret;
@@ -198,16 +198,18 @@ public class ClassServiceImpl implements ClassService{
             int classId = cm.getClassId();
             ClassEntity c = classDAO.findOne(classId);
 
-            List<LessonMemberEntity> lm = lessonMemberDAO.findByCardIdOrderByLessonIdAsc(cardId);
+            List<LessonEntity> lessons = lessonDAO.findByClassIdOrderByIdAsc(c);
             List<Integer> lessonId = new ArrayList<>();
             List<Integer> attendances = new ArrayList<>();
 
-            for (int i = 0;i < lm.size();i++){
-                lessonId.add(lm.get(i).getLessonId());
-                attendances.add(lm.get(i).getAttendance());
+            for (int i = 0;i < lessons.size();i++){
+                LessonMemberEntity lm = lessonMemberDAO.findByLessonIdAndCardId(lessons.get(i).getId(),cardId);
+                lessonId.add(lm.getLessonId());
+                attendances.add(lm.getAttendance());
             }
+
             CardEntity card = cardDAO.findOne(cardId);
-            attendanceVO a = new attendanceVO(cardId,card.getState(),c.getName(),lessonId,attendances,cm.getScores());
+            attendanceVO a = new attendanceVO(cardId,card.getState(),c.getName(),lessonId,attendances,cm.getScores(),cm.getState());
 
             LearningVO vo = new LearningVO(c.getId(),c.getName(),c.getPrice(),
                     c.getMemberNum()- c.getLeftMembers(),c.getLearnTime(),c.getOrgId().getName(),c.getTime(),a);

@@ -40,7 +40,22 @@ ${nav}
                                     <p>上课时间: ${course.learn_time}</p>
                                     <p>来自: ${course.orgName} | 开课日期: ${course.start_time}</p>
                                     <p><a href="/org_course_detail?id=${course.id}" class="btn btn-default" role="button">查看详情</a>
+
+                                        <c:if test="${course.state eq 0}">
+                                    <a href="#" class="btn btn-info" role="button">申请中</a>
+                                    </c:if>
+                                    <c:if test="${course.state eq 1}">
+                                        <a href="#" class="btn btn-success" role="button">通过审批</a>
+                                    </c:if>
+                                    <c:if test="${course.state eq 2}">
+                                        <a href="#" class="btn btn-warning" role="button">未通过审批</a>
+                                    </c:if>
+                                    <c:if test="${course.state eq 3}">
+                                        <a href="#" class="btn btn-success" role="button">已开课</a>
+                                    </c:if>
                                     </p>
+                                    
+
                                 </div>
                             </div>
                         </div>

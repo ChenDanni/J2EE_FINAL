@@ -137,11 +137,11 @@ public class orgStatisticsController {
                 if (learnNum == 0 && quitNum == 0){
                     courses.add(c.getName());
                     book.add(bookNum);
-                    unbook.add(unbookNum);
+                    unbook.add(-unbookNum);
                 }else {
                     courses_start.add(c.getName());
                     learn.add(learnNum);
-                    quit.add(quitNum);
+                    quit.add(-quitNum);
                 }
 
             }

@@ -45,6 +45,7 @@ public class CardManageController {
         model.addAttribute("level",vo.level);
         model.addAttribute("balance",vo.balance);
         model.addAttribute("points",vo.points);
+        model.addAttribute("state",vo.state);
         model.addAttribute("ops",ops);
 
         return "member/card";

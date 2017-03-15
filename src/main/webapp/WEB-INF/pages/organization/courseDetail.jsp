@@ -29,7 +29,6 @@ ${nav}
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h3>${name}</h3>
-                    <p class="text-muted">2100 人学过</p>
                     <hr>
                     <p>价格: <span class="text-info">${price}</span></p>
                     <p>时间: <span class="text-info">${learn_time}</span></p>

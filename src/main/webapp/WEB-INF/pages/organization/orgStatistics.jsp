@@ -27,19 +27,21 @@ ${nav}
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h5 class="page-header">课程数据</h5>
-            <div id="courses-analysis" style="height: 400px;width: 500px;">
+
+            <div id="courses-start-analysis" style="height: 400px;width: 600px;">
 
             </div>
-            <div id="courses-start-analysis" style="height: 400px;width: 500px;">
+            <div id="courses-analysis" style="height: 400px;width: 600px;">
 
             </div>
+
             <h5 class="page-header">学员学习情况</h5>
-            <div id="learning-status" style="height: 400px;width: 500px;">
+            <div id="learning-status" style="height: 400px;width: 600px;">
 
             </div>
 
             <h5 class="page-header">机构财务</h5>
-            <div id="org-balance-analysis" style="height: 400px;width: 500px;">
+            <div id="org-balance-analysis" style="height: 400px;width: 600px;">
 
             </div>
 

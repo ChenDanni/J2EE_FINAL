@@ -78,6 +78,20 @@ public class LearnRecordController {
         return ret;
     }
 
+    @RequestMapping(value = "/special_quit", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject specialQuit(HttpServletResponse response, HttpServletRequest request){
+
+        int cardId = Integer.valueOf(request.getParameter("cardId"));
+        int classId = Integer.valueOf(request.getParameter("classId"));
+
+        classMemberDAO.updateClassMemberState(3,classId,cardId);
+
+        JSONObject ret = new JSONObject();
+        ret.put("msg","success");
+        return ret;
+    }
+
     @RequestMapping(value = "/record_score", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject recordScore(HttpServletResponse response, HttpServletRequest request){
@@ -120,6 +134,7 @@ public class LearnRecordController {
             o.put("name",a.name);
             o.put("score",a.score);
             o.put("state",a.state);
+            o.put("cmstate",a.cmstate);
 
             JSONArray ats = new JSONArray();
             for (int j = 0;j < a.attendances.size();j++){

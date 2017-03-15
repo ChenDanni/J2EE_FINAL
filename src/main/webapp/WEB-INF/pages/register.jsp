@@ -11,12 +11,28 @@
 <c:import url="component/_head.jsp" var="head">
     <c:param name="title" value="注册"/>
 </c:import>
+<style type="text/css">
+    .form-control{
+        margin-bottom: 16px;
+        height:40px;
+    }
+    .register-container{
+        float: right;
+        padding:20px 20px;
+        background-color: white;
+        height:400px;
+        width:370px;
+        box-shadow: 2px 2px 6px black;
+        border-radius: 2px;
+        margin-top: 100px;
+        margin-right: 60px;
+    }
+</style>
 ${head}
-<body>
+<body  style="background-image: url('../../assets/images/background.jpg');background-size:1460px 870px;">
 <div class="container">
-
-
-    <form class="form-signin col-md-4" action="/register" method="post">
+<div class="register-container">
+    <form class="form-signin col-md-12" action="/register" method="post">
         <h2 class="form-signin-heading">学员注册</h2>
         <label for="inputUsername" class="sr-only">用户名</label>
         <input type="text" id="inputUsername" class="form-control" name="username" placeholder="用户名" required autofocus>
@@ -33,6 +49,10 @@ ${head}
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
+
+</div>
+
+
 
 </div> <!-- /container -->
 

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by cdn on 17/3/10.
@@ -17,5 +18,8 @@ public interface ChargeLogDAO extends JpaRepository<ChargeLogEntity,Integer> {
 
     @Query("select c from ChargeLogEntity c where c.cardId = ?1 order by c.date desc ")
     Collection<ChargeLogEntity> findByCardId(CardEntity cardId);
+
+    @Query("select c from ChargeLogEntity c where c.cardId = ?1 order by c.date desc ")
+    List<ChargeLogEntity> findByCardIdOrderByTimeDesc(CardEntity cardId);
 
 }

@@ -50,7 +50,7 @@ ${nav}
                     </div>
                 </c:if>
 
-                <c:if test="${a.state ne 0}">
+                <c:if test="${a.state ne 0 && a.state ne -1}">
                     <div class="panel panel-info">
                         <div class="panel-body">
                             <p><b class="text-success">[已审批]</b>${a.orgName}: ${a.name} | 开课时间: ${a.start_time}</p>
@@ -58,6 +58,7 @@ ${nav}
                         </div>
                     </div>
                 </c:if>
+
             </c:forEach>
 
         </div>

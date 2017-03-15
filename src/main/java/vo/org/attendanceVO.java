@@ -13,13 +13,15 @@ public class attendanceVO {
     public List<Integer> lessonid;
     public List<Integer> attendances;
     public int score;
+    public int cmstate; //是否退课
 
-    public attendanceVO(int cardId, int state, String name, List<Integer> lessonid, List<Integer> attendances, int score) {
+    public attendanceVO(int cardId, int state, String name, List<Integer> lessonid, List<Integer> attendances, int score, int cmstate) {
         this.cardId = cardId;
         this.state = state;
         this.name = name;
         this.lessonid = lessonid;
         this.attendances = attendances;
         this.score = score;
+        this.cmstate = cmstate;
     }
 }

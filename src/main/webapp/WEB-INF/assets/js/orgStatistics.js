@@ -173,7 +173,7 @@ function fill_learning_status(json){
         },
         yAxis: {},
         series: [{
-            name: '销量',
+            name: '成绩',
             type: 'bar',
             data: json.scores
         }]

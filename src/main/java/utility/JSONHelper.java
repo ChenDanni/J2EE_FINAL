@@ -74,6 +74,7 @@ public class JSONHelper {
             obj.put("learn_time",vo.learn_time);
             obj.put("orgName",vo.orgName);
             obj.put("start_time", DateHelper.getDate(vo.start_time));
+            obj.put("state",vo.state);
             ret.add(obj);
         }
         return ret;

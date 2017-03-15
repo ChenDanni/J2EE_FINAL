@@ -62,10 +62,10 @@ public class LoginController {
                     session.setAttribute("cardId",id);
                     session.setAttribute("name",card.getName());
                     model.addAttribute("name",card.getName());
-                    return "member/classList";
+                    return "member/allCourses";
                 }else {
                     System.err.println("密码错误");
-                    return "member/classList";
+                    return "member/allCourses";
                 }
             }
         } else if (idType == 2){
@@ -82,7 +82,7 @@ public class LoginController {
                     return "redirect:/org_courses";
                 }else {
                     System.err.println("密码错误");
-                    return "member/classList";
+                    return "member/allCourses";
                 }
             }
         }else {

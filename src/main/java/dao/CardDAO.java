@@ -35,6 +35,11 @@ public interface CardDAO extends JpaRepository<CardEntity, Integer>{
 
     @Modifying
     @Transactional
+    @Query("update CardEntity card set card.state = ?1 where card.id = ?2")
+    int updateCardState(int state, int id);
+
+    @Modifying
+    @Transactional
     @Query("update CardEntity c set c.name = ?1, c.accountId = ?2, c.phone = ?3, c.password = ?4 where c.id = ?5")
     int updateCardInfo(String name, String accountId, String phone, String password, int id);
 
